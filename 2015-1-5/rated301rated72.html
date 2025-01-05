@@ -1,0 +1,296 @@
+
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Export Notes by xxhk.org</title>
+<style>
+
+body { font-family: Arial, sans-serif; }
+.card { border: 2px solid #000; padding: 10px; border-radius: 10px; margin-bottom: 20px; }
+img {
+max-width: 100%;
+height: auto;
+border: 1px solid lightgray;
+border-radius: 10px;
+display: inline-block;
+margin: 10px 0px;
+}
+.separator { border-top: 1px dashed #000; margin: 10px 0; }
+.tags { background-color: lightgray; padding: 5px 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block; }
+.date { color: #666; font-size: 0.9em; margin-bottom: 5px; }
+.footer {
+text-align: center;
+color: grey;
+margin-top: 20px;
+padding: 10px;
+}
+h1 { text-align: center; color: #333; margin: 20px 0; }
+
+.video-container {
+margin: 10px 0;
+}
+.video-placeholder {
+position: relative;
+cursor: pointer;
+}
+.play-button {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 68px;
+height: 48px;
+background-color: rgba(0, 0, 0, 0.7);
+border-radius: 14px;
+cursor: pointer;
+}
+.play-button::before {
+content: '';
+position: absolute;
+top: 50%;
+left: 55%;
+transform: translate(-50%, -50%);
+border-style: solid;
+border-width: 12px 0 12px 20px;
+border-color: transparent transparent transparent white;
+}
+.play-button:hover {
+background-color: red;
+}
+
+</style>
+
+</head>
+<body>
+<h2 aria-hidden="true" style="text-align: center;"><br>Wandering Osmosis with <a href="https://www.microsoft.com/zh-cn/edge/features/read-aloud?form=MA13FJ">Edge TTS</a><br><br>rated:30:1 OR rated:7:2<br><br></h2>
+<div id="cards-container">
+<div class="card">
+<div class="field_0">IV的作用 是什么？【这个值越大表示这个特征的什么能力越强。】</div>
+<div class="separator"></div>
+<div class="field_1">对目标变量的区分能力以及预测能力越强。<br><br>衡量了整个特征对目标变量的区分能力，IV值越大，特征的预测能力越强。</div>
+</div>
+<div class="card">
+<div class="field_0">多分类问题中最常用的评估指标，尤其是在类别分布平衡的情况下，是什么？</div>
+<div class="separator"></div>
+<div class="field_1">准确度（Accuracy）&nbsp;</div>
+</div>
+<div class="card">
+<div class="field_0">准确度（Accuracy）计算公式是什么？</div>
+<div class="separator"></div>
+<div class="field_1"><img src="images/paste-1f6be0413a5f5e912755f93ebbd58f9a7abdbb9b.jpg"></div>
+</div>
+<div class="card">
+<div class="field_0">词性标注 的英文以及简写是什么？<br><div></div></div>
+<div class="separator"></div>
+<div class="field_1">Part-of-Speech Tagging, POS Tagging</div>
+</div>
+<div class="card">
+<div class="field_0">jieba 分词里面的<br>精确模式、全模式和搜索引擎模式的区别<br><div></div></div>
+<div class="separator"></div>
+<div class="field_1"><ul><li>精确模式：输出是<span style="color: rgb(255, 85, 0);"><b>唯一的，没有重复词</b></span>，也不会刻意把一个长词再切分成短词。</li><li>全模式和搜索引擎模式：都<span style="color: rgb(255, 85, 0);"><b>包含重复词。<br></b></span></li><li>全模式：穷尽句子中的所有词语组合，导致<b><span style="color: rgb(255, 85, 0);">重复率较高。</span></b></li><li>搜索引擎模式：在<b><span style="color: rgb(255, 85, 0);">精确模式基础上增加长词的细分。</span></b></li></ul></div>
+</div>
+<div class="card">
+<div class="field_0">分词 的英文是什么？<div></div></div>
+<div class="separator"></div>
+<div class="field_1">Tokenization。</div>
+</div>
+<div class="card">
+<div class="field_0"><img src="images/paste-ab996a7e59f9a4baaeb6813eb5c19b31782db97b.jpg"></div>
+<div class="separator"></div>
+<div class="field_1"><img src="images/paste-c672aae18d77ff9ec86630b2669d1faf82b6c213.jpg"></div>
+</div>
+<div class="card">
+<div class="field_0">在GRU里面，下面公式中间的圈是什么意思？以及整体的功能是什么？<br><img src="images/paste-046c39aca8b8ba1a061d9e2fce09a1762cefc82c.jpg"></div>
+<div class="separator"></div>
+<div class="field_1"><img src="images/paste-3caadf5deda77e771733c197199cdc5eab2a2a18.jpg"></div>
+</div>
+<div class="card">
+<div class="field_0">在GRU里面，1 - z_t 和 z_t 分别过滤什么信息？</div>
+<div class="separator"></div>
+<div class="field_1">分别是旧信息，上个隐藏状态<br>以及新信息，当前候选状态。<br><img src="images/paste-a6df9ac7f10683554224a09cd7e1bce53f2a7b93.jpg"><br><img src="images/paste-d7895d85322460c397501a52348e55c6853cd99a.jpg"></div>
+</div>
+<div class="card">
+<div class="field_0">在GRU里面，<br>最终的隐藏状态h_t是谁和谁的加权融合？</div>
+<div class="separator"></div>
+<div class="field_1">新旧信息的加权融合，新信息就是新的候选状态，旧信息就是上一个隐藏状态。<br><img src="images/paste-5ce25af2106baf8b499e2f280759ca44170c50c5.jpg"></div>
+</div>
+<div class="card">
+<div class="field_0">GRU 的完整数据流程包括哪三个关键步骤？</div>
+<div class="separator"></div>
+<div class="field_1"><li>计算两个门的值（z_t​ 和 r_t​）。</li><li>生成当前时间步的候选隐藏状态&nbsp;<img src="images/paste-b31a59048c6e4e26268aee3175d5172d769104ce.jpg">。</li><li>更新隐藏状态 h_t​。</li></div>
+</div>
+<div class="card">
+<div class="field_0">GRU 里面，<br><img src="images/paste-5d69acb8c8db2d3663493689d3d59586b0ba70be.jpg"></div>
+<div class="separator"></div>
+<div class="field_1"><img src="images/paste-cb1b0b4790d58286a6557a723ce4fc6cda35bdfc.jpg"></div>
+</div>
+<div class="card">
+<div class="field_0"><img src="images/paste-aa1dfa78b3826554052b63cbc999b08261a5d934.jpg"><br>在 LSTM 中，<br>输出门（output gate）的功能是什么？【决定了哪里的信息传递到哪。】</div>
+<div class="separator"></div>
+<div class="field_1">&nbsp;输出门（output gate）决定了细胞状态中的信息有多少需要传递给隐藏状态，也就是决定隐藏状态的值。</div>
+</div>
+<div class="card">
+<div class="field_0"><img src="images/paste-2e8db9759fae17dde03fa36dc391553dfbcc281a.jpg"></div>
+<div class="separator"></div>
+<div class="field_1"><img src="images/paste-713e8ee9c88ad0c5808be4529e12ddd718454dd8.jpg"></div>
+</div>
+<div class="card">
+<div class="field_0">collate_fn 应返回什么样的数据？【返回的数据的格式以及参数名称。】 </div>
+<div class="separator"></div>
+<div class="field_1">返回的格式是具有两个元素的元组，而第一个元素又是一个三个元素的元组。<br><br>((<span style="color: rgb(255, 85, 0);"><b>batched_x</b></span>, batched_seq_len, batched_mask), <b><span style="color: rgb(255, 85, 0);">batched_y</span></b>)</div>
+</div>
+<div class="card">
+<div class="field_0"><ol><li>使用 pathlib 来确保路径存在</li><li>使用动态生成的时间戳作为模型名称</li></ol>使用这两种方式来优化下面代码。<br><br>torch.save(ba_model.state_dict(), './save_model/20230228_new_model_%d.bin' % epoch)<br></div>
+<div class="separator"></div>
+<div class="field_1"># 生成当前的时间戳<br>timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')<br><br># 定义保存模型的目录<br>save_path = Path('./save_model')<br><br><br>save_path.mkdir(parents=True, exist_ok=True)<br><br># 保存模型<br>torch.save(ba_model.state_dict(), save_path/ f"{timestamp}.bin)</div>
+</div>
+<div class="card">
+<div class="field_0">如何在模型中处理 EPO 问题</div>
+<div class="separator"></div>
+<div class="field_1">对于 EPO 问题，可以将关系抽取任务视为多标签多分类问题，使模型能够为同一实体对预测多个关系。</div>
+</div>
+<div class="card">
+<div class="field_0">如何在模型中处理 SEO 问题?</div>
+<div class="separator"></div>
+<div class="field_1">对于 SEO 问题，可以为每个实体对设计独立的分类器，或者使用共享层和专用层结合的架构，以区分不同实体对中的关系。</div>
+</div>
+<div class="card">
+<div class="field_0">nn.Embedding(<b><span style="color: rgb(255, 85, 0);">..., ...</span></b>) 初始化一个嵌入矩阵<br>里面的两个参数名称是什么？</div>
+<div class="separator"></div>
+<div class="field_1">(vocab_size, embedding_dim)</div>
+</div>
+<div class="card">
+<div class="field_0"><div>在关系抽取中，标签类别tag通常对应于什么？<br></div></div>
+<div class="separator"></div>
+<div class="field_1">对应于不同的关系类型。</div>
+</div>
+<div class="card">
+<div class="field_0"><div>注意力机制（Attention Mechanism）<div>作用是使模型能够在处理序列数据时，能够怎么样？</div></div>【能够动态怎么样？提升模型的什么能力？】</div>
+<div class="separator"></div>
+<div class="field_1">动态地关注输入序列中的不同部分。提升模型对重要信息的捕捉能力，增强上下文理解。</div>
+</div>
+<div class="card">
+<div class="field_0">inner_obj_heads 和 inner_obj_tails 的维度是 什么样的？【是二维的，行数和列数分别和什么相等？】</div>
+<div class="separator"></div>
+<div class="field_1">[序列长度, 关系类别数].</div>
+</div>
+<div class="card">
+<div class="field_0">inner_obj_heads 和 inner_obj_tails,数据格式是存放0,1&nbsp;二值的二维矩阵。<br>每个位置的0,1 表示什么意思？【什么类别下的什么位置？】</div>
+<div class="separator"></div>
+<div class="field_1">特定关系类别下的起止位置。</div>
+</div>
+<div class="card">
+<div class="field_0"><div>从输入句子，到Token Embedding，Position Embedding。整体的数据流转过程是什么样？【4个步骤】</div></div>
+<div class="separator"></div>
+<div class="field_1">1 原始文本序列经过tokenizer处理以后变成id序列。<br>2 ID序列里面的每个ID经过embedding 层后得到对应的嵌入词向量。<br>3 每个位置索引经过嵌入以后得到位置向量。<br>4 词向量和每个对应的位置向量相加以后得到结果。<br><br><div><strong>步骤1：Tokenization</strong></div><ul><li>输入句子被<b><span style="color: rgb(255, 85, 0);">分割成 tokens</span></b>，并转换为 <b><span style="color: rgb(255, 85, 0);"><code>input_ids</code></span></b>。</li></ul><div><strong>步骤2：Token Embedding</strong></div><ul><li>每个 <code>input_id</code> 被<span style="color: rgb(255, 85, 0);"><b>转换为一个嵌入向量</b></span>，形成 <b><span style="color: rgb(255, 85, 0);"><code>token_embeddings</code> </span></b>矩阵。</li></ul><div><strong>步骤3：Position Embedding</strong></div><ul><li>每个 token 的<b><span style="color: rgb(255, 85, 0);">位置索引</span></b> 形成 <span style="color: rgb(255, 85, 0);"><b><code>position_embeddings</code> </b></span>矩阵。</li></ul><div><strong>步骤4：相加操作</strong></div><ul><li>将 <b><span style="color: rgb(255, 85, 0);"><code>token_embeddings</code> 和 <code>position_embeddings</code> 相加</span></b>，得到结合了词汇和位置信息的最终输入表示。</li></ul></div>
+</div>
+<div class="card">
+<div class="field_0">def create_label(inner_triples, inner_input_ids, seq_len):<br>代码里面，这三个参数分别是什么意思？</div>
+<div class="separator"></div>
+<div class="field_1">包含SPO三元组的列表。词汇表里面的ID序列。序列的长度。<br><ul><li>inner_triples: 包含多个SPO三元组的列表，每个三元组包含 subject、predicate、object。</li><li>inner_input_ids:  各个token在词汇表里面对应的ID位置序号。</li><li>seq_len: 序列长度。</li></ul><div></div></div>
+</div>
+<div class="card">
+<div class="field_0">inner_triples 是一个包含多个SPO三元组的列表，后续用它来构建什么？</div>
+<div class="separator"></div>
+<div class="field_1">遍历 inner_triples 并构建 s2ro_map。</div>
+</div>
+<div class="card">
+<div class="field_0">inner_triples 是一个包含多个SPO三元组的列表，首先对其遍历，拿到单个的三元组之后，然后是什么阶段？【是什么阶段以及三元组里面哪些值分别通过什么？转换成什么？】</div>
+<div class="separator"></div>
+<div class="field_1">编码阶段，<br><ul><li>将 subject 和 object 通过 tokenizer 转换为 input_ids。</li><li>将predicate 通过字典的映射，转换为对应的关系ID。</li></ul></div>
+</div>
+<div class="card">
+<div class="field_0">处理的流程是什么？【从原始的输入文本到用于训练的标签张量】</div>
+<div class="separator"></div>
+<div class="field_1"><div><ol><li>输入：句子经过tokenizer处理，得到 input_ids。</li><li>遍历SPO三元组：对每个SPO三元组，找到主体和客体实体在 input_ids 中的起始索引。</li><li>构建 s2ro_map：s2ro_map 记录了每个主体实体所关联的所有客体实体及其关系类别。</li><li>填充标签：关于主体的话有四个，sub_head, sub_tail, sub_head2tail, sub_len，关于客体的话有两个obj_head, obj_tail。</li><li>输出：返回用于训练的多个标签张量，涵盖主体实体的位置、跨度、长度，以及客体实体的位置和关系类别。</li></ol></div></div>
+</div>
+<div class="card">
+<div class="field_0">假设我们有以下句子和SPO三元组，经过tokenizer处理后的 input_ids 和位置索引应该是什么样的？<br><div>&nbsp;<div></div></div>句子: "Alice works at OpenAI and studies at MIT."<br><br>SPO三元组:<br>1. {'subject': 'Alice', 'predicate': 'works_at', 'object': 'OpenAI'}<br>2. {'subject': 'Alice', 'predicate': 'studies_at', 'object': 'MIT'}<br><br></div>
+<div class="separator"></div>
+<div class="field_1">input_ids = [101, 1001, 2003, 2000, 2001, 2004, 2005, 2006, 2007, 102]<br># 对应的tokens: ["[CLS]", "Alice", "works", "at", "OpenAI", "and", "studies", "at", "MIT", "[SEP]"]<br># 位置索引:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [0,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3,&nbsp;&nbsp;&nbsp;&nbsp; 4,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 5,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 6,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7,&nbsp;&nbsp;&nbsp; 8,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 9]</div>
+</div>
+<div class="card">
+<div class="field_0">使用inner_sub_head2tail 0,1 二值的一维张量，来标记主体实体的跨度。【代码】</div>
+<div class="separator"></div>
+<div class="field_1">inner_sub_head2tail[sub_head_idx: sub_tail_idx + 1] = 1</div>
+</div>
+<div class="card">
+<div class="field_0"> EPO 问题为什么被视为多标签多分类任务，使用什么激活函数以及损失函数？<div></div>以及为什么？</div>
+<div class="separator"></div>
+<div class="field_1">Entity pair overlap意味着同一实体对之间存在多个关系标签。也就是对于单个实体对而言，他属于是多标签，多分类。<br>sigmoid + BCE loss。<br>多标签多分类任务通常会被视为2分类任务，所以的话它对应的是sigmoid和2元交叉熵损失。</div>
+</div>
+<div class="card">
+<div class="field_0"><div>[json.loads(line) for line in open(data_path, encoding='utf-8')]<br></div><div>这个写法，虽然技术上可行，但不推荐，这是为什么呢？</div><div></div></div>
+<div class="separator"></div>
+<div class="field_1">因为缺乏资源管理，可能导致文件未关闭的问题。</div>
+</div>
+<div class="card">
+<div class="field_0">heads = torch.arange(0, len(pred_sub_heads), device='cpu')[pred_sub_heads == 1]<br>代码执行的两个阶段是什么？</div>
+<div class="separator"></div>
+<div class="field_1"><ul><li>生成<b><span style="color: rgb(255, 85, 0);">位置索引</span></b> [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]，</li><li>pred_sub_heads == 1 得到<span style="color: rgb(255, 85, 0);"><b>布尔张量</b></span>来 <span style="color: rgb(255, 85, 0);"><b>筛选</b></span>出 的位置索引，得到 <b><span style="color: rgb(255, 85, 0);">heads </span></b>。</li></ul></div>
+</div>
+<div class="card">
+<div class="field_0">extract_sub 这个函数输出的变量的名称是什么以及他的格式是什么？</div>
+<div class="separator"></div>
+<div class="field_1">subs，<br>类似于[(0, 8), (6, 9)]，包含多个二元元组的列表。</div>
+</div>
+<div class="card">
+<div class="field_0">BERT 模型 主要输出参数是pooler_output ，通常是 哪个token的向量经过哪两个步骤之后的结果，用作表示什么？</div>
+<div class="separator"></div>
+<div class="field_1">&nbsp;[CLS] token 的向量，一个全连接层和 Tanh 激活函数后，用于句子级别的表示（即句向量）。</div>
+</div>
+<div class="card">
+<div class="field_0">BERT 模型 主要输出参数是last_hidden_state，包含什么信息？</div>
+<div class="separator"></div>
+<div class="field_1">每个token的词向量。<br>每个 token 的上下文相关向量表示（即词向量）。</div>
+</div>
+<div class="card">
+<div class="field_0">Tokenizer 的输出结果输入到模型之后，来到bert模型里面的Transformer编码器，处理什么数据，生成什么数据。</div>
+<div class="separator"></div>
+<div class="field_1">处理输入嵌入，生成隐藏状态（hidden states）。</div>
+</div>
+<div class="card">
+<div class="field_0">联合抽取方法分类为哪两种？</div>
+<div class="separator"></div>
+<div class="field_1"><ul><li><b><span style="color: rgb(255, 85, 0);">参数共享</span></b>的联合模型，级联的方式</li><li><b><span style="color: rgb(255, 85, 0);">联合解码</span></b>的联合模型。</li></ul></div>
+</div>
+<div class="card">
+<div class="field_0">相比于管道模型，联合模型的核心在于哪两个方面？</div>
+<div class="separator"></div>
+<div class="field_1">任务间的参数共享和使用一个共同的总的损失函数。</div>
+</div>
+
+<script>
+document.addEventListener('click', function(e) {
+const container = e.target.closest('.video-container');
+if (!container) return;
+
+const placeholder = container.querySelector('.video-placeholder');
+if (!placeholder) return;
+
+const videoId = container.dataset.videoId;
+const startParam = container.dataset.start || '';
+
+const iframe = document.createElement('iframe');
+iframe.width = '100%';
+iframe.height = '100%';
+iframe.src = `https://www.youtube.com/embed/${videoId}?${startParam.slice(1)}`;
+iframe.title = 'YouTube video player';
+iframe.frameBorder = '0';
+iframe.style.position = 'absolute';
+iframe.style.top = '0';
+iframe.style.left = '0';
+iframe.style.borderRadius = '15px';
+iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+iframe.allowFullscreen = true;
+
+placeholder.innerHTML = '';
+placeholder.appendChild(iframe);
+});
+</script>
+
+</div>
+<div class="footer">Made by <a href="https://xxhk.org">Export Notes - XXHK</a></div>
+</body>
+</html>
+
