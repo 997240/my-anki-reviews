@@ -1,0 +1,845 @@
+
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Export Notes by xxhk.org</title>
+<style>
+
+body { font-family: Arial, sans-serif; }
+.card { border: 2px solid #000; padding: 10px; border-radius: 10px; margin-bottom: 20px; }
+img {
+max-width: 100%;
+height: auto;
+border: 1px solid lightgray;
+border-radius: 10px;
+display: inline-block;
+margin: 10px 0px;
+}
+.separator { border-top: 1px dashed #000; margin: 10px 0; }
+.tags { background-color: lightgray; padding: 5px 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block; }
+.footer {
+text-align: center;
+color: grey;
+margin-top: 20px;
+padding: 10px;
+}
+
+.video-container {
+margin: 10px 0;
+}
+.video-placeholder {
+position: relative;
+cursor: pointer;
+}
+.play-button {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 68px;
+height: 48px;
+background-color: rgba(0, 0, 0, 0.7);
+border-radius: 14px;
+cursor: pointer;
+}
+.play-button::before {
+content: '';
+position: absolute;
+top: 50%;
+left: 55%;
+transform: translate(-50%, -50%);
+border-style: solid;
+border-width: 12px 0 12px 20px;
+border-color: transparent transparent transparent white;
+}
+.play-button:hover {
+background-color: red;
+}
+
+</style>
+
+</head>
+<body>
+<div id="cards-container">
+<div class="card">
+
+<div class="field_0">使用 Huggingface的时候，collate_fn 会对数据进行哪些处理？
+【从每个样本中提取什么，使用哪个类对文本数据进行分词，最后collate_fn 会返回哪四个数据】</div>
+<div class="separator"></div>
+<div class="field_1"><ul><li>从每个样本中提取 <b><span style="color: rgb(255, 85, 0);"><code>text</code> 和 <code>label</code></span></b>。</li><li>使用 <b><span style="color: rgb(255, 85, 0);"><code>AutoTokenizer</code> </span></b>对文本数据进行分词，将其转换为模型能够接受的格式（包括 <code>input_ids</code>、<code>token_type_ids</code> 和 <code>attention_mask</code>）。</li><li>处理完成后，<code>collate_fn</code> 会返回处理好的数据（<b><span style="color: rgb(255, 85, 0);"><code>input_ids</code>、<code>token_type_ids</code>、<code>attention_mask</code> 和 <code>labels</code></span></b>）。</li></ul></div>
+</div>
+<div class="card">
+
+<div class="field_0">get_datalaoder 这个方法里面，流程是什么？【2个步骤】</div>
+<div class="separator"></div>
+<div class="field_1"><li><code>load_dataset</code> -&gt; <b><span style="color: rgb(255, 85, 0);">加载</span></b>数据</li><li><code>DataLoader</code> -&gt;<b><span style="color: rgb(255, 85, 0);"> 批处理</span></b>数据，使用 <code>collate_fn</code></li></div>
+</div>
+<div class="card">
+
+<div class="field_0">collate_fn(data) 这个方法里面，流程是什么？【3个步骤】</div>
+<div class="separator"></div>
+<div class="field_1"><li><code>text</code> 和 <code>label</code> 提取</li><li><code>AutoTokenizer</code> -&gt; 分词和编码</li><li>返回处理后的数据（<code>input_ids</code>, <code>token_type_ids</code>, <code>attention_mask</code>, <code>labels</code>）</li></div>
+</div>
+<div class="card">
+
+<div class="field_0"><div>collate_fn 是 DataLoader 在什么时候调用的函数？<br></div></div>
+<div class="separator"></div>
+<div class="field_1">每次迭代加载一个批次的数据时。</div>
+</div>
+<div class="card">
+
+<div class="field_0"><div>Hugging Face datasets 库中的哪个函数，用来加载数据集？<br></div></div>
+<div class="separator"></div>
+<div class="field_1">load_dataset&nbsp;</div>
+</div>
+<div class="card">
+
+<div class="field_0"><div>Hugging Face datasets 库中的&nbsp;load_dataset，三个参数分别是什么？<br></div></div>
+<div class="separator"></div>
+<div class="field_1">第一个参数 指定数据的格式，比如‘csv’，<br>第二个参数 指定数据文件的位置，比如data_files='./data/train.csv'，<br>第三个参数默认使用 split='train'。</div>
+</div>
+<div class="card">
+
+<div class="field_0"><div>collate_fn 这个函数是一个什么样功能的函数？【collate 字面含义是合并、整理】</div></div>
+<div class="separator"></div>
+<div class="field_1">将<b><span style="color: rgb(255, 85, 0);">多个样本合并为一个批次</span></b>的函数。</div>
+</div>
+<div class="card">
+
+<div class="field_0"><div>句子 "Hello world" 在 BERT 模型中可能会被编码成对应的 token IDs，比如什么？</div>【大概长什么样子？】</div>
+<div class="separator"></div>
+<div class="field_1">&nbsp;[<span style="color: rgb(255, 85, 0);"><b>101</b></span>, 7592, 2088, <b><span style="color: rgb(255, 85, 0);">102</span></b>]。</div>
+</div>
+<div class="card">
+
+<div class="field_0"><div>在文本数据中，每个单词（或子词）都会被转换为一个整数 ID，后续这些整数ID被用来干什么？</div></div>
+<div class="separator"></div>
+<div class="field_1">这些整数ID呢被用于去嵌入矩阵里面去查找对应的词向量。</div>
+</div>
+<div class="card">
+
+<div class="field_0"><div>对于单个句子任务，token_type_ids&nbsp;值通常都是 什么？</div></div>
+<div class="separator"></div>
+<div class="field_1">0。</div>
+</div>
+<div class="card">
+
+<div class="field_0"><div>句子对任务，token_type_ids 可能是 [0, 0, 1, 1]，0和1 分别表示什么意思？</div></div>
+<div class="separator"></div>
+<div class="field_1">第一个句子和第二个句子。</div>
+</div>
+<div class="card">
+
+<div class="field_0"><div>load_dataset 函数的第一个参数表示什么？第二个参数表示什么？</div></div>
+<div class="separator"></div>
+<div class="field_1">第一个是数据的类型，如 CSV 格式，第二个是数据文件的位置。</div>
+</div>
+<div class="card">
+
+<div class="field_0"><div>DataLoader 返回的数据包括：token IDs，句子类型标识符，注意力掩码 以及 标签，分别对应的变量名称是什么？</div></div>
+<div class="separator"></div>
+<div class="field_1">&nbsp;input_ids（token IDs）、token_type_ids（句子类型标识符）、attention_mask（注意力掩码）和 labels（标签）。</div>
+</div>
+<div class="card">
+
+<div class="field_0"><div>DataLoader 返回的数据包括 input_ids、token_type_ids、attention_mask和 labels，分别对应的含义是什么?</div></div>
+<div class="separator"></div>
+<div class="field_1">&nbsp;input_ids（token IDs）、token_type_ids（句子类型标识符）、attention_mask（注意力掩码）和 labels（标签）。</div>
+</div>
+<div class="card">
+
+<div class="field_0">从 data 中提取每个数据项的 'label' 字段，形成一个标签列表。【列表推导式的代码】</div>
+<div class="separator"></div>
+<div class="field_1">labels = [i['label'] for i in data]</div>
+</div>
+<div class="card">
+
+<div class="field_0"><div>&nbsp; &nbsp; inputs = my_tokenizer.batch_encode_plus(</div><div>        ['Hello, my dog is cute', 'Hello, my cat is cute'],</div><div>        return_tensors='pt',</div><div>        return_length=True,</div><div>        max_length=500,</div><div>        padding='max_length',</div><div>        <b><span style="color: rgb(255, 85, 0);">truncation</span></b>=True,</div><div>    )</div><div>truncation=True 的作用是什么？<br></div></div>
+<div class="separator"></div>
+<div class="field_1">如果句子的长度大于 max_length，则会被截断到 max_length 长度。</div>
+</div>
+<div class="card">
+
+<div class="field_0"><div>input_ids：词汇表中对应的 什么？<br></div></div>
+<div class="separator"></div>
+<div class="field_1">token ID。</div>
+</div>
+<div class="card">
+
+<div class="field_0">为什么要将标签列表（labels）转换为 PyTorch 的 LongTensor 类型？</div>
+<div class="separator"></div>
+<div class="field_1">PyTorch 的模型通常要求标签是长整型（LongTensor）。</div>
+</div>
+<div class="card">
+
+<div class="field_0">batch_encode_plus：这是 Hugging Face 提供的一个什么方法？【字面上理解】</div>
+<div class="separator"></div>
+<div class="field_1">高效批量编码方法。<br>高效（plus）批量（batch）编码（encode）方法。</div>
+</div>
+<div class="card">
+
+<div class="field_0">create_label 这个函数它的三个参数分别是什么？以及它是针对一个批次的数据还是单条的样本？</div>
+<div class="separator"></div>
+<div class="field_1"><div>inner_triples, inner_input_ids, seq_len，</div><div>针对的是单个样本。</div></div>
+</div>
+<div class="card">
+
+<div class="field_0"><div>sub_heads 以及 obj_heads，分别的维度是什么样的？</div></div>
+<div class="separator"></div>
+<div class="field_1">sub_heads ：[batch_size, seq_len] ，<br>obj_heads ：[batch_size, seq_len, num_relations]&nbsp;&nbsp;。</div>
+</div>
+<div class="card">
+
+<div class="field_0">对于 CasRel 模型，collate_fn函数 返回两个字典，名称是inputs, labels。其中，labels 字典里面的键是什么？</div>
+<div class="separator"></div>
+<div class="field_1">&nbsp; &nbsp; labels = {<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'sub_heads': sub_heads,<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'sub_tails': sub_tails,<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'obj_heads': obj_heads,<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'obj_tails': obj_tails<br><br>&nbsp;&nbsp;&nbsp; }</div>
+</div>
+<div class="card">
+
+<div class="field_0">append，extend 这两个方法，他们功能上的区别是什么？【在哪里如何添加以及添加什么？】</div>
+<div class="separator"></div>
+<div class="field_1">append 在列表<span style="color: rgb(255, 85, 0);"><b>末尾</b></span>添加一个<span style="color: rgb(255, 85, 0);"><b>单一元素，作为一个整体添加</b></span>，<br>extend 将一个可迭代对象的<span style="color: rgb(255, 85, 0);"><b>所有元素逐个</b></span>添加到列表<b><span style="color: rgb(255, 85, 0);">末尾。</span></b></div>
+</div>
+<div class="card">
+
+<div class="field_0">update 方法可以用于集合、字典，分别的作用是什么？【应该是理解成添加还是理解成更新呢？】</div>
+<div class="separator"></div>
+<div class="field_1">理解成覆盖式的添加。<br><ul><li>集合中添加所有元素；集合去重添加</li><li>字典中合并键值对；字典覆盖相同键的值</li></ul></div>
+</div>
+<div class="card">
+
+<div class="field_0">现在我需要用一个变量来表示关系类别的数量，这个变量应该叫什么名字？【2种】</div>
+<div class="separator"></div>
+<div class="field_1">rel_count, num_rel 。</div>
+</div>
+<div class="card">
+
+<div class="field_0">for rel_index in range(rel_count):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; obj_head = <b><span style="color: rgb(255, 85, 0);">obj_heads</span></b>[rel_index]
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; obj_tail = obj_tails[rel_index]<br>&nbsp; &nbsp; &nbsp; &nbsp; objs = extract_sub(obj_head, obj_tail)<br><br>代码里面，obj_heads的维度大小是什么？</div>
+<div class="separator"></div>
+<div class="field_1">(rel_count, seq_len).</div>
+</div>
+<div class="card">
+
+<div class="field_0"><div><div>torch.arange(0, 5, device='cpu')[torch.tensor([True, False, False, True, False])]<br># 结果: tensor([0, 3])<br></div></div><div>代码的作用是什么？</div>【是用什么来筛选出什么？】</div>
+<div class="separator"></div>
+<div class="field_1">使用布尔张量来筛选出位置索引。<br><br>使用布尔张量作为索引，从生成的连续整数张量中筛选出预测为实体头的位置索引。</div>
+</div>
+<div class="card">
+
+<div class="field_0">联合抽取方法分类为哪两种？</div>
+<div class="separator"></div>
+<div class="field_1"><ul><li><b><span style="color: rgb(255, 85, 0);">参数共享</span></b>的联合模型，级联的方式</li><li><b><span style="color: rgb(255, 85, 0);">联合解码</span></b>的联合模型。</li></ul></div>
+</div>
+<div class="card">
+
+<div class="field_0">联合抽取方法 里面的参数共享的联合模型，有什么特点？【编码的层面以及损失函数的层面】</div>
+<div class="separator"></div>
+<div class="field_1">不同的任务共享同一个bert编码器层。不同任务有各自的损失函数，相加得到总的损失函数，利用总的损失函数来进行参数更新。<br><br>主体、客体和关系的抽取任务在同一模型中进行，通常共享底层的表示（如 BERT 的隐藏层）。<br>每个任务有独立的损失函数，整个模型的总损失是各个任务损失的加权和。</div>
+</div>
+<div class="card">
+
+<div class="field_0">联合抽取方法 里面的联合解码的联合模型，联合解码有什么特点？输出结果有什么特点？</div>
+<div class="separator"></div>
+<div class="field_1">实体识别和关于抽取这两个任务，它们的解码过程是统一的，同时进行的。以及这两个任务的输出的结果是在同一层次上完成输出直接形成完整的三元组。<br><br>主体、客体和关系的抽取任务通过一个统一的解码过程同时完成，所有任务的抽取在同一时间步或同一层次上进行，输出直接形成完整的 SPO（三元组）结构。</div>
+</div>
+<div class="card">
+
+<div class="field_0">联合抽取方法分类为两种，参数共享的联合模型 以及&nbsp;联合解码的联合模型。CasRel&nbsp; 属于哪一种？</div>
+<div class="separator"></div>
+<div class="field_1">CasRel&nbsp; 属于&nbsp; 参数共享的联合模型。</div>
+</div>
+<div class="card">
+
+<div class="field_0">CasRel 使用同一个 什么来生成输入文本的上下文表示，这为实体识别和关系抽取提供了什么？</div>
+<div class="separator"></div>
+<div class="field_1">&nbsp;BERT 编码器，共享的语义信息。</div>
+</div>
+<div class="card">
+
+<div class="field_0">CasRel 里面 主体和客体的识别以及关系的预测都基于同一个什么，这意味着这些任务怎么样 底层的特征表示。</div>
+<div class="separator"></div>
+<div class="field_1">同一个 BERT 输出的隐藏状态，共享底层的特征表示。</div>
+</div>
+<div class="card">
+
+<div class="field_0">CasRel 在预测过程中采用了级联的方式，这里如何理解“级联”？</div>
+<div class="separator"></div>
+<div class="field_1">级联代表着预测的顺序关系。先识别主体，再基于主体识别客体及关系。</div>
+</div>
+<div class="card">
+
+<div class="field_0">参数共享的联合模型的定义是什么？【他们共享什么，但有独立的什么？】</div>
+<div class="separator"></div>
+<div class="field_1">他们共享编码器，相同的语义表示，但是呢不同任务有独立的损失函数。<br><br>不同任务共享参数但有独立的任务目标。</div>
+</div>
+<div class="card">
+
+<div class="field_0">CasRel 各个阶段是否有独立的损失函数？分别是哪些阶段？以及后续是如何处理的？</div>
+<div class="separator"></div>
+<div class="field_1">每个预测阶段（主体、客体、关系）都有独立的损失函数，<br>预测主体起止位置，客体起止位置以及对应关系类别。<br>整个模型的总损失是这些独立损失的加权和。</div>
+</div>
+<div class="card">
+
+<div class="field_0">CasRel 是一个联合模型，又具有级联的特性。如何理解这里的“联合训练” 和 “ 级联预测” 呢？</div>
+<div class="separator"></div>
+<div class="field_1">联合训练指的是这两个任务，实体识别和关系收取这两个任务。训练过程中是联合的，也就是他们共享了编码器以及使用共同的损失函数。<br>级联预测表示在预测过程，也就是前沿传播过程中，他们存在先后关系，有先后顺序。<br><br><li><strong>联合训练</strong>：CasRel 的<span style="color: rgb(255, 85, 0);"><b>所有任务</b></span>在<span style="color: rgb(255, 85, 0);"><b>同一个训练</b></span>过程中进行<span style="color: rgb(255, 85, 0);"><b>优化</b></span>，实体识别和关系抽取<b><span style="color: rgb(255, 85, 0);">共享相同的编码器</span></b>和特征表示。</li><li><strong>级联预测</strong>：在预测过程中，CasRel 通过<span style="color: rgb(255, 85, 0);"><b>级联</b></span>步骤（先主体，再客体和关系）来提高抽取的准确性。<b><span style="color: rgb(255, 85, 0);">分阶段的预测</span></b>方式。</li></div>
+</div>
+<div class="card">
+
+<div class="field_0">CasRel 是一个联合模型，如何理解“联合”的意思呢？</div>
+<div class="separator"></div>
+<div class="field_1">联合指的是多个任务一起。多个任务一起共享模型底层的参数以及一起被训练。<br><br><strong>联合训练</strong>：CasRel 的<span style="color: rgb(255, 85, 0);"><b>所有任务</b></span>在<span style="color: rgb(255, 85, 0);"><b>同一个训练</b></span>过程中进行<span style="color: rgb(255, 85, 0);"><b>优化</b></span>，实体识别和关系抽取<b><span style="color: rgb(255, 85, 0);">共享相同的编码器</span></b>和特征表示。</div>
+</div>
+<div class="card">
+
+<div class="field_0">CasRel 模型 具有<strong>级联 的性质</strong>，如何理解“<strong>级联&nbsp;</strong>”的意思呢？</div>
+<div class="separator"></div>
+<div class="field_1"><strong>级联预测</strong>：在预测过程中，CasRel 通过<span style="color: rgb(255, 85, 0);"><b>级联</b></span>步骤（先主体，再客体和关系）来提高抽取的准确性。<b><span style="color: rgb(255, 85, 0);">分阶段的预测</span></b>方式。</div>
+</div>
+<div class="card">
+
+<div class="field_0">CasRel 通过为每个任务设定 独立的什么，并将其怎么样来实现了多任务的联合训练。</div>
+<div class="separator"></div>
+<div class="field_1">为每个任务设定独立的损失函数，并将其综合到总损失中。</div>
+</div>
+<div class="card">
+
+<div class="field_0">CasRel 是一个参数共享的联合模型，这里的“联合” 指的是 目前在哪个阶段？</div>
+<div class="separator"></div>
+<div class="field_1">模型最后参数被更新的阶段。<br><span style="color: rgb(255, 85, 0);"><b>训练</b></span>和<span style="color: rgb(255, 85, 0);"><b>优化</b></span>这两个阶段，<br>实体识别和关系抽取任务的联合训练和优化。</div>
+</div>
+<div class="card">
+
+<div class="field_0">相比于管道模型，联合模型的核心在于哪两个方面？</div>
+<div class="separator"></div>
+<div class="field_1">任务间的参数共享和使用一个共同的总的损失函数。</div>
+</div>
+<div class="card">
+
+<div class="field_0">CasRel 的级联特性指的是什么？【指的是哪个阶段？】</div>
+<div class="separator"></div>
+<div class="field_1">级联只是<b><span style="color: rgb(255, 85, 0);">预测顺序</span></b>上的选择。</div>
+</div>
+<div class="card">
+
+<div class="field_0">CasRel 的名字来自哪里？从名字上可以看出什么功能？</div>
+<div class="separator"></div>
+<div class="field_1">&nbsp;<span style="color: rgb(255, 85, 0);"><b>Cascade </b></span>Binary Tagging for <b><span style="color: rgb(255, 85, 0);">Relation </span></b>Extraction with Label Dependencies，<br>级联的关系抽取模型。</div>
+</div>
+<div class="card">
+
+<div class="field_0">&nbsp;<span style="color: rgb(255, 85, 0);"><b>Cascade&nbsp;</b></span>Binary Tagging for&nbsp;<b><span style="color: rgb(255, 85, 0);">Relation&nbsp;</span></b>Extraction<br>中文名称是什么？</div>
+<div class="separator"></div>
+<div class="field_1">级联的二进制标记方法来实现关系提取。</div>
+</div>
+<div class="card">
+
+<div class="field_0">CasRel 在哪个模型的基础上添加了什么来进行不同任务的预测？</div>
+<div class="separator"></div>
+<div class="field_1">模型基于 <span style="color: rgb(255, 85, 0);"><b>BERT</b></span>，在其基础上添加了<b><span style="color: rgb(255, 85, 0);">多个线性层</span></b>来进行不同任务的预测。</div>
+</div>
+<div class="card">
+
+<div class="field_0">联合模型（Joint Model） 字面意思是通常指的是什么？【在同一个框架下怎么样？】</div>
+<div class="separator"></div>
+<div class="field_1">联合模型（Joint Model） 通常指的是在<b><span style="color: rgb(255, 85, 0);">同一框架下同时处理多个相关任务</span></b>，使得这些任务之间可以相互影响和优化。</div>
+</div>
+<div class="card">
+
+<div class="field_0">多个预测任务在同一模型中进行训练。这样的模型叫做什么模型？<br></div>
+<div class="separator"></div>
+<div class="field_1">联合模型（Joint Model）&nbsp;</div>
+</div>
+<div class="card">
+
+<div class="field_0">CasRel 模型的工作流程里面，哪些层是并行的？</div>
+<div class="separator"></div>
+<div class="field_1"><ul><li>主体起始位置预测层和主体结束位置预测层，这两个层是并行且独立，</li><li>然后客体起始位置预测层和客体结束位置预测层，这两个层是并行且独立。</li></ul></div>
+</div>
+<div class="card">
+
+<div class="field_0">CasRel 模型 的英文名称包含Cascade Binary Tagging，意思是 级联二进制标记，级联 和 二进制标记 分别是什么意思？</div>
+<div class="separator"></div>
+<div class="field_1">级联表示两个阶段是有先后顺序的。二进制标记表示的是各个位置的预测，是一个2分类问题。<br><br><li><strong>级联（Cascade）</strong>：两个阶段是具有先后顺序。模型<span style="color: rgb(255, 85, 0);"><b>先识别主体</b></span>实体，然后基于已识别的主体实体，<span style="color: rgb(255, 85, 0);"><b>进一步识别客体</b></span>实体及其<b><span style="color: rgb(255, 85, 0);">关系</span></b>。</li><li><strong>二进制标记（Binary Tagging）</strong>：每个位置的预测变成一个二分类的问题。<span style="color: rgb(255, 85, 0);"><b>每个标注任务</b></span>被视为独立的<span style="color: rgb(255, 85, 0);"><b>二分类</b></span>问题，例如判断<b><span style="color: rgb(255, 85, 0);">某个位置是否为</span></b>实体的起始或结束位置。</li></div>
+</div>
+<div class="card">
+
+<div class="field_0">CasRel 模型的级联二进制标记，英文名称是什么？</div>
+<div class="separator"></div>
+<div class="field_1">Cascade Binary Tagging。</div>
+</div>
+<div class="card">
+
+<div class="field_0">CasRel 模型的级联二进制标记，意味着 实体或关系的识别被视为一个二分类问题，这是什么意思？【也就是判定特定位置是否是什么？】</div>
+<div class="separator"></div>
+<div class="field_1">即某个特定位置是否为实体的起始或结束位置。</div>
+</div>
+<div class="card">
+
+<div class="field_0">若一个模型包含4个线性层，且这4个线性层并行同步运行，那么该模型究竟属于单层网络还是4层网络呢？以及为什么？</div>
+<div class="separator"></div>
+<div class="field_1">被视为一个<span style="color: rgb(255, 85, 0);"><b>单层</b></span>网络。因为数据只经过了<span style="color: rgb(255, 85, 0);"><b>一层</b></span>并行的<span style="color: rgb(255, 85, 0);"><b>线性变换</b></span>。因为层数反映的是数据在网络中<b><span style="color: rgb(255, 85, 0);">被逐层处理的深度</span></b>。</div>
+</div>
+<div class="card">
+
+<div class="field_0">常见的并行结构是多头注意力机制（Multi-Head Attention），其中多个注意力头并行处理输入，然后将结果合并。内部有多个并行的计算单元。这种结构被认为是一个多个还是单个注意力层？</div>
+<div class="separator"></div>
+<div class="field_1">单一的注意力层。</div>
+</div>
+<div class="card">
+
+<div class="field_0">模型包含4个线性层，这4个线性层是并行同步运行的。这意味着什么？【输入怎么样？每个层是什么操作？最终的结果怎么样？】</div>
+<div class="separator"></div>
+<div class="field_1"><li><strong>输入同时进入这4个线性层</strong>。</li><li><strong>每个线性层独立进行线性变换</strong>。</li><li><strong>最终将这4个输出合并</strong>，可能通过拼接、加和等方式。</li></div>
+</div>
+<div class="card">
+
+<div class="field_0">大型语言模型（Large Language Models, LLMs）的主要架构类别 可以分为哪三种？</div>
+<div class="separator"></div>
+<div class="field_1"><ul><li>Encoder-Only 架构，</li><li>Decoder-Only 架构，</li><li>Encoder-Decoder 架构。</li></ul></div>
+</div>
+<div class="card">
+
+<div class="field_0">大型语言模型（Large Language Models, LLMs）的主要架构类别里面，其中，Encoder-Only 架构的特点是什么？【只使用哪个部分来处理输入数据，主要用于什么类型的任务？】</div>
+<div class="separator"></div>
+<div class="field_1">仅使用编码器部分来处理输入数据，主要用于理解任务，如文本分类、命名实体识别等。</div>
+</div>
+<div class="card">
+
+<div class="field_0">大型语言模型（Large Language Models, LLMs）的主要架构类别里面，其中，Decoder-Only 架构的特点是什么？【只使用哪个部分以及主要用于什么任务？】</div>
+<div class="separator"></div>
+<div class="field_1">仅使用解码器部分来生成文本，主要用于生成任务，如文本生成、对话生成等。</div>
+</div>
+<div class="card">
+
+<div class="field_0">大型语言模型（Large Language Models, LLMs）的主要架构类别里面，其中，Encoder-Decoder 架构的特点是什么？【同时使用什么和什么？是个什么类型的任务？】</div>
+<div class="separator"></div>
+<div class="field_1">同时使用编码器和解码器，能够处理从输入到输出的复杂转换，适用于序列到序列的任务，如机器翻译、文本摘要等。</div>
+</div>
+<div class="card">
+
+<div class="field_0">大型语言模型（Large Language Models, LLMs）的主要架构类别里面，其中，Encoder-Decoder 架构的代表模型是什么？</div>
+<div class="separator"></div>
+<div class="field_1">T5（Text-To-Text Transfer Transformer）、BART（Bidirectional and Auto-Regressive Transformers）。</div>
+</div>
+<div class="card">
+
+<div class="field_0">大型语言模型（Large Language Models, LLMs）的主要架构类别里面，其中，Decoder-Only 架构的代表模型是什么？</div>
+<div class="separator"></div>
+<div class="field_1">GPT系列（如GPT-3、GPT-4）</div>
+</div>
+<div class="card">
+
+<div class="field_0">大型语言模型（Large Language Models, LLMs）的主要架构类别里面，其中，Encoder-Only 架构的代表模型是什么？</div>
+<div class="separator"></div>
+<div class="field_1">BERT（Bidirectional Encoder Representations from Transformers）。</div>
+</div>
+<div class="card">
+
+<div class="field_0">BERT 模型英文全称是什么？</div>
+<div class="separator"></div>
+<div class="field_1">Bidirectional Encoder Representations from Transformers</div>
+</div>
+<div class="card">
+
+<div class="field_0">T5模型英文全称是什么？</div>
+<div class="separator"></div>
+<div class="field_1">&nbsp;Text-To-Text Transfer Transformer。</div>
+</div>
+<div class="card">
+
+<div class="field_0">BART 模型英文全称是什么？</div>
+<div class="separator"></div>
+<div class="field_1">Bidirectional and Auto-Regressive Transformers。</div>
+</div>
+<div class="card">
+
+<div class="field_0">对于Decoder-Only，Encoder-Decoder架构以及Encoder-Only架构。<br>生成类任务 和 理解类任务分别适合什么架构？</div>
+<div class="separator"></div>
+<div class="field_1">生成类任务更适合使用Decoder-Only或Encoder-Decoder架构，<br>而理解类任务则更适合Encoder-Only架构。</div>
+</div>
+<div class="card">
+
+<div class="field_0">序列到序列（Seq2Seq）模型的基本原理是什么？【从两个部分讲解，这两个部分作用分别是什么？】</div>
+<div class="separator"></div>
+<div class="field_1"><ul><li>采用<b><span style="color: rgb(255, 85, 0);">编码器-解码器架构</span></b>，其中编码器负责将输入序列转换为上下文表示，解码器则基于该表示逐步生成输出序列。</li><li>通过引入<span style="color: rgb(255, 85, 0);"><b>注意力机制</b></span>，Seq2Seq模型能够在生成过程中动态关注输入序列的不同部分，从而提高了处理长序列的能力和生成的准确性</li></ul></div>
+</div>
+<div class="card">
+
+<div class="field_0">&nbsp;序列到序列的任务有哪些？</div>
+<div class="separator"></div>
+<div class="field_1">机器翻译、文本摘要。</div>
+</div>
+<div class="card">
+
+<div class="field_0">序列到序列（Seq2Seq）模型是一种什么样的架构？【什么器】</div>
+<div class="separator"></div>
+<div class="field_1">编码器-解码器架构。</div>
+</div>
+<div class="card">
+
+<div class="field_0">编码器-解码器架构里面编码器（Encoder）的作用是什么？【将什么转化为什么用于捕捉什么？】</div>
+<div class="separator"></div>
+<div class="field_1">将输入序列（例如，一句话或一段文本）转换为一个固定长度的上下文向量或一系列隐藏状态。这一过程旨在捕捉输入序列的语义和语法信息。</div>
+</div>
+<div class="card">
+
+<div class="field_0">编码器-解码器架构里面解码器（Decoder）的作用是什么？</div>
+<div class="separator"></div>
+<div class="field_1">基于编码器生成的上下文向量，逐步生成输出序列（例如，翻译后的句子或摘要）。解码器通常通过预测下一个词来逐步构建输出。</div>
+</div>
+<div class="card">
+
+<div class="field_0">编码器-解码器架构里面引入的注意力机制允许解码器什么时候怎么样？</div>
+<div class="separator"></div>
+<div class="field_1">在生成每个输出词时，动态地“关注”输入序列的不同部分，从而提升模型的性能和灵活性。</div>
+</div>
+<div class="card">
+
+<div class="field_0">在传统的Seq2Seq模型中，编码器将整个输入序列压缩成什么？</div>
+<div class="separator"></div>
+<div class="field_1">一个固定的上下文向量，这在处理长序列时可能导致信息丢失。</div>
+</div>
+<div class="card">
+
+<div class="field_0">经典的Seq2Seq模型有哪三种？</div>
+<div class="separator"></div>
+<div class="field_1">基础的RNN-based Seq2Seq、带有注意力机制的Seq2Seq、Transformer。</div>
+</div>
+<div class="card">
+
+<div class="field_0">仅使用编码器部分来处理输入数据，主要用于理解任务，举出两个例子。</div>
+<div class="separator"></div>
+<div class="field_1">文本分类、命名实体识别等。</div>
+</div>
+<div class="card">
+
+<div class="field_0">GPT 他的模型的英文全称是什么？</div>
+<div class="separator"></div>
+<div class="field_1">generative pretrained transformer。</div>
+</div>
+<div class="card">
+
+<div class="field_0">采用编码器-解码器架构，这两个部分分别的作用是什么？<br><br></div>
+<div class="separator"></div>
+<div class="field_1">其中编码器负责将输入序列转换为上下文表示，解码器则基于该表示逐步生成输出序列。</div>
+</div>
+<div class="card">
+
+<div class="field_0">通过引入注意力机制，Seq2Seq模型能够在什么时候动态的关注什么？</div>
+<div class="separator"></div>
+<div class="field_1">生成输出的过程中动态关注输入序列的不同部分，从而提高了处理长序列的能力和生成的准确性</div>
+</div>
+<div class="card">
+
+<div class="field_0">基于注意力机制的Seq2Seq模型通常指的是在谁的基础上引入了注意力机制的模型。</div>
+<div class="separator"></div>
+<div class="field_1">传统的RNN（如LSTM或GRU）。</div>
+</div>
+<div class="card">
+
+<div class="field_0">基于注意力机制的Seq2Seq模型：引入注意力机制后，解码器在生成什么的时候，根据什么和什么，计算一个注意力权重分布，从而进行什么计算？</div>
+<div class="separator"></div>
+<div class="field_1">生成每个输出词时，会根据当前的解码状态和编码器的所有隐藏状态，计算一个注意力权重分布，从而加权组合输入序列的各个部分。</div>
+</div>
+<div class="card">
+
+<div class="field_0"><div>T5模型的主要特点包括：</div>统一任务格式：指的是什么意思？<br></div>
+<div class="separator"></div>
+<div class="field_1">所有任务都被转换为文本生成问题，使得模型可以在多任务环境下进行训练和应用。</div>
+</div>
+<div class="card">
+
+<div class="field_0"><div>编码器（Encoder）：负责将什么转换成什么？<br></div></div>
+<div class="separator"></div>
+<div class="field_1">将输入序列（如一句话）转换为 上下文表示，比如：上下文向量或者隐藏状态序列。</div>
+</div>
+<div class="card">
+
+<div class="field_0"><div>早期的Seq2Seq模型多基于什么？<br></div></div>
+<div class="separator"></div>
+<div class="field_1">基于循环神经网络（RNN），如长短期记忆网络（LSTM）或门控循环单元（GRU）。</div>
+</div>
+<div class="card">
+
+<div class="field_0"><div><div>Transformer架构</div>特点：完全基于什么机制，摒弃了什么结构，极大提升了什么计算能力和建模什么依赖的能力。<br></div></div>
+<div class="separator"></div>
+<div class="field_1">注意力机制，RNN结构，并行计算能力，长距离依赖。</div>
+</div>
+<div class="card">
+
+<div class="field_0"><div><div><div>Transformer架构</div>特点：完全基于注意力机制，摒弃了RNN结构，极大提升了那两方面的能力？<br></div></div></div>
+<div class="separator"></div>
+<div class="field_1">并行计算能力和建模长距离依赖的能力。</div>
+</div>
+<div class="card">
+
+<div class="field_0"><div><div><div>由Google提出的T5模型将所有NLP任务统一成什么到什么的格式，通过大规模预训练和微调实现多任务学习。<br></div></div></div></div>
+<div class="separator"></div>
+<div class="field_1">文本到文本格式。</div>
+</div>
+<div class="card">
+
+<div class="field_0"><div><div><div>BART（Bidirectional and Auto-Regressive Transformers）简介：由Facebook AI提出，结合了什么和什么【哪两个器】，适用于文本生成和修复任务。<br></div></div></div></div>
+<div class="separator"></div>
+<div class="field_1">BERT的双向编码器和GPT的自回归解码器。</div>
+</div>
+<div class="card">
+
+<div class="field_0"><div><div><div>T5 是当前Seq2Seq模型中非常重要的一个代表。它不仅采用了标准的什么样的架构，还通过将所有任务统一为怎么样的格式，实现了跨任务的迁移学习。<br></div></div></div></div>
+<div class="separator"></div>
+<div class="field_1">Transformer Encoder-Decoder结构，<br>文本到文本的格式。</div>
+</div>
+<div class="card">
+
+<div class="field_0"><div><div><div>BERT 是一个自编码（autoencoding）模型，还是自回归模型。<br></div></div></div></div>
+<div class="separator"></div>
+<div class="field_1">自编码模型。</div>
+</div>
+<div class="card">
+
+<div class="field_0"><div><div><div>BERT 使用了 Masked Language Model (MLM) 预训练方法，这种方法是什么样的？从而让模型能够学习到什么？<br></div></div></div></div>
+<div class="separator"></div>
+<div class="field_1">通过在输入文本中随机掩盖一些词语，并训练模型预测这些掩盖的词，从而让模型能够学习到上下文的双向依赖。</div>
+</div>
+<div class="card">
+
+<div class="field_0"><div><div><div>自编码（autoencoding）模型的目标是学习如何怎样输入信息。<br></div></div></div></div>
+<div class="separator"></div>
+<div class="field_1">恢复输入信息。</div>
+</div>
+<div class="card">
+
+<div class="field_0"><div><div><div>BERT 在训练时是 双向 学习的，这是什么意思？【哪里的信息参与到了学习？】<br></div></div></div></div>
+<div class="separator"></div>
+<div class="field_1">左右两边的上下文都参与学习。</div>
+</div>
+<div class="card">
+
+<div class="field_0">BERT 在训练时是 双向 学习的（即左右两边的上下文都参与学习），它能够充分捕获什么？【什么之间的关系？】</div>
+<div class="separator"></div>
+<div class="field_1">句子中词与词之间的关系。</div>
+</div>
+<div class="card">
+
+<div class="field_0">GPT (Generative Pretrained Transformer) 是一个 自回归（autoregressive）模型，还是自编码模型？</div>
+<div class="separator"></div>
+<div class="field_1">自回归（autoregressive）模型.</div>
+</div>
+<div class="card">
+
+<div class="field_0">GPT (Generative Pretrained Transformer) 是一个 自回归（autoregressive）模型，它使用 哪个预训练方法？</div>
+<div class="separator"></div>
+<div class="field_1">Causal Language Modeling（因果语言建模）。</div>
+</div>
+<div class="card">
+
+<div class="field_0">GPT (Generative Pretrained Transformer) 是一个 自回归（autoregressive）模型，它使用 Causal Language Modeling（因果语言建模）预训练方法。这种方法的核心是什么？【预测当前词的时候只依赖于什么？而不是使用什么。】</div>
+<div class="separator"></div>
+<div class="field_1">预测当前词时，只依赖于前面已经生成的词语，而不是使用未来的信息。</div>
+</div>
+<div class="card">
+
+<div class="field_0">自回归（autoregressive）模型的目标是什么？【2个】</div>
+<div class="separator"></div>
+<div class="field_1">逐步生成输出，当前的输出依赖于先前生成的内容。</div>
+</div>
+<div class="card">
+
+<div class="field_0">GPT 使用 什么样方向的自注意力机制，每个位置只能关注哪里的词？</div>
+<div class="separator"></div>
+<div class="field_1">单向（左到右），前面的词。</div>
+</div>
+<div class="card">
+
+<div class="field_0">BERT 和 GPT 分别是自什么的模型，专注于什么任务，它通过什么方向的自注意力机制来干什么？</div>
+<div class="separator"></div>
+<div class="field_1"><li><strong>BERT</strong> 是一个<span style="color: rgb(255, 85, 0);"><b>自编码</b></span>模型，专注于<span style="color: rgb(255, 85, 0);"><b>理解</b></span>任务，它通过<span style="color: rgb(255, 85, 0);"> </span><strong><span style="color: rgb(255, 85, 0);">双</span>向</strong> 的自注意力机制<b><span style="color: rgb(255, 85, 0);">捕获输入序列的上下文信息</span></b>。</li><li><strong>GPT</strong> 是一个<span style="color: rgb(255, 85, 0);"><b>自回归</b></span>模型，专注于<span style="color: rgb(255, 85, 0);"><b>生成</b></span>任务，它通过 <strong><span style="color: rgb(255, 85, 0);">单</span>向</strong> 的自注意力机制<b><span style="color: rgb(255, 85, 0);">生成文本。</span></b></li></div>
+</div>
+<div class="card">
+
+<div class="field_0">为了解决传统 Seq2Seq 中 Encoder的什么问题，引入了 什么机制？</div>
+<div class="separator"></div>
+<div class="field_1">Encoder&nbsp;将整个输入压缩成一个固定大小的向量，引入了注意力机制（Attention Mechanism）。</div>
+</div>
+<div class="card">
+
+<div class="field_0">为什么说Transformer 彻底改变了 Seq2Seq 模型的设计？</div>
+<div class="separator"></div>
+<div class="field_1">因为它用自注意力机制（Self-Attention）来替代传统的 RNN/LSTM 结构。</div>
+</div>
+<div class="card">
+
+<div class="field_0">Transformer 结构里面，Encoder 和 Decoder 都由多个层堆叠的 什么和什么组成？</div>
+<div class="separator"></div>
+<div class="field_1">&nbsp;Self-attention 和 Feed-Forward 组成。</div>
+</div>
+<div class="card">
+
+<div class="field_0">Transformer 结构里面，Multi-Head Attention：允许模型在多个不同的什么中同时关注什么？</div>
+<div class="separator"></div>
+<div class="field_1">子空间中，输入序列的不同部分。</div>
+</div>
+<div class="card">
+
+<div class="field_0">T5 是一个统一的 Transformer 模型，它将所有的 NLP 任务都视为 什么 的问题。</div>
+<div class="separator"></div>
+<div class="field_1">文本到文本。</div>
+</div>
+<div class="card">
+
+<div class="field_0">BART 是结合了 哪两个思想的一个混合模型。</div>
+<div class="separator"></div>
+<div class="field_1">BERT 和 GPT 。</div>
+</div>
+<div class="card">
+
+<div class="field_0">BART 是结合了 BERT 和 GPT 思想的一个混合模型，具有什么样的编码器以及什么样的解码器？</div>
+<div class="separator"></div>
+<div class="field_1">&nbsp;双向编码器 和 自回归解码器。</div>
+</div>
+<div class="card">
+
+<div class="field_0">Seq2Seq 模型最基本的定义就是什么和什么之间的映射关系？</div>
+<div class="separator"></div>
+<div class="field_1">输入和输出序列。</div>
+</div>
+<div class="card">
+
+<div class="field_0">通常来说，Seq2Seq 模型 指的就是 什么 架构？</div>
+<div class="separator"></div>
+<div class="field_1">Encoder-Decoder。</div>
+</div>
+<div class="card">
+
+<div class="field_0">传统的&nbsp; Encoder-Decoder 架构是基于什么，当前是基于什么？</div>
+<div class="separator"></div>
+<div class="field_1">之前是基于RNN，目前是基于自注意力机制的Transformer。</div>
+</div>
+<div class="card">
+
+<div class="field_0">GPT 的预训练任务是 什么任务。基于什么？</div>
+<div class="separator"></div>
+<div class="field_1">基于 无监督学习 的 自回归语言建模任务。</div>
+</div>
+<div class="card">
+
+<div class="field_0">GPT 的预训练任务是 自回归语言建模任务，这个任务是什么意思？【通过预测什么来学习？】</div>
+<div class="separator"></div>
+<div class="field_1">利用大量的无标注文本数据，通过预测下一个 token来学习。</div>
+</div>
+<div class="card">
+
+<div class="field_0">GPT 的预训练任务是 自回归语言建模任务，为什么是无监督学习？</div>
+<div class="separator"></div>
+<div class="field_1">不依赖任何人工标注的标签，通过预测下一个 token 来学习。</div>
+</div>
+<div class="card">
+
+<div class="field_0">GPT 的微调阶段阶段是有监督任务还是无监督任务。</div>
+<div class="separator"></div>
+<div class="field_1">有监督任务。</div>
+</div>
+<div class="card">
+
+<div class="field_0">GPT 的微调阶段阶段是有监督任务，关于使用的数据，两个例子。</div>
+<div class="separator"></div>
+<div class="field_1">问题-答案对、分类标签。</div>
+</div>
+<div class="card">
+
+<div class="field_0">GPT 的训练任务是哪两种？</div>
+<div class="separator"></div>
+<div class="field_1">&nbsp;无监督的预训练 和 有监督任务的微调。</div>
+</div>
+<div class="card">
+
+<div class="field_0">GPT 的训练可以分为两个主要阶段：分别是什么？</div>
+<div class="separator"></div>
+<div class="field_1">无监督预训练 和 有监督微调。</div>
+</div>
+<div class="card">
+
+<div class="field_0">GPT 的训练可以分为两个主要阶段：其中，无监督的预训练阶段，目标是什么？【让模型学习到什么？】</div>
+<div class="separator"></div>
+<div class="field_1">让模型学习语言的分布和模式，结构。</div>
+</div>
+<div class="card">
+
+<div class="field_0">GPT 的训练可以分为两个主要阶段：其中，无监督的预训练阶段，基于哪个任务 实现的。</div>
+<div class="separator"></div>
+<div class="field_1">基于 自回归语言建模任务 实现的。</div>
+</div>
+<div class="card">
+
+<div class="field_0">GPT 的训练里面的自回归语言建模任务的目标是什么？【根据什么来预测什么？】</div>
+<div class="separator"></div>
+<div class="field_1">根据输入序列的前面部分，预测下一个 token。</div>
+</div>
+<div class="card">
+
+<div class="field_0">GPT 的训练里面的有监督的微调阶段，目标是什么？【将预训练好的模型适配到什么？】</div>
+<div class="separator"></div>
+<div class="field_1">将预训练好的 GPT 模型适配到具体的下游任务（如分类、摘要生成、对话、问答等）。</div>
+</div>
+<div class="card">
+
+<div class="field_0">GPT 的训练里面的有监督的微调阶段，方法是什么？</div>
+<div class="separator"></div>
+<div class="field_1">在微调阶段，使用小规模的标注数据集（如问题-答案对、分类标签等），对模型进行有监督训练。</div>
+</div>
+<div class="card">
+
+<div class="field_0">GPT 的预训练任务其实是基于一种叫做 什么的方法。简单来说，它就是让模型通过怎么样的方式，学会理解什么？</div>
+<div class="separator"></div>
+<div class="field_1">自回归语言建模 ，通过预测下一个词，学会理解语言的分布和结构。</div>
+</div>
+<div class="card">
+
+<div class="field_0">GPT 的微调，用什么样的数据对模型进行微调？</div>
+<div class="separator"></div>
+<div class="field_1">带标注的数据（比如分类标签或者问答数据）。</div>
+</div>
+<div class="card">
+
+<div class="field_0">GPT 的训练分成两个阶段：先是无监督预训练，然后是有监督微调。两者配合，模型才能既怎么样，又怎么样？</div>
+<div class="separator"></div>
+<div class="field_1">既学语言，又完成具体任务。</div>
+</div>
+
+<script>
+document.addEventListener('click', function(e) {
+const container = e.target.closest('.video-container');
+if (!container) return;
+
+const placeholder = container.querySelector('.video-placeholder');
+if (!placeholder) return;
+
+const videoId = container.dataset.videoId;
+const startParam = container.dataset.start || '';
+
+const iframe = document.createElement('iframe');
+iframe.width = '100%';
+iframe.height = '100%';
+iframe.src = `https://www.youtube.com/embed/${videoId}?${startParam.slice(1)}`;
+iframe.title = 'YouTube video player';
+iframe.frameBorder = '0';
+iframe.style.position = 'absolute';
+iframe.style.top = '0';
+iframe.style.left = '0';
+iframe.style.borderRadius = '15px';
+iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+iframe.allowFullscreen = true;
+
+placeholder.innerHTML = '';
+placeholder.appendChild(iframe);
+});
+</script>
+
+</div>
+<div class="footer">Made by <a href="https://xxhk.org">Export Notes - XXHK</a></div>
+</body>
+</html>
+
