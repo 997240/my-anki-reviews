@@ -1,0 +1,566 @@
+
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Export Notes by xxhk.org</title>
+<style>
+
+body { font-family: Arial, sans-serif; }
+.card { border: 2px solid #000; padding: 10px; border-radius: 10px; margin-bottom: 20px; }
+img {
+max-width: 100%;
+height: auto;
+border: 1px solid lightgray;
+border-radius: 10px;
+display: inline-block;
+margin: 10px 0px;
+}
+.separator { border-top: 1px dashed #000; margin: 10px 0; }
+.tags { background-color: lightgray; padding: 5px 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block; }
+.footer {
+text-align: center;
+color: grey;
+margin-top: 20px;
+padding: 10px;
+}
+
+.video-container {
+margin: 10px 0;
+}
+.video-placeholder {
+position: relative;
+cursor: pointer;
+}
+.play-button {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 68px;
+height: 48px;
+background-color: rgba(0, 0, 0, 0.7);
+border-radius: 14px;
+cursor: pointer;
+}
+.play-button::before {
+content: '';
+position: absolute;
+top: 50%;
+left: 55%;
+transform: translate(-50%, -50%);
+border-style: solid;
+border-width: 12px 0 12px 20px;
+border-color: transparent transparent transparent white;
+}
+.play-button:hover {
+background-color: red;
+}
+
+</style>
+
+</head>
+<body>
+<div id="cards-container">
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">前向传播的每一层中，数据会进行那两种类型的变换，以及分别是什么意思？</div>
+<div class="separator"></div>
+<div class="field_1"><ul><li><span style="color: rgb(255, 85, 0);"><b>线性</b></span>变换（如<span style="color: rgb(255, 85, 0);"><b>加权求和</b></span>、加上<span style="color: rgb(255, 85, 0);"><b>偏置</b></span>等）</li><li><span style="color: rgb(255, 85, 0);"><b>非线性</b></span>变换（即<b><span style="color: rgb(255, 85, 0);">激活函数</span></b>，如 ReLU、Sigmoid 等）。</li></ul></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">随机 MASK 掉一部分输入，并根据上下文预测这些 MASK 的值，的确体现了 自编码器 的核心思想：是什么？</div>
+<div class="separator"></div>
+<div class="field_1">从损坏的数据中恢复原始信息。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">BERT 的 MASK 方式 和 自编码方式，他们的区别是什么？</div>
+<div class="separator"></div>
+<div class="field_1"><b><span style="color: rgb(255, 85, 0);">MASK </span></b>机制 作为<b><span style="color: rgb(255, 85, 0);">自编码</span></b>的其中<span style="color: rgb(255, 85, 0);"><b>一种实现方式</b></span>，但这并不意味着所有自编码模型都必须使用这种方式。<br></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">是否所有自编码模型都需要通过 MASK 方式来实现？以及为什么？</div>
+<div class="separator"></div>
+<div class="field_1">不是，MASK 只是 BERT 特定的自编码实现策略。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">自编码模型（Autoencoder）是一种神经网络，如何描述？</div>
+<div class="separator"></div>
+<div class="field_1">用来把输入压缩到一个更小的表示，然后再尝试还原出原始数据。你可以把它看作是一种数据压缩工具，同时又能解压缩。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">GPT模型是否能够同时考虑到左侧和右侧的上下文，以及为什么？</div>
+<div class="separator"></div>
+<div class="field_1">不能，因为GPT是单向模型，只能利用单一方向（左到右或右到左）的上下文</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">为了实现双向性，BERT 使用了什么预训练任务？</div>
+<div class="separator"></div>
+<div class="field_1">一种称为 掩码语言模型（Masked Language Model, MLM） 的预训练任务。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">为什么MLM任务决定了Bert模型的双向性？</div>
+<div class="separator"></div>
+<div class="field_1">会随机“掩盖”一些单词，然后用<b><span style="color: rgb(255, 85, 0);">句子前后的内容</span></b>去预测被掩盖的单词。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">Decoder-only 模型通过 什么 机制，只关注当前位置之前的 token，适合预测下一个单词。</div>
+<div class="separator"></div>
+<div class="field_1">Masked Self-Attention，掩码自注意力机制。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">Encoder-Decoder是大语言模型的主流架构吗？</div>
+<div class="separator"></div>
+<div class="field_1">不是的，Decoder-only是主流。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">Transformer 分为三个主要架构：分别是什么架构以及相应的例子。</div>
+<div class="separator"></div>
+<div class="field_1"><ol><li><strong>Encoder-only</strong>：如 BERT、RoBERTa。</li><li><strong>Decoder-only</strong>：如 GPT 系列、LLaMA。</li><li><strong>Encoder-Decoder</strong>：如 T5、BART。</li></ol></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">衡量语言模型好坏的重要指标是什么？</div>
+<div class="separator"></div>
+<div class="field_1">困惑度（Perplexity）。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">困惑度可以理解为语言模型对句子进行预测时候的什么性？它来源于信息论中的 什么 概念。</div>
+<div class="separator"></div>
+<div class="field_1">语言模型对某个句子或文本进行预测时的“平均不确定性”，<br>交叉熵（Cross-Entropy）。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">交叉熵的单位是什么？</div>
+<div class="separator"></div>
+<div class="field_1">比特（bits）。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">交叉熵的单位是“比特（bits）”，表示什么意思？【谁平均需要多少比特的信息来描述？】</div>
+<div class="separator"></div>
+<div class="field_1">每个单词平均需要多少比特的信息量来描述。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0"><div>困惑度可以看作是谁的指数形式？&nbsp;</div></div>
+<div class="separator"></div>
+<div class="field_1">交叉熵。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0"><div>困惑度可以看作是交叉熵的什么形式?&nbsp;</div></div>
+<div class="separator"></div>
+<div class="field_1">指数形式。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0"><div>句子总的交叉熵的定义公式是什么？</div></div>
+<div class="separator"></div>
+<div class="field_1">每个单词的概率经过对数㏒变化以后求和求均值。<br><img src="images/paste-6ebf64fe42b86e6c2ba8786e268c9b9890d00f5d.jpg"></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0"><div>交叉熵的定义公式是下面这个，两个方框里面的表示什么意思？</div><div><img src="images/paste-6ebf64fe42b86e6c2ba8786e268c9b9890d00f5d.jpg"></div></div>
+<div class="separator"></div>
+<div class="field_1"><li>表示语言模型分配给单词 w_i​ 的概率。</li><li>1/N 取平均值，用于标准化句子的长度，确保困惑度与句子长短无关。</li></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">困惑度的定义公式是什么？【谁为底的指数函数以及谁作为自变量。】</div>
+<div class="separator"></div>
+<div class="field_1">以2为底的指数函数，交叉熵作为自变量。<br><img src="images/paste-9129a028445e31712485a19704ef71a4053cfaa4.jpg"></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">困惑度衡量的是什么？【平均有多少种可能来预测什么？】</div>
+<div class="separator"></div>
+<div class="field_1">模型平均有多少种可能性来预测每个单词。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">困惑度是什么的指数，表示“模型对什么的预测的什么的数量”。</div>
+<div class="separator"></div>
+<div class="field_1">交叉熵的指数，每个单词预测的平均分支的数量。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0"><strong><code>I love cats</code></strong><div>假设语言模型为以下每个单词分配了概率：</div><ul><li>P(’I’)=0.5&nbsp;</li><li>P(’love’)=0.4&nbsp;</li><li>P(’cats’)=0.1&nbsp;</li></ul><div>计算交叉熵： 交叉熵公式是什么？<br></div></div>
+<div class="separator"></div>
+<div class="field_1">各个概率经过log对数变换以后求和求均值。<br><img src="images/paste-070ecf1e22f9ea8ecb0f9ff8016544b5cbcec946.jpg"></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0"><strong><code>I love cats</code></strong><div>假设语言模型为以下每个单词分配了概率：</div><ul><li>P(’I’)=0.5&nbsp;</li><li>P(’love’)=0.4&nbsp;</li><li>P(’cats’)=0.1&nbsp;</li></ul><div>计算困惑度的过程是什么？<br></div></div>
+<div class="separator"></div>
+<div class="field_1">各个单词的概率经过log对数变换以后，求和求均值得到交叉熵。交叉熵经过以2为底的指数函数变化以后得到困惑度。<br><img src="images/paste-6124353ace42629fd657009d637c50b57293082a.jpg"></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0"><div>困惑度是交叉熵的指数形式，用来直观表示模型的预测的什么数量。<br></div></div>
+<div class="separator"></div>
+<div class="field_1">预测单词的分支数量。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0"><div>困惑度越低，说明模型对文本的预测越准确还是不准确？<br></div></div>
+<div class="separator"></div>
+<div class="field_1">准确。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0"><div>unigram&nbsp; ，它定义了什么？<br></div></div>
+<div class="separator"></div>
+<div class="field_1">定义了每个单词的概率分布。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0"><div>ROUGE 和&nbsp;BLEU 分别的输入是什么？<br></div></div>
+<div class="separator"></div>
+<div class="field_1">ROUGE 的输入是字符串，BLEU（如 sentence_bleu 函数）的输入是列表。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0"><div>ROUGE 的实现是什么？【对字符串进行哪两个操作？然后再计算什么率。】<br></div></div>
+<div class="separator"></div>
+<div class="field_1">先对字符串进行分词和 n-gram 拆分，<br>然后再计算 n-gram 的召回率。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0"><div>在 sentence_bleu 的计算中，参考文本和候选文本是以 什么 形式传递的。<br></div></div>
+<div class="separator"></div>
+<div class="field_1">分词后的列表。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0"><div><div>ROUGE：</div>主要用于什么任务？这个任务中，候选摘要和参考摘要通常是什么格式？<br></div></div>
+<div class="separator"></div>
+<div class="field_1">摘要生成或文本匹配任务。自然语言的完整句子（字符串）格式。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0"><div><div>BLEU</div>主要用于什么任务？这个任务中，候选摘要和参考摘要通常是什么格式？<br></div></div>
+<div class="separator"></div>
+<div class="field_1">主要用于机器翻译任务。候选文本和参考文本通常已经过分词处理，因此 BLEU 的设计直接以分词后的列表作为输入，方便快速计算。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0"><div><div>在机器翻译中，对于候选文本和参考文本 ，BLEU 的设计直接以什么格式作为输入，方便快速计算。<br></div></div></div>
+<div class="separator"></div>
+<div class="field_1">分词后的列表。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0"><div><div>在机器翻译中，对于候选文本和参考文本 ，ROUGE 的设计直接以什么格式作为输入，方便快速计算。<br></div></div></div>
+<div class="separator"></div>
+<div class="field_1">自然语言的完整句子（字符串）。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0"><div><div>ROUGE 和 BLEU 分别的输入是什么类型？</div></div></div>
+<div class="separator"></div>
+<div class="field_1">ROUGE 使用字符串输入，<br>BLEU 使用列表输入。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0"><div><div>ROUGE 和 BLEU 分别的输入是什么类型？分别是用于什么任务？</div></div></div>
+<div class="separator"></div>
+<div class="field_1"><li><strong>ROUGE</strong> 的输入是字符串，通常用于摘要任务，会自动处理分词。</li><li><strong>BLEU</strong> 的输入是分词后的列表，通常用于机器翻译任务，直接对分词后的 token 列表进行 n-gram 匹配。</li></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0"><div><div>为什么 <b><span style="color: rgb(255, 85, 0);">BLEU </span></b>被认为是基于精确率（<span style="color: rgb(255, 85, 0);"><b>Precision</b></span>）?</div></div><div>他们两个的公式分别是什么？</div></div>
+<div class="separator"></div>
+<div class="field_1"><img src="images/paste-952d26e85a443291717a28943630a11d2f7bd375.jpg"><br><img src="images/paste-666bcda6d4771e9c3755536322a0b856bcb6224b.jpg"></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">BLEU 衡量的是候选文本的 生成质量，具体来说，是什么意思？【什么中的什么有多少是对的？】</div>
+<div class="separator"></div>
+<div class="field_1">"候选文本中的 n-gram 有多少是对的？"<br>是生成的 n-gram 中有多少出现在参考文本中。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0"><img src="images/paste-2e49e4bc16323218c54b15ff07e3540c6df6a6ff.jpg"><br>计算 BLEU 的 2-gram 精确率.</div>
+<div class="separator"></div>
+<div class="field_1"><img src="images/paste-d772bcd3b5e04ff08785ddb080861761cac010dc.jpg"></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">BLEU 衡量的是 参考文本还是候选文本中有多少 n-gram 是正确的？</div>
+<div class="separator"></div>
+<div class="field_1">候选文本。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">BLEU 还引入了一个什么，用于处理候选文本长度过短的问题。</div>
+<div class="separator"></div>
+<div class="field_1">惩罚因子（Brevity Penalty，简称 BP）。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">BLEU 还引入了一个惩罚因子（Brevity Penalty，简称 BP），用途是惩罚什么？</div>
+<div class="separator"></div>
+<div class="field_1">用于处理候选文本长度过短的问题。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">BLEU 为什么需要惩罚因子？</div>
+<div class="separator"></div>
+<div class="field_1">如果仅仅计算精确率，候选文本长度越短，可能精确率越高。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">BLEU 引入惩罚因子 BP，惩罚哪些文本？</div>
+<div class="separator"></div>
+<div class="field_1">那些过短的候选文本。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0"><img src="images/paste-21e02bbd3854d44caf774af35c1b46cfc0904d24.jpg"></div>
+<div class="separator"></div>
+<div class="field_1"><img src="images/paste-615fa2c6425d17e0042b4c4e36c6e01f88439456.jpg"></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0"><img src="images/paste-749f9786c0601ba148d14df8d4784e6bb833a340.jpg"></div>
+<div class="separator"></div>
+<div class="field_1"><img src="images/paste-615fa2c6425d17e0042b4c4e36c6e01f88439456.jpg"></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0"><img src="images/paste-275ac3ff0fa007723215284c66a515e31be3ae96.jpg"></div>
+<div class="separator"></div>
+<div class="field_1"><img src="images/paste-615fa2c6425d17e0042b4c4e36c6e01f88439456.jpg"></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0"><img src="images/paste-dd26d1c7109ee4951930ad0f442f00df18a68496.jpg"></div>
+<div class="separator"></div>
+<div class="field_1"><img src="images/paste-615fa2c6425d17e0042b4c4e36c6e01f88439456.jpg"></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">候选文本和参考文本在 BLEU 和 ROUGE 指标中的角色，谁相当于 标签 和 谁相当于 预测值 。&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1">候选文本和参考文本 分别 可以类比为 预测值 和 标签。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">候选文本 的英文是什么？类比为 预测值 还是 标签？</div>
+<div class="separator"></div>
+<div class="field_1">Candidate Text，预测值。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">参考文本 的英文是什么？类比为 预测值 还是 标签？</div>
+<div class="separator"></div>
+<div class="field_1">Reference Text，标签。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">召回率（Recall）的通用公式是下面这个，ROUGE的计算公式是什么？<br><img src="images/paste-855c7d51148366a741a2c90d86bd0ec15c072375.jpg"></div>
+<div class="separator"></div>
+<div class="field_1"><img src="images/paste-e9a027046f381a52ad809fcd8448457670daf671.jpg"></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">BLEU 和 ROUGE 分别 注重的是 生成文本的什么率？</div>
+<div class="separator"></div>
+<div class="field_1"><ul><li>BLEU 注重的是 生成文本的<span style="color: rgb(255, 85, 0);"><b>准确</b></span>率（Precision）。</li><li>ROUGE 注重的是 生成文本的<span style="color: rgb(255, 85, 0);"><b>召回</b></span>率（Recall）。</li></ul></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">BLEU 注重的是 生成文本的准确率（Precision）：衡量的是什么？【哪里有多少比例的什么是匹配的？】</div>
+<div class="separator"></div>
+<div class="field_1">候选文本中有多少比例的n gram是匹配的。<br>候选文本中有多少内容出现在参考文本中。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">ROUGE 注重的是 生成文本的召回率（Recall）：衡量的是什么？</div>
+<div class="separator"></div>
+<div class="field_1">参考文本主要信息被覆盖的程度。<br>参考文本中的关键信息有多少被生成文本捕获。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">Process finished with exit code 0<br>里面exit code 0 表示什么意思？</div>
+<div class="separator"></div>
+<div class="field_1">程序运行成功，没有抛出未处理的错误或异常。意味着代码逻辑是正常的，所有操作都已完成。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">BLEU 对应的是什么率，什么文本？</div>
+<div class="separator"></div>
+<div class="field_1">精确率（Precision），即候选文本。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">ROUGE 对应的是什么率，基于什么文本？</div>
+<div class="separator"></div>
+<div class="field_1">召回率（Recall），即参考文本。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">ROUGE-N 实际上是将模型生成的结果和标准结果分词之后，按 什么 拆分后，计算什么率。</div>
+<div class="separator"></div>
+<div class="field_1">N-gram拆分，召回率。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">ROUGE-N 的计算公式是什么？</div>
+<div class="separator"></div>
+<div class="field_1"><img src="images/paste-7db06249625d002efe05bbf12238cda678ce1385.jpg"></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">为什么文本摘要任务中，使用召回率 ？</div>
+<div class="separator"></div>
+<div class="field_1">生成的摘要可能会比参考摘要更短，因此更关注是否能覆盖参考文本的关键信息，而不一定要求完全匹配。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">BLEU 指标的英文全称是什么？</div>
+<div class="separator"></div>
+<div class="field_1">Bilingual Evaluation Understudy。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">BLEU 指标如何从名字上看出它适合什么具体任务，以及更注重 什么率？</div>
+<div class="separator"></div>
+<div class="field_1">机器翻译任务，更注重 精确率。因为在翻译中，生成的文本需要尽可能与参考文本精准匹配。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">为什么机器翻译任务，更注重 精确率。</div>
+<div class="separator"></div>
+<div class="field_1">因为在翻译中，看中的是生成文本，也就是候选文本的质量。<br>生成的文本【候选文本】需要尽可能与参考文本精准匹配。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">ROUGE 指标英文全称是什么？</div>
+<div class="separator"></div>
+<div class="field_1"><span style="color: rgb(255, 85, 0);"><b>Recall-Oriented Understudy</b></span> for Gisting Evaluation。<br>以<b><span style="color: rgb(255, 85, 0);">召回为导向</span></b>的替补</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">ROUGE 指标如何从名字上看出它更注重 什么率？以及适合什么具体任务?</div>
+<div class="separator"></div>
+<div class="field_1">ROUGE 里面的RO代表的是Recall-Oriented，也就是更注重 召回率（Recall），更适合文本摘要任务，因为摘要更注重保留参考文本中的关键信息，而不需要完全精确匹配。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">为什么召回率（Recall），更适合文本摘要任务？</div>
+<div class="separator"></div>
+<div class="field_1">参考文本【原始文本】里面的信息需要尽可能被覆盖。<br>因为摘要更注重保留参考文本中的关键信息，而不需要完全精确匹配。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">评估 翻译质量 和 摘要质量，分别使用什么评估指标？</div>
+<div class="separator"></div>
+<div class="field_1">BLEU 更适合评估 翻译质量，ROUGE 更适合评估 摘要质量。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">ROUGE 更注重什么率，适合什么任务；BLEU 更注重什么率，适合什么任务。</div>
+<div class="separator"></div>
+<div class="field_1"><ul><li>召回率，文本摘要任务，</li><li>精确率，机器翻译任务。</li></ul></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">nltk 是 Python 中一个非常常用的自然语言处理（NLP）库，全称是什么？</div>
+<div class="separator"></div>
+<div class="field_1">Natural Language Toolkit。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">安装了torch-2.1.0+cu118-cp310-cp310-win_amd64.whl之后，如何测试PyTorch是否安装成功呢？【代码】</div>
+<div class="separator"></div>
+<div class="field_1">import torch<br>print(torch.__version__)</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">安装了torch-2.1.0+cu118-cp310-cp310-win_amd64.whl之后，如何测试PyTorch 是否能够正确使用 CUDA？【代码】</div>
+<div class="separator"></div>
+<div class="field_1">import torch<br>print(torch.cuda.is_available())&nbsp;</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">安装了torch-2.1.0+cu118-cp310-cp310-win_amd64.whl之后，如果 CUDA 可用，且你希望进一步验证 PyTorch 是否能够正确使用 GPU？【代码】</div>
+<div class="separator"></div>
+<div class="field_1">print(torch.cuda.get_device_name(0))</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">print(torch.cuda.get_device_name(0))<br>这行代码的作用是什么？</div>
+<div class="separator"></div>
+<div class="field_1">验证当前的cuda能否使用GPU。<br>安装了torch-2.1.0+cu118-cp310-cp310-win_amd64.whl之后，如果 CUDA 可用，且你希望进一步验证 PyTorch 是否能够正确使用 GPU。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">安装PyTorch的时候，谁确定了他的版本，这个逻辑顺序是什么？</div>
+<div class="separator"></div>
+<div class="field_1"><b><span style="color: rgb(255, 85, 0);">显卡</span></b>版本决定了可以使用的 <b><span style="color: rgb(255, 85, 0);">CUDA </span></b>版本，进而影响到你能安装的 <span style="color: rgb(255, 85, 0);"><b>PyTorch 版本</b></span>。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">下面公式是包含了 softmax 和 交叉熵 的完整公式，其中，红框的是什么意思？<br><img src="images/paste-956ed6566437e192f119b7f569d19ca1a0a123a2.jpg"></div>
+<div class="separator"></div>
+<div class="field_1">S(fθ​(xi​))：表示 softmax 函数将 logits 转换为概率分布。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">下面公式是包含了 softmax 和 交叉熵 的完整公式，其中，红框的是yi​：真实标签，通常是 什么形式？<br><img src="images/paste-668e756bf0ff8bf8cfcfc21a215ff65de77e0942.jpg"></div>
+<div class="separator"></div>
+<div class="field_1">one-hot 编码（只有正确类别为 1，其他类别为 0）。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-12</div>
+<div class="field_0">下面公式是包含了 softmax 和 交叉熵 的完整公式，该公式的完整含义/过程是什么？<br><img src="images/paste-668e756bf0ff8bf8cfcfc21a215ff65de77e0942.jpg"></div>
+<div class="separator"></div>
+<div class="field_1">该公式的含义是对每个样本的<b><span style="color: rgb(255, 85, 0);">真实标签的独热编码</span></b>与模型预测的 softmax <b><span style="color: rgb(255, 85, 0);">概率值的对数&nbsp;</span></b>相<b><span style="color: rgb(255, 85, 0);">乘</span></b>，再求<b><span style="color: rgb(255, 85, 0);">和</span></b>，取<span style="color: rgb(255, 85, 0);"><b>负值</b></span>。</div>
+</div>
+
+<script>
+document.addEventListener('click', function(e) {
+const container = e.target.closest('.video-container');
+if (!container) return;
+
+const placeholder = container.querySelector('.video-placeholder');
+if (!placeholder) return;
+
+const videoId = container.dataset.videoId;
+const startParam = container.dataset.start || '';
+
+const iframe = document.createElement('iframe');
+iframe.width = '100%';
+iframe.height = '100%';
+iframe.src = `https://www.youtube.com/embed/${videoId}?${startParam.slice(1)}`;
+iframe.title = 'YouTube video player';
+iframe.frameBorder = '0';
+iframe.style.position = 'absolute';
+iframe.style.top = '0';
+iframe.style.left = '0';
+iframe.style.borderRadius = '15px';
+iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+iframe.allowFullscreen = true;
+
+placeholder.innerHTML = '';
+placeholder.appendChild(iframe);
+});
+</script>
+
+</div>
+<div class="footer">Made by <a href="https://xxhk.org">Export Notes - XXHK</a></div>
+</body>
+</html>
+
