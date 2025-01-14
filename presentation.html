@@ -1,0 +1,455 @@
+
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Export Notes by xxhk.org</title>
+<style>
+
+body { font-family: Arial, sans-serif; }
+.card { border: 2px solid #000; padding: 10px; border-radius: 10px; margin-bottom: 20px; }
+img {
+max-width: 100%;
+height: auto;
+border: 1px solid lightgray;
+border-radius: 10px;
+display: inline-block;
+margin: 10px 0px;
+}
+.separator { border-top: 1px dashed #000; margin: 10px 0; }
+.tags { background-color: lightgray; padding: 5px 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block; }
+.footer {
+text-align: center;
+color: grey;
+margin-top: 20px;
+padding: 10px;
+}
+
+.video-container {
+margin: 10px 0;
+}
+.video-placeholder {
+position: relative;
+cursor: pointer;
+}
+.play-button {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 68px;
+height: 48px;
+background-color: rgba(0, 0, 0, 0.7);
+border-radius: 14px;
+cursor: pointer;
+}
+.play-button::before {
+content: '';
+position: absolute;
+top: 50%;
+left: 55%;
+transform: translate(-50%, -50%);
+border-style: solid;
+border-width: 12px 0 12px 20px;
+border-color: transparent transparent transparent white;
+}
+.play-button:hover {
+background-color: red;
+}
+
+</style>
+
+</head>
+<body>
+<div id="cards-container">
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0">项目的数据来源有哪些？【哪三方面】</div>
+<div class="separator"></div>
+<div class="field_1">公司<b><span style="color: rgb(255, 0, 0);">内部文档</span></b>数据，员工手册以及统一的操作流程，还有各种的应答话术，<br>公司<span style="color: rgb(255, 0, 0);"><b>内部数据库</b></span>的数据，公司邮件的沟通记录以及客户信息，&nbsp;<br><span style="color: rgb(255, 0, 0);"><b>外部的数据</b></span>，比如行业分析报告以及政府的最新的法律法规。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0">项目的数据来源，其中，公司<b><span style="color: rgb(255, 0, 0);">内部文档</span></b>数据【哪三方面】</div>
+<div class="separator"></div>
+<div class="field_1">公司<b><span style="color: rgb(255, 0, 0);">内部文档</span></b>数据，员工<b><span style="color: rgb(255, 0, 0);">手册</span></b>以及统一的<b><span style="color: rgb(255, 0, 0);">操作流程</span></b>，还有各种的<span style="color: rgb(255, 0, 0);"><b>应答话术和模板。</b></span></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0">项目的数据来源，其中，公司<b><span style="color: rgb(255, 0, 0);">内部数据库</span></b>的数据【哪三方面】</div>
+<div class="separator"></div>
+<div class="field_1">公司<b><span style="color: rgb(255, 0, 0);">邮件</span></b>的沟通<b><span style="color: rgb(255, 0, 0);">记录，会议记录</span></b>以及<b><span style="color: rgb(255, 0, 0);">客户信息</span></b>。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0">项目的数据来源，其中，<b><span style="color: rgb(255, 0, 0);">外部的数据</span></b>【哪两方面】</div>
+<div class="separator"></div>
+<div class="field_1"><b><span style="color: rgb(255, 0, 0);">行业</span></b>分析<b><span style="color: rgb(255, 0, 0);">报告</span></b>以及政府的最新的<span style="color: rgb(255, 0, 0);"><b>法律法规</b></span>。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0">数据清洗阶段主要遇到的问题是包含哪些？【四个方面】</div>
+<div class="separator"></div>
+<div class="field_1">重复值，缺失值，格式问题以及噪音数据。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0">数据清洗阶段，遇到重复数据的情况是什么？以及如何去解决？</div>
+<div class="separator"></div>
+<div class="field_1">比如同一客户的信息在不同的部门都有录入，因此在最终获得的数据里面，数据存在冗余。使用哈希匹配或者其他算法来将冗余数据去重。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0">数据清洗阶段，遇到缺失值的情况是什么？以及如何去解决？</div>
+<div class="separator"></div>
+<div class="field_1">缺失值如果是比较重要的数据，比如是<b><span style="color: rgb(255, 0, 0);">用户的联系方式缺失</span></b>。那么我们可以<b><span style="color: rgb(255, 0, 0);">引用其他部门</span></b>的来源的信息来将这个信息补齐，而遇到<b><span style="color: rgb(255, 0, 0);">不重要的数据</span></b>出现了缺失值，直接将这个部分<span style="color: rgb(255, 0, 0);"><b>删除。</b></span></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0">数据清洗阶段，遇到数据格式问题的情况是什么？以及如何去解决？</div>
+<div class="separator"></div>
+<div class="field_1">格式问题，通常见的一个例子是<b><span style="color: rgb(255, 0, 0);">日期的格式</span></b>问题。有的人使用日期的简写，而有的人则是日期的全称。编写<span style="color: rgb(255, 0, 0);"><b>统一格式的转换函数</b></span>，将所有的日期变成统一的格式。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0">数据清洗阶段，遇到噪声数据问题的情况是什么？以及如何去解决？</div>
+<div class="separator"></div>
+<div class="field_1">出现在邮件里面，通常会出现<b><span style="color: rgb(255, 0, 0);">广告或者礼貌性用语，问候用语</span></b>，等等这些对模型没有帮助的数据。统统会将其<span style="color: rgb(255, 0, 0);"><b>去除</b></span>。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0">指代消解 的关注点是什么？【哪个范围内的指向？不同的什么是否指向什么？】</div>
+<div class="separator"></div>
+<div class="field_1"><div><strong>指代消解 = 文本内的“指向”</strong></div><ul><li><strong>关注点</strong>：文本中的不同表达是否指向同一个实体。</li></ul></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0">实体消歧 的关注点是什么？【什么和什么的对应？】</div>
+<div class="separator"></div>
+<div class="field_1"><div><strong>实体消歧 = 文本与知识库的“对应”</strong></div><ul><li><strong>关注点</strong>：文本中的一个实体提及对应知识库中的具体哪个实体。</li></ul></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0">指代消解 的例子是什么？</div>
+<div class="separator"></div>
+<div class="field_1"><b><span style="color: rgb(255, 0, 0);">我们</span>&nbsp;</b>和&nbsp;<span style="color: rgb(255, 0, 0);"><b>公司&nbsp;</b></span>是否指向同一个实体。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0">实体消歧 的例子是什么？</div>
+<div class="separator"></div>
+<div class="field_1">确定“Apple”具体指的是“苹果公司”还是“苹果水果”。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0">关于PDF数据的处理方式，你们是怎么处理的？【面试问题】</div>
+<div class="separator"></div>
+<div class="field_1">这是一项极为<span style="color: rgb(255, 85, 0);"><b>复杂</b></span>且艰巨的任务。我们设有专门的<span style="color: rgb(255, 85, 0);"><b>数据处理团队</b></span>负责此项工作，因此具体流程我并不明晰，毕竟我并<span style="color: rgb(255, 85, 0);"><b>未参与</b></span>数据处理环节，所以对此部分内容了解有限。我所获取的是经过<b><span style="color: rgb(255, 85, 0);">格式化处理后的结构化数据</span></b>，后续工作便是基于这些已妥善处理的数据展开。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0">实体对齐和关系对齐，分别指的是什么意思？都是为了避免什么样的数据。</div>
+<div class="separator"></div>
+<div class="field_1">将<span style="color: rgb(255, 85, 0);"><b>表述各异但含义相同</b></span>的实体归为同一实体，<span style="color: rgb(255, 85, 0);">&nbsp;&nbsp;</span>以及将<span style="color: rgb(255, 85, 0);"><b>含义相同但表述不同</b></span>的关系归为同一关系，以此<b><span style="color: rgb(255, 85, 0);">避免数据出现冗余与不一致</span></b>的情况。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0">在知识融合阶段使用到了哪些技术？【4个】</div>
+<div class="separator"></div>
+<div class="field_1">指代消解，实体消歧，实体对齐，关系对齐。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0">实体融合指的是什么意思？以及对应的房地产的例子？</div>
+<div class="separator"></div>
+<div class="field_1"><span style="color: rgb(255, 85, 0);"><b>不同来源</b></span>的<span style="color: rgb(255, 85, 0);"><b>相同</b></span>实体的数据信息<span style="color: rgb(255, 85, 0);"><b>融合成一条数据</b></span>。比如对于同一个<span style="color: rgb(255, 85, 0);"><b>客户信息</b></span>同时出现在客户的<span style="color: rgb(255, 85, 0);"><b>租房记录</b></span>以及<b><span style="color: rgb(255, 85, 0);">客户投诉</span></b>里面。因此我们使用实体融合技术来统一整合这些信息</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0">CasRel 是一种什么样的模型，采用什么方式，先怎么样，再怎么样？</div>
+<div class="separator"></div>
+<div class="field_1">CasRel 是一种<span style="color: rgb(255, 85, 0);"><b>端到端</b></span>的实体识别与关系抽取<b><span style="color: rgb(255, 85, 0);">joint联合</span>模型</b>，采用<span style="color: rgb(255, 85, 0);"><b>级联</b></span>方式，先识别<span style="color: rgb(255, 85, 0);"><b>主体</b></span>，再基于主体识别结果，识别<b><span style="color: rgb(255, 85, 0);">客体及其对应关系</span></b>。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0">CasRel 该模型基于 哪个模型增加了 什么，分别用于什么用途？</div>
+<div class="separator"></div>
+<div class="field_1">基于<span style="color: rgb(255, 85, 0);"><b>BERT </b></span>增加了<span style="color: rgb(255, 85, 0);"><b> 4 个线性层</b></span>，分别用于识别<span style="color: rgb(255, 85, 0);"><b>主体</b></span>的起止位置、<span style="color: rgb(255, 85, 0);"><b>客体</b></span>的起止位置，以及它们的<b><span style="color: rgb(255, 85, 0);">关系类别</span></b>。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0">CasRel 该模型，原始文本作为输入进入 BERT 模型，得到的什么由什么共享。</div>
+<div class="separator"></div>
+<div class="field_1">得到的上下文表示由这 4 个线性层共享。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0">CasRel 该模型，其中，用于主体识别的两个线性层，分别识别什么？</div>
+<div class="separator"></div>
+<div class="field_1">分别识别主体的起始位置与结束位置。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0">CasRel 该模型，四个线性层，各层输出组合成什么？</div>
+<div class="separator"></div>
+<div class="field_1">完整的spo关系三元组。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0">这个项目中，哪些数据存在类别不平衡的现象，以及如何解决的？</div>
+<div class="separator"></div>
+<div class="field_1">类别不平衡的现象，主要集中在某些<span style="color: rgb(255, 85, 0);"><b>法律条款</b></span>方面，这可能导致模型<span style="color: rgb(255, 85, 0);"><b>对少数类别数据的识别能力不足</b></span>。为此，我们采用了两种解决方式。其一为<span style="color: rgb(255, 85, 0);"><b>数据增强</b></span>，针对少数类别数据，我们运用<span style="color: rgb(255, 85, 0);"><b>同义词替换、句子重构</b></span>等方法来增加其数据量。其二是过采样，在数据增强的基础上，我们进一步使用<span style="color: rgb(255, 85, 0);"><b>过采样</b></span>技术，对少数类别数据进行<b><span style="color: rgb(255, 85, 0);">重复采样，以增加其样本量</span></b>。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0">数据存在类别不平衡的现象，两种解决方案是什么？</div>
+<div class="separator"></div>
+<div class="field_1">
+
+
+数据增强 <span style="color: rgb(0, 0, 0);">，</span>过采样<span style="color: rgb(0, 0, 0);">。</span></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0">数据存在类别不平衡的现象，数据增强&nbsp;是什么方法？</div>
+<div class="separator"></div>
+<div class="field_1">运用<span style="color: rgb(255, 85, 0);"><b>同义词替换、句子重构</b></span>等方法来增加其数据量。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0">数据存在类别不平衡的现象，过采样 是什么方法？</div>
+<div class="separator"></div>
+<div class="field_1">对少数类别数据进行<span style="color: rgb(255, 85, 0);"><b>重复采样，以增加其样本量</b></span>。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0">前期需要对数据进行标注，请问是由多少人完成标注工作的？标注工作持续了多久？</div>
+<div class="separator"></div>
+<div class="field_1">标注任务由<span style="color: rgb(255, 0, 127);"><b>三名数据工程师</b></span>负责完成，后期则由<span style="color: rgb(255, 0, 127);"><b>两名NLP工程师</b></span>对标注数据进行<span style="color: rgb(255, 0, 127);"><b>审核校验</b></span>。前期标注工作耗时<span style="color: rgb(255, 0, 127);"><b>一个半月</b></span>，后期数据质量审核校验工作耗时<b><span style="color: rgb(255, 0, 127);">半个月</span></b>。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0"><div>这个项目持续了多长时间？</div></div>
+<div class="separator"></div>
+<div class="field_1">大约持续了一年。&nbsp;</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0"><div>这个项目 大约持续了一年。首先，花费一个月时间进行什么工作？</div></div>
+<div class="separator"></div>
+<div class="field_1">前期<span style="color: rgb(255, 0, 127);"><b>调研</b></span>规划，与各部门<span style="color: rgb(255, 0, 127);"><b>协调</b></span>，明确他们的<b><span style="color: rgb(255, 0, 127);">需求和目标</span></b>。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0"><div>这个项目 大约持续了一年。接着，用三个月时间 进行什么工作？随后的三个月，进行什么工作？</div></div>
+<div class="separator"></div>
+<div class="field_1"><span style="color: rgb(255, 0, 127);"><b>搜集</b></span>各类来源的<span style="color: rgb(255, 0, 127);"><b>数据</b></span>，并对数据进行<span style="color: rgb(255, 0, 127);"><b>清洗和标准化</b></span>处理。<br>随后的三个月，运用<span style="color: rgb(255, 0, 127);"><b>实体识别和关系抽取</b></span>技术搭建初步的<b><span style="color: rgb(255, 0, 127);">知识图谱</span></b>。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0"><div>这个项目 大约持续了一年。最后三个月 进行什么工作？剩余时间进行什么工作？</div></div>
+<div class="separator"></div>
+<div class="field_1">基于已搭建好的知识图谱<span style="color: rgb(255, 0, 127);"><b>开发问答系统</b></span>，包括<span style="color: rgb(255, 0, 127);"><b>前端和后端</b></span>的交互逻辑。<br>剩余时间则用于系统<span style="color: rgb(255, 0, 127);"><b>部署</b></span>、内部<b><span style="color: rgb(255, 0, 127);">测试</span></b>及实际使用。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0"><div>这个项目周期历时一年，时间段如何划分？</div></div>
+<div class="separator"></div>
+<div class="field_1">一个月，<br>三个月，<br>三个月，<br>三个月，<br>剩余时间。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0"><div>这个项目周期历时一年，时间段划分如下，分别对应的任务是什么？</div><div>一个月，<br>三个月，<br>三个月，<br>三个月，<br>剩余时间。<br></div></div>
+<div class="separator"></div>
+<div class="field_1">一个月，调研规划<span style="color: rgb(255, 0, 127);"><b>需求目标</b></span>，<br>三个月，搜集<span style="color: rgb(255, 0, 127);"><b>数据</b></span>，清洗和标准化，<br>三个月，实体识别和关系抽取技术搭建初步的<span style="color: rgb(255, 0, 127);"><b>知识图谱，</b></span><br>三个月，搭建<span style="color: rgb(255, 0, 127);"><b>问答</b></span>系统，包括前端和后端，<br>剩余时间，系统<span style="color: rgb(255, 0, 127);"><b>部署</b></span>、内部<b><span style="color: rgb(255, 0, 127);">测试。</span></b></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0"><div>团队规模有多大？各人员的分工情况如何？不同分工分别安排了多少人力资源？</div></div>
+<div class="separator"></div>
+<div class="field_1">团队规模约为<span style="color: rgb(255, 0, 127);"><b>5至6人</b></span>，其中包括<span style="color: rgb(255, 0, 127);"><b>3名数据</b></span>工程师、<span style="color: rgb(255, 0, 127);"><b>2名NLP</b></span>工程师和<b><span style="color: rgb(255, 0, 127);">1名项目</span></b>经理。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0"><div>团队里面的数据工程师负责什么职责？</div></div>
+<div class="separator"></div>
+<div class="field_1">数据工程师负责从<span style="color: rgb(255, 0, 127);"><b>内部</b></span>文档、邮件以及<span style="color: rgb(255, 0, 127);"><b>外部</b></span>政策文件、<span style="color: rgb(255, 0, 127);"><b>公开</b></span>信息中<span style="color: rgb(255, 0, 127);"><b>整合</b></span>数据，<span style="color: rgb(255, 0, 127);"><b>处理</b></span>脏数据，统一数据<span style="color: rgb(255, 0, 127);"><b>格式</b></span>，并维护<b><span style="color: rgb(255, 0, 127);">Neo4j</span></b>图数据库。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0"><div>团队里面的NLP工程师负责什么职责？</div></div>
+<div class="separator"></div>
+<div class="field_1">负责<span style="color: rgb(255, 0, 127);"><b>实体识别、关系抽取</b></span>、语义解析，以及最后的<b><span style="color: rgb(255, 0, 127);">模型训练和测试</span></b>。<br></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0"><div>团队里面的项目经理负责什么职责？</div></div>
+<div class="separator"></div>
+<div class="field_1">项目经理负责<span style="color: rgb(255, 0, 127);"><b>项目</b></span>规划、<span style="color: rgb(255, 0, 127);"><b>进度</b></span>管理、<b><span style="color: rgb(255, 0, 127);">资源</span></b>分配，以及任务需求的制定和沟通协调。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0"><div>手动标记的总样本量多少？以及训练集、验证集和测试集的划分比例是什么样的？<br></div></div>
+<div class="separator"></div>
+<div class="field_1">训练集、验证集和测试集的划分比例分别为75%、15%和15%，总样本量约为35万条。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0"><div>房地产公司，员工利用问答系统，前期适应工作的两个具体例子是什么？<br></div></div>
+<div class="separator"></div>
+<div class="field_1">员工通过<span style="color: rgb(255, 0, 127);"><b>邮件</b></span>与客户沟通，<br>员工在<span style="color: rgb(255, 0, 127);"><b>实际工作流程</b></span>遇到的问题。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0"><div>问答系统的两个常见的应用场景，其中，员工通过<span style="color: rgb(255, 0, 127);"><b>邮件</b></span>与客户沟通，对应的具体的使用问答系统的情况是什么？</div></div>
+<div class="separator"></div>
+<div class="field_1">通常需要借助一些<span style="color: rgb(255, 0, 127);"><b>模板来加快邮件回复速度</b></span>。此时，若利用知识图谱，便能针对特定场景<span style="color: rgb(255, 0, 127);"><b>快速生成相关内容</b></span>。比如，在客户提出<span style="color: rgb(255, 0, 127);"><b>看房申请</b></span>后，我们可以生成对应的<span style="color: rgb(255, 0, 127);"><b>邮件</b></span>，向客户询问<span style="color: rgb(255, 0, 127);"><b>基本信息</b></span>，如年龄、性别、工作、民族、同行人数以及<b><span style="color: rgb(255, 0, 127);">是否携带宠物等。</span></b></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0"><div>问答系统的两个常见的应用场景，其中，员工在<span style="color: rgb(255, 0, 127);"><b>实际工作流程</b></span>中，对公司的内部<b><span style="color: rgb(255, 0, 127);">租房流程或是政府的政策</span></b>不太了解时，可以查询什么样的信息？</div></div>
+<div class="separator"></div>
+<div class="field_1">租金和押金的比例，以及押金如何存放到政府指定的账户，以及整个租房的流程安排。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0">项目训练数据集共使用了30万条数据。在此项目中，节点数量与对应的边数量分别应为多少？</div>
+<div class="separator"></div>
+<div class="field_1">这30万条数据中，每条数据包含2至3个实体和2至3个关系，且一个实体对之间可能存在多条关系，因此关系的数量应多于节点的数量。据此推测，节点数量约为50万，边的数量约为75万。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0">该知识图谱中存在哪些实体类型和关系类型？请分别举例说明。</div>
+<div class="separator"></div>
+<div class="field_1">图谱包含10种实体类型和15种关系类型。实体类型示例有房产地点、开发商、物业类型、设施、租期等。关系类型则包括开发、位于、属于、交易、使用、包含、拥有、提供、管理等。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0">训练模型时使用了多少条数据？最终模型又预测了多少条数据？</div>
+<div class="separator"></div>
+<div class="field_1">训练时大约使用了30万条数据，最终预测出200多万条数据。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0">将所有数据导入图数据库大约耗时多久？</div>
+<div class="separator"></div>
+<div class="field_1">起初我们标注了30万条数据，最终经模型训练得到200万条数据，总计不到250万条数据被导入数据库。我们在下班前便启动了数据导入工作，如此一来，数据导入时间不会占用工作时间。次日上班时，发现数据已全部导入完毕，所以我无法确定具体时长，但估计大约花费了几个小时。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0">房地产行业的问答系统项目背景【知识层面，谁，知道哪些信息】</div>
+<div class="separator"></div>
+<div class="field_1">在房地产行业，销售人员与内部文员的工作往往涉及大量信息与专业知识，涵盖房产信息、市场动态、公司政策、内部统一操作流程、意外情况处理流程以及政府相关政策法规等方面。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0">在房地产行业，销售人员与内部文员的工作往往涉及大量信息与专业知识，涵盖哪几个方面的信息？</div>
+<div class="separator"></div>
+<div class="field_1">房产信息、市场动态、公司政策、内部统一操作流程、意外情况处理流程以及政府相关政策法规等方面。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0">该问答系统的项目背景【行业特性】</div>
+<div class="separator"></div>
+<div class="field_1">鉴于该行业特性，这些岗位的人员流动率相对较高。频繁的人员流动产生了大量新员工的培训需求，进而消耗了大量的人力成本与时间成本。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0">鉴于该行业特性，这些岗位的人员流动率相对较高。然后产生了什么？消耗了什么？</div>
+<div class="separator"></div>
+<div class="field_1">频繁的人员流动产生了大量新员工的培训需求，进而消耗了大量的人力成本与时间成本。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0">知识图谱问答系统，对新员工的两个阶段两<br>的好处。这两个阶段是什么？</div>
+<div class="separator"></div>
+<div class="field_1">新员工入职前的培训以及<br>新员工入职以后前期磨合适应工作【减少不必要的对老员工的打扰。】</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0">知识图谱问答系统，新员工入职培训的好处，具体来讲是什么？</div>
+<div class="separator"></div>
+<div class="field_1">在拥有公司内部知识图谱问答系统之前，一名组长一周内通常只能培训两名员工；而借助该系统后，一名组长一周可培训七八名员工。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0">基于知识图谱的问答系统。新员工入职以后的好处是什么？</div>
+<div class="separator"></div>
+<div class="field_1">系统能够降低新员工在入职初期对老员工的依赖程度，避免干扰老员工的工作效率，从而提升老员工的工作效能。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0">这个问答系统三方面的好处是什么？分别逐个详细回答。【提供什么样的服务?避免什么？集中管理什么？】</div>
+<div class="separator"></div>
+<div class="field_1">基于知识图谱的问答系统，一方面在员工培训阶段发挥关键作用，为新入职员工提供及时、准确的知识查询服务，加速其培训进程；另一方面，新员工入职后，在面临重要问题时，可优先使用该问答系统，避免对老员工工作造成打扰。此外，该系统最重要的作用在于能够集中管理企业相关知识，确保公司知识的传承性，并使信息与操作流程标准化。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0">这个问答系统，是如何加速培训过程？【为新入职员工提供什么】</div>
+<div class="separator"></div>
+<div class="field_1">基于知识图谱的问答系统，一方面在员工培训阶段发挥关键作用，为新入职员工提供及时、准确的知识查询服务，加速其培训进程</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0">这个问答系统，是如何辅助新员工更快的适应当前岗位？</div>
+<div class="separator"></div>
+<div class="field_1">另一方面，新员工入职后，在面临重要问题时，可优先使用该问答系统，避免对老员工工作造成打扰。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0">这个问答系统对于企业长期来说的好处是什么？</div>
+<div class="separator"></div>
+<div class="field_1">此外，该系统最重要的作用在于能够集中管理企业相关知识，确保公司知识的传承性，并使信息与操作流程标准化。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0">基于知识图谱的问答系统，一方面在哪个阶段发挥关键作用，为新入职员工提供什么服务，加速什么？</div>
+<div class="separator"></div>
+<div class="field_1">员工培训阶段，及时、准确的知识查询服务，加速其培训进程。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0">另一方面，新员工入职后，在面临重要问题时，可优先怎么样，避免什么情况</div>
+<div class="separator"></div>
+<div class="field_1">优先使用该问答系统，避免对老员工工作造成打扰。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 项目面试</div>
+<div class="field_0">此外，该系统最重要的作用在于能够集中管理什么，确保公司知识的什么性，并使信息与操作流程什么化。</div>
+<div class="separator"></div>
+<div class="field_1">集中管理企业相关知识，传承性，标准化。</div>
+</div>
+
+<script>
+document.addEventListener('click', function(e) {
+const container = e.target.closest('.video-container');
+if (!container) return;
+
+const placeholder = container.querySelector('.video-placeholder');
+if (!placeholder) return;
+
+const videoId = container.dataset.videoId;
+const startParam = container.dataset.start || '';
+
+const iframe = document.createElement('iframe');
+iframe.width = '100%';
+iframe.height = '100%';
+iframe.src = `https://www.youtube.com/embed/${videoId}?${startParam.slice(1)}`;
+iframe.title = 'YouTube video player';
+iframe.frameBorder = '0';
+iframe.style.position = 'absolute';
+iframe.style.top = '0';
+iframe.style.left = '0';
+iframe.style.borderRadius = '15px';
+iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+iframe.allowFullscreen = true;
+
+placeholder.innerHTML = '';
+placeholder.appendChild(iframe);
+});
+</script>
+
+</div>
+<div class="footer">Made by <a href="https://xxhk.org">Export Notes - XXHK</a></div>
+</body>
+</html>
+
