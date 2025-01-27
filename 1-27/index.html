@@ -1,0 +1,1624 @@
+
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Export Notes by xxhk.org</title>
+<style>
+
+body { font-family: Arial, sans-serif; }
+.card { border: 2px solid #000; padding: 10px; border-radius: 10px; margin-bottom: 20px; }
+img {
+max-width: 100%;
+height: auto;
+border: 1px solid lightgray;
+border-radius: 10px;
+display: inline-block;
+margin: 10px 0px;
+}
+.separator { border-top: 1px dashed #000; margin: 10px 0; }
+.tags { background-color: lightgray; padding: 5px 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block; }
+.footer {
+text-align: center;
+color: grey;
+margin-top: 20px;
+padding: 10px;
+}
+
+.video-container {
+margin: 10px 0;
+}
+.video-placeholder {
+position: relative;
+cursor: pointer;
+}
+.play-button {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 68px;
+height: 48px;
+background-color: rgba(0, 0, 0, 0.7);
+border-radius: 14px;
+cursor: pointer;
+}
+.play-button::before {
+content: '';
+position: absolute;
+top: 50%;
+left: 55%;
+transform: translate(-50%, -50%);
+border-style: solid;
+border-width: 12px 0 12px 20px;
+border-color: transparent transparent transparent white;
+}
+.play-button:hover {
+background-color: red;
+}
+
+</style>
+
+</head>
+<body>
+<div id="cards-container">
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">Tokenizer 的输入是什么？其七个输入参数分别是什么？三个返回值又是什么？</div>
+<div class="separator"></div>
+<div class="field_1">Tokenizer 的输入为原始文本。其输入参数分别为 text、max_len、padding、truncation、add_special_token、return_tensor、return_attention_mask。输出值分别为 token_id、attention_mask、token_type_id。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">Tokeniser接收原始文本text后，会进行哪两个步骤的处理？</div>
+<div class="separator"></div>
+<div class="field_1">答案是分词与编码成id序列。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">Bert模型的架构是怎样的？包含哪两个层？</div>
+<div class="separator"></div>
+<div class="field_1">答案是包含embedding层与编码器层。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">数据经过Bert模型的编码embedding层后，会分别得到哪三个输出？<br><br></div>
+<div class="separator"></div>
+<div class="field_1">分别是token_embedding、positional_embedding以及token_type_embedding。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">bert模型编码器层的输入和输出分别是什么？</div>
+<div class="separator"></div>
+<div class="field_1">其输入是由三个embedding按位相加得到的嵌入矩阵，输出则是last_hidden_state和pooler_output。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">哪个token经过哪两次变换可得到pooler_output？ </div>
+<div class="separator"></div>
+<div class="field_1">[CLS]对应的token经过全连接层以及tanh激活函数变换后可得到pooler_output。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">使用bert模型时，原始输入文本经过何种处理可得到那三个变量？后续又需经过哪两个阶段的处理，每个阶段会生成什么，最终得到last_hidden_state和pooler_output？</div>
+<div class="separator"></div>
+<div class="field_1">原始文本经tokeniser处理后得到Input_id、attention_mask、token_type_id。后续经过bert内部的embedding层和编码器层，分别得到由三个embedding按位求和得出的嵌入矩阵，以及词向量last_hidden_state和句向量pooler_output。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">Pipeline方法和join方法中，各自数据集中的每一行分别对应什么内容？</div>
+<div class="separator"></div>
+<div class="field_1">在Pipeline方法中，每一行包含四列，分别为主体、客体、关系以及原始文本，每一行对应一个spo3元组；而在joint方法中，每一行是一个字典，字典内有两个键，分别是text和spo_list。spo_list中包含多个spo3元组，即一行对应多个spo3元组。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">Bert模型经过embedding层后会得到三个embedding，后续是如何处理这些embedding的？它们又会被传送到哪里？</div>
+<div class="separator"></div>
+<div class="field_1">实际上，得到的这三个embedding会按位相加，合成一个嵌入矩阵，之后被送入编码器层。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">“要事为先”原则主张在早晨选择具有挑战性的任务去完成，那么这类具有挑战性的任务包含哪两种呢？</div>
+<div class="separator"></div>
+<div class="field_1">一种是学习新知识，另一种是解决复杂且难度较高的问题。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">分散学习是如何实现分散的呢？</div>
+<div class="separator"></div>
+<div class="field_1">具体做法是将学习任务分散到一周内的多个时段。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">分层学习需要区分哪两种知识？<br>其核心是分阶段进行，那么每个阶段对应的学习闭环是怎样的？</div>
+<div class="separator"></div>
+<div class="field_1">分层学习需要区分当前能够理解的知识和当前无法理解的知识。每个阶段都对应由学习、笔记、复习这三个步骤构成的学习闭环。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">在学习过程中遇到极难理解的内容时，应采取什么应对策略？</div>
+<div class="separator"></div>
+<div class="field_1">分层学习的策略，可以先标记这些难以理解的内容，然后复习之前已经掌握的内容，复习完毕后再回过头来看这些标记的内容。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">为何用自己的话复述信息能加深对其的理解？</div>
+<div class="separator"></div>
+<div class="field_1">这是因为用自己的话复述时会尽可能减少冗余表述，会对信息进行压缩和简化。使用更精准的词汇进行描述，从而加深对信息的理解。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">为什么早起之后的学习任务策略是将“要事为先”和“分层学习”这两种学习策略搭配使用呢</div>
+<div class="separator"></div>
+<div class="field_1">早晨起来时精力最为充沛，适合去攻克最难的任务，这正对应“要事为先”策略。然而，可能会出现当前任务远超自身水平、难度过高的情况，导致学习进度受阻，此时就需要运用“分层学习”策略，实现逐层深入学习。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">LSTM 为什么会缓解梯度消失的问题？【那两个改进？】</div>
+<div class="separator"></div>
+<div class="field_1">LSTM（长短期记忆网络）通过引入“细胞状态”（cell state）以及门控机制来缓解梯度消失问题。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">LSTM 里面，为什么细胞状态可以防止梯度在传播过程中消失？【通过什么数学运算来防止梯度消失】</div>
+<div class="separator"></div>
+<div class="field_1">细胞状态是 LSTM 中的一种<span style="color: rgb(255, 85, 0);"><b>长程记忆</b></span>机制，它能够在整个序列中<span style="color: rgb(255, 85, 0);"><b>跨时间步</b></span>进行信息的传递，并通过<b><span style="color: rgb(255, 85, 0);">累加操作</span></b>来防止梯度在传播过程中消失。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">TextCNN 里面的这个CNN是一种什么类型的模型，整个这个模型用于什么用途？</div>
+<div class="separator"></div>
+<div class="field_1">用于文本分类的卷积神经网络模型。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">TextCNN 核心思想是什么？【哪两个层以及分别什么作用？】</div>
+<div class="separator"></div>
+<div class="field_1">通过卷积操作提取文本中局部的特征，并通过最大池化层获得最重要的特征信息。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">TextCNN 采用了多个不同大小的卷积核，以捕捉什么，然后怎么样？</div>
+<div class="separator"></div>
+<div class="field_1">以捕捉不同粒度的文本特征，然后将这些特征合并后进行分类。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">TextCNN 的结构 是哪四个层？</div>
+<div class="separator"></div>
+<div class="field_1"><li><strong>输入层&nbsp;</strong></li><li><strong>卷积层&nbsp;</strong></li><li><strong>池化层&nbsp;</strong></li><li><strong>全连接层</strong></li></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">TextCNN 的结构 输入层作用是什么？【将输入文本表示成什么？】</div>
+<div class="separator"></div>
+<div class="field_1">输入层：通常会将输入文本表示为一个矩阵，其中<b><span style="color: rgb(255, 85, 0);">每一行是一个词的嵌入表示</span></b>。文本中的<span style="color: rgb(255, 85, 0);"><b>每个词语</b></span>通过嵌入层（如 nn.Embedding）<span style="color: rgb(255, 85, 0);"><b>映射</b></span>为固定维度的稠密向量。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">TextCNN 的结构 卷积层作用是什么？【卷积层使用多个什么来进行操作？来提取什么？】</div>
+<div class="separator"></div>
+<div class="field_1">卷积层：TextCNN 使用<span style="color: rgb(255, 85, 0);"><b>多个卷积核</b></span>来进行卷积操作，每个卷积核的大小可以不同（例如 3、4、5），以便提取<b><span style="color: rgb(255, 85, 0);">不同范围的局部特征/提取不同粒度的特征。</span></b>。卷积层的作用是提取文本中的局部上下文信息。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">TextCNN 的结构 池化层作用是什么？【用来选择什么？】</div>
+<div class="separator"></div>
+<div class="field_1">池化层：在卷积操作之后，TextCNN 使用最大池化层来<span style="color: rgb(255, 85, 0);"><b>选择</b></span>每个卷积核生成的<b><span style="color: rgb(255, 85, 0);">特征图中的最大值</span></b>，从而保留最重要的特征。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">TextCNN 的结构 全连接层作用是什么？</div>
+<div class="separator"></div>
+<div class="field_1">全连接层：池化后的特征通过一个全连接层进行进一步的处理，最后<b><span style="color: rgb(255, 85, 0);">输出分类结果。</span></b></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">TextCNN 从名字上可以看出它是什么神经网络,以及作用是什么？以及他包括哪两个层以及这两个层分别是用来干什么？</div>
+<div class="separator"></div>
+<div class="field_1"><div>TextCNN 是一种专门用来做文本分类的卷积神经网络，它的做法是通过卷积层来提取文本中的局部特征，然后用池化层选出最重要的特征来做分类。</div><div></div></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">描述TextCNN 的处理过程。</div>
+<div class="separator"></div>
+<div class="field_1">输入层将文本序列转换成矩阵。<br>卷积层使用不同的卷积核来提取特征，<br>池化层来选择重要特征，<br>全连接层做分类。<br><br>首先我们会把文本转化为词向量（比如用 nn.Embedding），然后用多个不同大小的卷积核来对文本进行卷积操作，提取不同大小范围的特征。接着，经过池化层后，我们选出每个特征图中最重要的部分，最后通过全连接层做分类。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">PyTorch 里面nn.Embedding&nbsp; 的作用是什么？</div>
+<div class="separator"></div>
+<div class="field_1">nn.Embedding 是 PyTorch 中用于将离散的词汇或符号映射到连续的稠密向量空间的一个层。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">PyTorch 里面nn.Embedding&nbsp; 的核心思想是什么？【通过什么表的方式将什么映射成什么？】</div>
+<div class="separator"></div>
+<div class="field_1">通过查找表（lookup table）的方式，将每个词语或符号映射到一个低维的稠密向量。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">PyTorch 里面nn.Embedding&nbsp; 的输入和输出分别是什么？</div>
+<div class="separator"></div>
+<div class="field_1">nn.Embedding 层的输入是一个<span style="color: rgb(255, 85, 0);"><b>整数索引的序列</b></span>，这些索引代表词汇表中的词语或符号。输出：输出是一个<span style="color: rgb(255, 85, 0);"><b>稠密的向量表示</b></span>，每个词语被<b><span style="color: rgb(255, 85, 0);">映射</span></b>成一个固定大小的向量（embedding vector）。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">PyTorch 里面nn.Embedding&nbsp; 里面的向量表示是否会更改，以及什么时候会被调整？以及为什么会被调整？</div>
+<div class="separator"></div>
+<div class="field_1"><b><span style="color: rgb(255, 85, 0);">是会改变</span></b>，向量在<span style="color: rgb(255, 85, 0);"><b>训练</b></span>过程中通过<b><span style="color: rgb(255, 85, 0);">反向传播</span></b>调整，以<span style="color: rgb(255, 85, 0);"><b>更好地表示</b></span>词汇的语义信息。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">PyTorch 里面nn.Embedding 层有两个主要参数，分别是什么名字以及什么含义？</div>
+<div class="separator"></div>
+<div class="field_1"><ul><li>num_embeddings：表示词汇表中词的数量，即词汇表的大小。</li><li>embedding_dim：表示每个词汇被嵌入到的向量的维度。</li></ul><div></div></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">nn.Embedding 其实是一个什么表？专门用来把词或者符号映射成一个低维的向量。这个向量包含了什么信息？</div>
+<div class="separator"></div>
+<div class="field_1">查找表，这个向量包含了词语的语义信息。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">word2vec 是否也是预训练的模型？意味着什么？</div>
+<div class="separator"></div>
+<div class="field_1">是的，word2vec 通常被<span style="color: rgb(255, 85, 0);"><b>视为一种预训练的模型</b></span>，包含了<b><span style="color: rgb(255, 85, 0);">大量单词的词向量</span></b>。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">word2vec 模型通常在什么样的数据上进行训练，以学习什么？</div>
+<div class="separator"></div>
+<div class="field_1">大规模<b><span style="color: rgb(255, 85, 0);">无标签文本</span></b>数据（如维基百科、新闻文章等），学习<span style="color: rgb(255, 85, 0);"><b>通用的词向量</b></span>。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">word2vec 生成的是静态词向量，这是什么意思？</div>
+<div class="separator"></div>
+<div class="field_1">即每个单词在所有上下文中都有相同的向量表示。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">word2vec 生成的是否是静态词向量?</div>
+<div class="separator"></div>
+<div class="field_1">是的。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">word2vec 生成的词向量的缺点是什么？以及为什么？</div>
+<div class="separator"></div>
+<div class="field_1">是静态的，固定的，无法区分多义词。<br>无法捕捉同一单词在不同上下文中的不同含义。因为他是静态词向量，即每个单词在所有上下文中都有相同的向量表示。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">embedding层的词向量参数是可训练的情况下，什么时候更新？</div>
+<div class="separator"></div>
+<div class="field_1">在<b><span style="color: rgb(255, 85, 0);">反向传播</span></b>过程中会根据梯度进行更新。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">固定词向量 和 可训练词向量分别是什么意思？【这里的可训练指的是根据什么来进行优化？】</div>
+<div class="separator"></div>
+<div class="field_1"><li><strong>固定词向量</strong>：词向量在训练过程中保持不变。</li><li><strong>可训练词向量</strong>：词向量根据任务的损失函数进行调整和优化。</li></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><strong>可训练词向量</strong>：词向量根据任务的哪个函数进行调整和优化。</div>
+<div class="separator"></div>
+<div class="field_1">损失函数。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>word2vec与BERT的生成的词向量类型的主要区别是什么？</div></div>
+<div class="separator"></div>
+<div class="field_1"><li><strong>word2vec</strong>：生成<strong><span style="color: rgb(255, 85, 0);">静态</span>词向量</strong>，每个单词有一个<b><span style="color: rgb(255, 85, 0);">固定</span></b>的向量表示。</li><li><strong>BERT</strong>：生成<strong><span style="color: rgb(255, 85, 0);">上下文相关</span>的词向量</strong>，同一个单词在<b><span style="color: rgb(255, 85, 0);">不同上下文中有不同的向量表示。</span></b></li></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>word2vec与BERT的模型架构的主要区别是什么？</div></div>
+<div class="separator"></div>
+<div class="field_1"><li><strong>word2vec</strong>：基于<b><span style="color: rgb(255, 85, 0);">浅层神经网络</span></b>（如Skip-gram和CBOW）。</li><li><strong>BERT</strong>：基于<span style="color: rgb(255, 85, 0);"><b>深层</b></span>的Transformer<b><span style="color: rgb(255, 85, 0);">编码器</span></b>，具备双向上下文建模能力。</li></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>使用BERT进行特定任务分类是否属于微调？微调是否意味着词嵌入层和编码器层的所有参数都会被改变？</div></div>
+<div class="separator"></div>
+<div class="field_1">使用BERT进行特定任务分类属于微调。以及微调意味着词嵌入层和编码器层的所有参数都会被改变。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>什么是BERT的微调（Fine-tuning）？</div></div>
+<div class="separator"></div>
+<div class="field_1">使用带标签的数据进一步训练模型，使其适应具体下游任务。<br>将预训练好的BERT模型应用到具体的<span style="color: rgb(255, 85, 0);"><b>下游任务</b></span>（如文本分类、问答系统等），并在该任务的有<span style="color: rgb(255, 85, 0);"><b>标签数据</b></span>上进一步<b><span style="color: rgb(255, 85, 0);">训练</span></b>模型。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>什么是BERT的预训练（Pre-training）？</div></div>
+<div class="separator"></div>
+<div class="field_1">BERT在<span style="color: rgb(255, 85, 0);"><b>大规模未标注文本</b></span>数据上进行的训练，学习<span style="color: rgb(255, 85, 0);"><b>通用的语言表示</b></span>。<br>这一阶段<b><span style="color: rgb(255, 85, 0);">包括</span></b>任务如掩码语言模型（Masked Language Model, <span style="color: rgb(255, 85, 0);"><b>MLM</b></span>）和下一个句子预测（Next Sentence Prediction, <span style="color: rgb(255, 85, 0);"><b>NSP</b></span>）。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>预训练的BERT + 任务特定层（例如，线性分类层）应用于具体的文本分类任务时，哪些参数会被更新？</div></div>
+<div class="separator"></div>
+<div class="field_1"><div><strong>BERT的<span style="color: rgb(255, 85, 0);">所有可训练参数</span>都会被更新</strong>，包括：</div><ol><li><strong>词嵌入层（<span style="color: rgb(255, 85, 0);">Embedding </span>Layer）</strong>：将输入的tokens转换为向量表示的层。</li><li><strong>Transformer编码器层（<span style="color: rgb(255, 85, 0);">Encoder </span>Layers）</strong>：包括多层自注意力机制和前馈神经网络。</li><li><strong>任务<span style="color: rgb(255, 85, 0);">特定层</span></strong>：例如，你添加的<b><span style="color: rgb(255, 85, 0);">线性分类</span></b>层。</li></ol></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">Transformer编码器层（Encoder Layers）：包括哪两个部分？</div>
+<div class="separator"></div>
+<div class="field_1">多头自注意力机制和前馈神经网络。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">损失函数：例如交叉熵损失，用于衡量什么和什么之间的差异。</div>
+<div class="separator"></div>
+<div class="field_1">模型预测与真实标签。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">梯度计算是计算谁相对于谁的什么？</div>
+<div class="separator"></div>
+<div class="field_1">计算<span style="color: rgb(255, 85, 0);"><b>损失函数</b></span>相对于每个<span style="color: rgb(255, 85, 0);"><b>参数</b></span>的<b><span style="color: rgb(255, 85, 0);">梯度</span></b>。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">通过计算损失函数相对于每个参数的梯度，使用什么来更新什么，以最小化什么。</div>
+<div class="separator"></div>
+<div class="field_1">使用优化器（如Adam）更新所有参数，以最小化损失。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">在BERT模型后添加一个线性层用于分类是否也属于微调？</div>
+<div class="separator"></div>
+<div class="field_1">是的。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">通常在BERT的输出上添加一个线性层，这个线性层的作用是什么？</div>
+<div class="separator"></div>
+<div class="field_1">用来适配具体的下游任务。用于将BERT生成的表示转换为具体任务的输出（如类别概率）。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>反向传播与优化：</div>计算损失相对于哪些参数的梯度，包括BERT的参数和线性层的参数。<br></div>
+<div class="separator"></div>
+<div class="field_1">所有可训练参数。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>反向传播与优化：</div>计算得到参数的梯度之后，使用优化器更新所有参数，是为了什么？<br></div>
+<div class="separator"></div>
+<div class="field_1">为了最小化损失。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>在BERT模型后添加一个线性层用于分类任务的架构，并在该任务上训练整个模型，是否属于微调。<br></div></div>
+<div class="separator"></div>
+<div class="field_1">是的。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>在<span style="color: rgb(255, 85, 0);"><b>BERT</b></span>模型后添加一个<span style="color: rgb(255, 85, 0);"><b>线性层</b></span>用于<b><span style="color: rgb(255, 85, 0);">分类</span></b>任务的架构，并在该任务上训练整个模型，那么在训练过程中，只有线性层的参数会被更新吗？<br></div></div>
+<div class="separator"></div>
+<div class="field_1">不是的，BERT的<span style="color: rgb(255, 85, 0);"><b>词嵌入层</b></span>和<b><span style="color: rgb(255, 85, 0);">编码器层</span></b>的参数也会更新。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>训练BERT进行特定任务分类，模型的参数是否会变化？<br></div></div>
+<div class="separator"></div>
+<div class="field_1">会变化。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>训练BERT进行特定任务分类，模型的参数会发生变化，包括哪些参数呢？<br></div></div>
+<div class="separator"></div>
+<div class="field_1">包括词嵌入层embedding和编码器层encoder在内的所有可训练参数。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">使用BERT进行文本分类时，BERT模型的参数是根据什么来更新的？</div>
+<div class="separator"></div>
+<div class="field_1">基于分类任务的损失函数。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">在模型的训练阶段，通常情况下，什么参数都会根据损失函数通过哪两个阶段进行更新？</div>
+<div class="separator"></div>
+<div class="field_1">所有可训练的参数，反向传播和梯度下降。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">在bert模型的训练阶段，<b><span style="color: rgb(255, 85, 0);">没有明确</span></b>冻结某些层，可训练参数是否会进行更新？包括哪两个层？以及根据谁，在哪个阶段进行更新?</div>
+<div class="separator"></div>
+<div class="field_1"><span style="color: rgb(255, 85, 0);"><b>是的</b></span>，全部更新，包括<span style="color: rgb(255, 85, 0);"><b>词嵌入</b></span>层embedding和<span style="color: rgb(255, 85, 0);"><b>编码器</b></span>层encoder。<br>根据<b><span style="color: rgb(255, 85, 0);">损失函数</span></b>通过<span style="color: rgb(255, 85, 0);"><b>反向传播和梯度下降</b></span>进行更新。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">仅使用BERT这个预训练模型进行分类，是否属于微调以及为什么？</div>
+<div class="separator"></div>
+<div class="field_1"><li><b><span style="color: rgb(255, 85, 0);">属于微调</span></b>的范畴。</li><li>微调过程中，模型的<span style="color: rgb(255, 85, 0);"><b>参数</b></span>（包括<span style="color: rgb(255, 85, 0);"><b>词嵌入层和编码器层</b></span>）会根据分类任务的数据进行<b><span style="color: rgb(255, 85, 0);">调整</span></b>，以提升分类性能。</li></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">当你仅使用BERT进行分类任务时，这个过程属于微调预训练好的BERT模型，还是对其进行预训练。</div>
+<div class="separator"></div>
+<div class="field_1">属于微调。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">在预训练阶段，BERT通过大量的无标签文本数据进行训练，目标是学习到什么？</div>
+<div class="separator"></div>
+<div class="field_1">学习到词汇和句子的通用表示。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">大多数BERT的实现（如Hugging Face的Transformers库）在微调时默认是否会更新词嵌入层？</div>
+<div class="separator"></div>
+<div class="field_1">是的，默认更新所有参数，包括词嵌入层。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">BERT使用的是“无标签”的文本数据进行预训练，是否是无监督学习？以及为什么？</div>
+<div class="separator"></div>
+<div class="field_1">不是的，属于<span style="color: rgb(255, 85, 0);"><b>自监督</b></span>学习（Self-Supervised Learning），训练过程中所用的标签不是人工标注的，而是来自于数据本身。<b><span style="color: rgb(255, 85, 0);">预训练任务本身生成了标签</span></b>（如被掩盖的词、句子是否相邻），这实际上是一种自监督学习。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">预训练 和 微调阶段，BERT分别使用什么样的数据来进行训练 ？</div>
+<div class="separator"></div>
+<div class="field_1">利用大规模<b><span style="color: rgb(255, 85, 0);">未标注文本</span></b>进行预训练，然后使用<span style="color: rgb(255, 85, 0);"><b>标注数据</b></span>进行微调。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">BERT的词嵌入层 包括哪三个部分？</div>
+<div class="separator"></div>
+<div class="field_1">词嵌入、位置嵌入和分段嵌入。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">BERT模型预训练和微调阶段的目的分别是什么？</div>
+<div class="separator"></div>
+<div class="field_1"><li><strong>预训练阶段</strong>：通过自监督（无标注）任务在大规模文本上<b><span style="color: rgb(255, 85, 0);">学习词向量和语言表示。</span></b></li><li><strong>微调阶段</strong>：通过监督（有标注）任务在特定数据上进一步<b><span style="color: rgb(255, 85, 0);">优化词向量和模型参数</span></b>，以提升特定任务的性能。</li></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">BERT的预训练阶段，是如何进行预训练的？</div>
+<div class="separator"></div>
+<div class="field_1">通过两种预训练任务来实现预训练的，分别是MLM，以及NSP。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">元组是否是不可变类型?以及他可以用于什么？</div>
+<div class="separator"></div>
+<div class="field_1">是<span style="color: rgb(255, 85, 0);"><b>不可变</b></span>类型，一旦创建，元组中的元素<span style="color: rgb(255, 85, 0);"><b>不能被修改、添加或删除</b></span>。不可变性使得元组<span style="color: rgb(255, 85, 0);"><b>可以用作字典的键</b></span>或存储在其他集合中，因为它们的<b><span style="color: rgb(255, 85, 0);">哈希值是固定的</span></b>。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">为什么元组可以用作字典的键？</div>
+<div class="separator"></div>
+<div class="field_1">因为元组是不可变类型，不可变性使得它们的哈希值是固定的。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">字符串是否是不可变类型?&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1">是的，是不可变类型。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">字符串是不可变类型，这导致了什么情况？</div>
+<div class="separator"></div>
+<div class="field_1">任何对字符串的修改操作（如拼接、替换）都会生成一个新的字符串对象，而不是在原有字符串上进行修改。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>字符串是字符的序列，一旦创建，字符串中的字符是否可以被更改。</div></div>
+<div class="separator"></div>
+<div class="field_1">不可以。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>配置 OLLAMA_MODELS 环境变量的主要作用是什么？</div><div><ul><li>变量名：OLLAMA_MODELS</li><li>变量值：D:\Work\ollama\models</li></ul></div></div>
+<div class="separator"></div>
+<div class="field_1">指定 Ollama 模型存储的目录。通过设置该变量，您可以控制 Ollama 将下载的模型存储在特定的位置，而不是默认路径。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">直接在 CMD 窗口中运行 ollama run qwen2.5:1.5b 命令来下载并运行该模型。&nbsp;<br>模型将会被下载到哪里？</div>
+<div class="separator"></div>
+<div class="field_1">如果正确配置了 OLLAMA_MODELS 环境变量，会下载到<b><span style="color: rgb(255, 85, 0);">OLLAMA_MODELS&nbsp;环境变量对应的文件路径。</span></b></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">ollama run &lt;model-name&gt;：此命令的功能是什么？</div>
+<div class="separator"></div>
+<div class="field_1">会检查指定的模型是否已存在。如果不存在，Ollama 会自动从其模型库下载该模型并存储在指定的目录中，然后运行该模型。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">设置 OLLAMA_MODELS 环境变量为 D:\Work\ollama\models，作用是什么？</div>
+<div class="separator"></div>
+<div class="field_1">Ollama 会优先使用该路径作为模型的存储位置。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><strong>Ollama</strong>&nbsp;的作用是什么？</div>
+<div class="separator"></div>
+<div class="field_1">是一个用于运行本地大型语言模型（LLM）的工具，类似于其他如 Hugging Face 的工具。它允许用户在本地计算机上运行预训练的语言模型，而无需依赖云服务。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">1.5b&nbsp; 指的是什么意思？</div>
+<div class="separator"></div>
+<div class="field_1">模型的参数规模（15亿参数）。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">原始输入数据 (BIO格式的文本文件) 具体内容如下所示，经过load data函数处理之后，变成什么样子？<br><br>扬 B-LOC
+<br>州 I-LOC
+<br>四 O
+<br>吨 O
+<br>炒 O
+<br>饭 O
+<br> <br>北 B-LOC
+<br>京 I-LOC
+<br>的 O
+<br>天 O
+<br>气 O</div>
+<div class="separator"></div>
+<div class="field_1">sentences = [
+<br>&nbsp;&nbsp;&nbsp; ['扬', '州', '四', '吨', '炒', '饭'],
+<br>&nbsp;&nbsp;&nbsp; ['北', '京', '的', '天', '气']
+<br>]
+<br> <br>labels = [
+<br>&nbsp;&nbsp;&nbsp; ['B-LOC', 'I-LOC', 'O', 'O', 'O', 'O'],
+<br>&nbsp;&nbsp;&nbsp; ['B-LOC', 'I-LOC', 'O', 'O', 'O']
+<br>]</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">下面代码里面的 两个变量 self.<b><span style="color: rgb(255, 0, 127);">sentences</span></b><b><span style="color: rgb(255, 0, 127);">,&nbsp;</span></b>self.<span style="color: rgb(255, 0, 127);"><b>labels</b></span>格式如下所示，def collate_fn(<b><span style="color: rgb(255, 0, 127);">batch</span></b>): 里面的这个<b><span style="color: rgb(255, 0, 127);">batch</span></b>参数应该是什么呢？&nbsp;<br>&nbsp;<br>class <b><span style="color: rgb(255, 0, 127);">NERDataset</span></b>(Dataset):
+<br>&nbsp; &nbsp; .....<br>&nbsp;&nbsp;&nbsp; def __getitem__(self, idx):
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # 返回原始数据，不做预处理
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sentence = self.<b><span style="color: rgb(255, 0, 127);">sentences</span></b>[idx]
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; labels = self.<span style="color: rgb(255, 0, 127);"><b>labels</b></span>[idx]
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return <b><span style="color: rgb(255, 0, 127);">sentence, labels<br></span></b>----------------------<br><b><span style="color: rgb(255, 0, 127);">sentences </span></b>= [
+<br>&nbsp;&nbsp;&nbsp; ['扬', '州', '四', '吨', '炒', '饭'],
+<br>&nbsp;&nbsp;&nbsp; ['北', '京', '的', '天', '气']
+<br>]
+<br> <br><b><span style="color: rgb(255, 0, 127);">labels </span></b>= [
+<br>&nbsp;&nbsp;&nbsp; ['B-LOC', 'I-LOC', 'O', 'O', 'O', 'O'],
+<br>&nbsp;&nbsp;&nbsp; ['B-LOC', 'I-LOC', 'O', 'O', 'O']
+<br>]</div>
+<div class="separator"></div>
+<div class="field_1">batch = [
+<br>&nbsp;&nbsp;&nbsp; # 第一个样本
+<br>&nbsp;&nbsp;&nbsp; (
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ['扬', '州', '四', '吨', '炒', '饭'],&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # sentence
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ['B-LOC', 'I-LOC', 'O', 'O', 'O', 'O']&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # labels
+<br>&nbsp;&nbsp;&nbsp; ),
+<br>&nbsp;&nbsp;&nbsp; # 第二个样本
+<br>&nbsp;&nbsp;&nbsp; (
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ['北', '京', '的', '天', '气'],&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # sentence
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ['B-LOC', 'I-LOC', 'O', 'O', 'O']&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # labels
+<br>&nbsp;&nbsp;&nbsp; )
+<br>]</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">&nbsp;在collate_fn这个函数里面，&nbsp; batch 参数 是什么类型？以及里面的每个元素是什么类型？&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1">batch 参数确实是一个<span style="color: rgb(255, 0, 127);"><b>列表</b></span>，其中每个元素是一个 <span style="color: rgb(255, 0, 127);"><b>元组</b></span>，这个元组包含了一个<b><span style="color: rgb(255, 0, 127);">句子</span></b>和其对应的<span style="color: rgb(255, 0, 127);"><b>标签</b></span>.</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">tokenizer.batch_encode_plus 函数中的第一个参数 是什么名称以及必须是一个什么类型？</div>
+<div class="separator"></div>
+<div class="field_1">text ，包含字符串的列表。&nbsp;</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>tokenizer.batch_encode_plus 这个函数里面的text参数的 内容如下。这个函数的返回值encoding应该是什么样的结果呢？&nbsp;&nbsp;</div><br>texts = [
+<br>&nbsp;&nbsp;&nbsp; '扬州四吨炒饭',
+<br>&nbsp;&nbsp;&nbsp; '北京的天气'
+<br>]<br></div>
+<div class="separator"></div>
+<div class="field_1">encodings = {
+<br>&nbsp;&nbsp;&nbsp; '<span style="color: rgb(255, 0, 127);"><b>input_ids</b></span>': [
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [101, 2207, 4545, 1744, 3209, 3696, 6121, 102],&nbsp; # [CLS] 扬州四吨炒饭 [SEP]
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [101, 1266, 3221, 4638, 1921, 3698, 102]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; # [CLS] 北京的天气 [SEP]
+<br>&nbsp;&nbsp;&nbsp; ],
+<br>&nbsp;&nbsp;&nbsp; '<b><span style="color: rgb(255, 0, 127);">attention_mask</span></b>': [
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [1, 1, 1, 1, 1, 1, 1, 1],
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; [1, 1, 1, 1, 1, 1, 1]
+<br>&nbsp;&nbsp;&nbsp; ]
+<br>}</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">相似性搜索基于什么？<br></div>
+<div class="separator"></div>
+<div class="field_1">基于向量。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">在NLP中，文本文档的语义如何表示？</div>
+<div class="separator"></div>
+<div class="field_1">由向量表示。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">Ollama中的嵌入模型，其接受的输入和产生的输出分别是什么？</div>
+<div class="separator"></div>
+<div class="field_1">输入为文档文本，输出则是向量。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">文档内容如何进入FAISS数据库？【经过哪个模型转换成什么？】</div>
+<div class="separator"></div>
+<div class="field_1">经嵌入模型转换为向量。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">为何文档需经过嵌入模型才能捕捉语义信息？<br></div>
+<div class="separator"></div>
+<div class="field_1">我们使用向量来表示语义信息。因为文本的语义信息由高维空间的向量表示。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">PromptTemplate类在初始化时需传入的两个参数分别是什么？</div>
+<div class="separator"></div>
+<div class="field_1">Input_value字符串列表和由三引号构成的template字符串。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">PromptTemplate的目的是整合哪两部分信息？<br></div>
+<div class="separator"></div>
+<div class="field_1">一是用户的question，二是该question对应的context上下文。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">PromptTemplate的实例化对象prompt对应的API是什么？</div>
+<div class="separator"></div>
+<div class="field_1">format函数。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">PromptTemplate的实例化对象的format函数有何作用？【将哪两个东西拼接到哪里？】</div>
+<div class="separator"></div>
+<div class="field_1">将question和context拼接至模板中。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">进行similarity search相似度搜索的前置步骤是什么？</div>
+<div class="separator"></div>
+<div class="field_1">加载向量数据库。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">进行相似度搜索（similarity search）的目的是什么？</div>
+<div class="separator"></div>
+<div class="field_1">旨在查询与问题相关的上下文，并拼接成提示信息（prompt）。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">在自然语言处理（NLP）中，文本的向量代表什么？</div>
+<div class="separator"></div>
+<div class="field_1">文本的向量代表文本的语义。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">三种常见的静态词嵌入模型分别为 word2vec、GloVec 和 FastText。前两者分别基于何种训练任务获得？而后者又基于哪个模型？它提供了哪些优化点，解决了什么问题？</div>
+<div class="separator"></div>
+<div class="field_1"><br>前两者分别采用跳词、词袋【Skip-gram, CBOW】以及矩阵分解的方式进行训练。而最后一个模型基于 word2vec 构建，其优化点在于采用了 n-gram 子词分词，解决了 OOV（未登录词）问题。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">在 NER（命名实体识别）中，经过预处理后的数据格式为：token 与标签一一对应，之后，将其组合成完整句子。这些句子会以单个句子为单位被输送至 BERT 模型，但在此之前需先经过 tokenizer 进行分词操作。然而，分词过程会产生额外的子 token，这就致使原本的 token 与标签无法再保持一一对应关系，那么该如何解决这一问题呢？<br></div>
+<div class="separator"></div>
+<div class="field_1">解决办法是进行标签扩展。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">首次切换至新的 conda 环境时，会出现一个名为“conda executable”的选项。针对该选项，我们应选择哪个路径下的哪个文件呢？</div>
+<div class="separator"></div>
+<div class="field_1">答案是选择“Anaconda3/condabin/conda.bat”。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">使用 BERT 中的 tokenize 分词器进行分词可能会引发什么问题呢？</div>
+<div class="separator"></div>
+<div class="field_1">会出现子词问题，即一个 token 有可能被拆分成多个子 token。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">下面图片中的三个部分从左往右分别代表着什么？&nbsp;&nbsp;<br><img src="images/paste-8b6bb2ee8efbcd96ca8a39b6af2a23edeaf1282f.jpg"></div>
+<div class="separator"></div>
+<div class="field_1">最左侧这个部分代表的是数据<span style="color: rgb(255, 0, 127);"><b>data</b></span>。 <br>中间这个部分代表的是<b><span style="color: rgb(255, 0, 127);">data_loader</span></b>。<br>右边这个代表的是模型<span style="color: rgb(255, 0, 127);"><b>model</b></span>。&nbsp;&nbsp;</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">P(我想去打篮球)<br>针对这个语料库的二元模型（bigram），如何计算这个句子的概率？</div>
+<div class="separator"></div>
+<div class="field_1"><img src="images/paste-b9a06491deb8317f9649e4a0621ef010db995603.jpg"></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">BLEU根据`n-gram可以划分成多种评价指标，其中n-gram里面的n指的是什么？</div>
+<div class="separator"></div>
+<div class="field_1">指的是连续的单词个数为n。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">评估指标众多，如准确率、召回率以及 F1 分数，在简历中的项目究竟应以哪一项为准呢？</div>
+<div class="separator"></div>
+<div class="field_1">在简历中直接填写 F1 分数即可。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">Sequence classification 和 token classification 分别对应什么任务？</div>
+<div class="separator"></div>
+<div class="field_1">它们分别对应文本分类任务以及命名实体识别任务（NER）。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">Rouge-N 这个名称里面的N是什么意思？</div>
+<div class="separator"></div>
+<div class="field_1">N指的是N-gram，也就是将模型生成的结果和标准结果按N-gram拆分后，计算召回率。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">代码运行后，判断其是否报错的唯一依据是什么？</div>
+<div class="separator"></div>
+<div class="field_1">查看最后返回的exit code 是0还是1，若为0，则表示代码正常运行成功；若为1，则表明代码运行过程中出现错误。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">在“import torch”中，torch是什么类型？是方法、类还是对象？</div>
+<div class="separator"></div>
+<div class="field_1">它是一个对象。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">Import关键字后面会跟随一个单词，该单词的首字母有时大写，有时小写。从名字的大小写能推断出什么呢？</div>
+<div class="separator"></div>
+<div class="field_1">如果首字母大写，那么它必定是一个类；如果首字母小写，那么它可能是方法，也可能是对象。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">精确率和准确率它们的定义分别是什么？&nbsp;&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1">精确率（Precision）：指在所有被预测为正类的样本中，实际正类样本所占的比例。<br>准确率（Accuracy）：指所有预测正确的样本占总样本的比例。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><strong>在大多数情况下，精确率和准确率是不同的</strong>，因为它们评估的是不同的方面，具体来说如何理解呢？&nbsp;&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1"><ul><li><strong>精确率</strong>更关注<strong>预测为正类的样本的质量</strong>，即真正的正类占预测为正类的比例。</li><li><strong>准确率</strong>评估的是<strong>所有正确预测的比例</strong>，包括正类和负类。</li></ul></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">精确率和准确率通常不等价，因为它们评估的是不同的方面。他们分别侧重的是哪个方面？&nbsp;&nbsp;【他们的分母有什么不同？】</div>
+<div class="separator"></div>
+<div class="field_1">精确率侧重于正类预测的质量，<br>而准确率则评估的是，所有样本里面，预测的正确性。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">分类任务侧重于标签的准确预测，评估标准是哪四个？</div>
+<div class="separator"></div>
+<div class="field_1">准确率、精确率、召回率、F1分数。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">分类任务侧重于对谁的预测？</div>
+<div class="separator"></div>
+<div class="field_1">&nbsp;对标签的预测。&nbsp;</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">生成式任务侧重于生成文本与真实文本的相似度，评估标准是哪三个？</div>
+<div class="separator"></div>
+<div class="field_1">BLEU、ROUGE、困惑度（Perplexity）。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">对<b><span style="color: rgb(255, 0, 127);">离散标签</span></b>的预测和对<span style="color: rgb(255, 0, 127);"><b>连续生成文本</b></span>的预测分别对应的是什么任务？&nbsp;&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1"><span style="color: rgb(255, 0, 127);"><b>分类</b></span>任务通常是离散的标签预测，<br>而<b><span style="color: rgb(255, 0, 127);">生成式</span></b>任务关注的是连续的生成文本质量。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">&nbsp;马尔可夫假设具体来说是什么？&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1">即某个词的概率只依赖于它前面的有限个词。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">模型基于马尔可夫假设，在bigram模型中，以及在trigram模型中，分别考虑的是当前词和什么的关系？&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1">在bigram模型中，你只考虑<span style="color: rgb(255, 0, 127);"><b>当前词和前一个词</b></span>的关系；<br>在trigram模型中，你考虑<b><span style="color: rgb(255, 0, 127);">当前词和前两个词</span></b>的关系。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">N-Gram 模型基于哪个假设？这里的N代表什么意思？</div>
+<div class="separator"></div>
+<div class="field_1">马尔可夫假设。只看n个前面的词，假设这些词就能决定当前词的概率。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">语言模型的主要类别是四个，分别是N-Gram、神经网络、预训练模型、大语言模型。分别对应的例子是什么？&nbsp;&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1"><ul><li>N-Gram 模型：只看n个前面的词，假设这些词就能决定当前词的概率。bigram 和&nbsp;trigram模型。</li><li>神经网络语言模型（NNLM）：基于RNN或LSTM的模型来生成句子。</li><li>预训练模型：GPT、BERT。</li><li>大语言模型（LLM）：GPT-3、ChatGPT、PaLM等模型。</li></ul><br></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">什么是预训练语言模型。【通过什么进行训练，学会了什么？然后通过什么来应用的特定任务？】</div>
+<div class="separator"></div>
+<div class="field_1">它们先通过大规模文本进行训练，学会了很多通用的语言模式和语法结构，然后通过微调应用到特定的任务上，如文本分类、命名实体识别等。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">预训练语言模型，通过微调应用到特定的任务上，给两个例子。&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1">文本分类、命名实体识别等。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">常用的N-Gram语言模型是什么？</div>
+<div class="separator"></div>
+<div class="field_1">bigram（二元模型）和trigram（三元模型）通常就是常见的N-Gram模型。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">语言模型的基本任务是计算什么，通常用来衡量一个句子在某种语言中的什么程度？</div>
+<div class="separator"></div>
+<div class="field_1">计算给定句子发生的概率。自然程度。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">N-Gram语言模型则基于哪个假设，即当前词的出现仅依赖于什么。也就是说，计算某个词的概率时，我们只考虑它前面的`n-1`个词的上下文信息。</div>
+<div class="separator"></div>
+<div class="field_1">马尔可夫假设，依赖于前面`n`个词。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">N-Gram语言模型的优势在于简单且直观，但局限性是它忽略了什么？</div>
+<div class="separator"></div>
+<div class="field_1">忽略了更长远的上下文关系。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">N-Gram语言模型&nbsp;<br>最常用的N-Gram模型是`bigram`和`trigram`，分别考虑哪个词和那个词对当前词的影响。&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1">前一个词和前两个词。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">`bigram` 和 `trigram` 分別考慮的是什麽？</div>
+<div class="separator"></div>
+<div class="field_1">`bigram`模型只考虑相邻的词对下一个词的影响，而`trigram`则会考虑前两个词的影响。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">&nbsp;Bigram语言模型是哪个语言模型的一种特例，它基于马尔可夫假设，认为当前词的概率仅依赖于谁？</div>
+<div class="separator"></div>
+<div class="field_1">N-Gram，前一个词。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">Bigram模型计算句子中每个词Wi的概率是什么？【公式】</div>
+<div class="separator"></div>
+<div class="field_1"><img src="images/paste-d44688a10260356c6ca4ecd44e4ffbe3b9a29390.jpg"></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">Bigram模型它的缺点是什么？【只能捕捉什么而无法理解什么。】</div>
+<div class="separator"></div>
+<div class="field_1">只能捕捉到短期的上下文信息，无法理解更长距离的词语关系。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">模型的每个参数通常是什么类型以及多少大小？</div>
+<div class="separator"></div>
+<div class="field_1">一个浮点数（float32），每个float32占用4字节（32位 = 4字节）。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">将字节转换为GB时，通常使用的单位换算过程是什么？</div>
+<div class="separator"></div>
+<div class="field_1"><li>1GB = 1024MB</li><li>1MB = 1024KB</li><li>1KB = 1024字节</li></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">模型是70亿参数，那么大概需要多少G的显存？【计算过程】</div>
+<div class="separator"></div>
+<div class="field_1">280亿字节转为GB的过程是<br><img src="images/paste-9c07aff3b2800f663940d15d0458ed1938d179d8.jpg"></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">仅计算模型参数占用的显存是不完整的。这是为什么呢？&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1">模型的显存需求还包括梯度、优化器状态、激活值和中间计算结果等。例如，反向传播过程中需要存储每个层的梯度，这会增加额外的显存消耗。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">通常，梯度的存储需要与谁一样大的内存？</div>
+<div class="separator"></div>
+<div class="field_1">模型参数。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">模型有70亿（7*10^9）个参数。下面的计算过程如下，那么计算出来的显存应该是谁对应的大小。&nbsp;&nbsp;<br><img src="images/paste-92b12b79cd736e155ea7684521102b5f742fc06c.jpg"></div>
+<div class="separator"></div>
+<div class="field_1">模型参数对应的显存大小。不能代表整个模型所需要的显存。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">模型有70亿（7*10^9）个参数。 计算出来的显存应该是26G，为了更保守地估算显存，通常怎么做来覆盖梯度和其他中间存储的内存。</div>
+<div class="separator"></div>
+<div class="field_1">可以将参数存储的需求乘以一个额外的因子（如1.5x或2x）。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">【面试题】模型是70亿参数，那么大概需要多少G的显存？【思路和过程】</div>
+<div class="separator"></div>
+<div class="field_1"><ol><li>计算模型参数的内存占用（<code>模型参数数目 * 每个参数字节数</code>）。</li><li>转换为GB（字节 -&gt; KB, MB -&gt; GB）。</li><li>考虑梯度和优化器的占用，可能需要乘以一个因子（例如1.5x或者2x）。</li></ol></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">nn.Embedding 这个层 将什么映射到什么？&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1">单词的整数索引ID映射到单词的词向量。<br>是 PyTorch 中一个用于将离散的整数索引映射到连续的稠密向量表示的层。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">nn.Embedding 本质上可以看作是一个什么，它存储了一个矩阵，矩阵的维度是什么？&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1">查找表，词汇表大小与嵌入维度的矩阵。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">nn.Embedding 本质上是矩阵，里面的 每一行对应什么？</div>
+<div class="separator"></div>
+<div class="field_1">一个单词的向量表示。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">nn.Embedding 本质上是矩阵，该矩阵的形状为(V, D)。这两个字母分别代表什么？&nbsp;&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1">一个词汇表大小为V，嵌入维度为D的模型。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">在训练过程中，nn.Embedding 会通过哪个过程来学习到每个词的嵌入向量。</div>
+<div class="separator"></div>
+<div class="field_1">反向传播过程。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">在训练过程中，nn.Embedding 里面的这些向量的学习是通过优化什么来完成的。</div>
+<div class="separator"></div>
+<div class="field_1">优化某个任务（如语言建模、文本分类等）中的损失函数。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>nn.Embedding 的输入和输出的结果 分别是什么？&nbsp;</div></div>
+<div class="separator"></div>
+<div class="field_1">输入的内容是ID序列，输出的内容是词向量组合。<br><div>nn.Embedding 的输入通常是一个整数索引序列，代表了一个文本序列中的词。模型会根据这些索引查找对应的嵌入向量，输出的结果是这些嵌入向量的组合。</div></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>【面试题】请讲解一下nn.embedding他的思想和原理是什么？</div>【它的本质是什么？内部维护了什么？作用是将什么对应到什么？】</div>
+<div class="separator"></div>
+<div class="field_1">nn.embedding 本质是“查找表”，它的作用就是把一个整数索引对应到一个固定维度的向量。这个向量就是我们常说的“嵌入向量”。<br>nn.Embedding 内部维护了一个矩阵，矩阵的行数就是词汇表的大小，列数是向量的维度。<br>这些嵌入向量最开始是随机初始化的，在训练的过程中，模型会通过优化任务的损失函数，逐渐调整这些向量，使它们能更好地表达单词之间的关系。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>Byte 和 bits 之间的关系？</div></div>
+<div class="separator"></div>
+<div class="field_1">1 Byte（字节）= 8 bits（位）。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>在内存方面，B 和 b 分别的意思是什么？</div></div>
+<div class="separator"></div>
+<div class="field_1"><li><strong>b</strong>：指的是 bit（位）。</li><li><strong>B</strong>：指的是 Byte（字节）。
+例如：1 KB = 1024 Bytes，不是 1024 bits。</li></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>MB 和 KB里面的B是什么？</div></div>
+<div class="separator"></div>
+<div class="field_1">Byte（字节）。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>bits 在内存方面对应的中文名称是什么？&nbsp;</div></div>
+<div class="separator"></div>
+<div class="field_1">（位）。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>log(p1)+log(p2)+...log(pn)&nbsp; 等于什么？&nbsp;</div></div>
+<div class="separator"></div>
+<div class="field_1">log(p1*p2*...*pn)</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>什么是AE模型，他的代表作是什么？特点是什么？&nbsp;&nbsp;</div></div>
+<div class="separator"></div>
+<div class="field_1"><div>自编码模型（Auto Encoder），代表作BERT，其特点为：Encoder-Only。</div></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">AE模型 基本原理是什么？通常用于什么任务？&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1"><div>基本原理：是在输入中随机MASK掉一部分单词，根据上下文预测这个词。</div><div>AE模型通常用于<b><span style="color: rgb(255, 0, 127);">内容理解</span></b>任务，比如自然语言理解（NLU）中的分类任务：情感分析、提取式问答。</div></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">Bert模型的结构图如下，有三个不同的颜色，分别对应三个模块。这三个模块分别是什么？&nbsp;&nbsp;<br><img src="images/paste-8f546dce7a6cb93378538fbb51a20e2fdf67d6a7.jpg"></div>
+<div class="separator"></div>
+<div class="field_1"><ul><li>底部黄色的模块表示的是 Embedding模块，嵌入层。</li><li>中间蓝色的表示Encoder编码器模块。 </li><li>顶部的绿色表示微调模块。&nbsp;&nbsp;</li></ul></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">Bert模型的结构图如下，最底下是embedding模块，它有几个embedding。&nbsp;<br><img src="images/paste-8f546dce7a6cb93378538fbb51a20e2fdf67d6a7.jpg"></div>
+<div class="separator"></div>
+<div class="field_1">有三个embeddings分别是。，Token bedding ，position embedding和segment embedding，segment embedding用来区分&nbsp; 两个句子，完成句子对的任务。&nbsp;&nbsp;</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">Bert模型的结构第一层是embedding层。&nbsp;<br><div>其中，Token
+Embeddings:
+词嵌入张量,
+第一个单词对应的是什么？以及用于什么任务？&nbsp;&nbsp;</div></div>
+<div class="separator"></div>
+<div class="field_1">对应的是CLS标志, 可以用于之后的分类任务。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">Bert模型的结构第一层是embedding层。&nbsp;<br><div>其中，Segment Embeddings 用于什么任务？&nbsp;&nbsp;</div></div>
+<div class="separator"></div>
+<div class="field_1">用于句子对任务，后续的两个句子为输入的预训练任务。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">Bert模型的结构第一层是embedding层。&nbsp;<br><div>其中，整个Embedding模块的输出张量是哪些张量的什么操作的结果？&nbsp;&nbsp;<br></div></div>
+<div class="separator"></div>
+<div class="field_1">就是这3个张量Token bedding ，position embedding和segment embedding的直接加和结果。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">【面试题】手绘Bert模型的结构里面的编码器层。</div>
+<div class="separator"></div>
+<div class="field_1"><img src="images/paste-4bb494cb13e848f5e39d6896574400ec5ffa82be.jpg"></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">【面试题】手绘Transformer模型的结构。</div>
+<div class="separator"></div>
+<div class="field_1"><img src="images/paste-82f04416bb9dd8a5d2326a691c55bb94d0e9b811.jpg"></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">【面试题】BERT的预训练任务分别是什么？中英文名称。&nbsp;&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1"><div><ul><li>MLM，Masked LM (带掩码的语言建模任务)</li><li>NSP，Next Sentence Prediction (下一句话预测任务)</li></ul></div></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">【面试题】BERT的预训练任务里面，具体讲解一下MLM任务的内容。【百分之多少的比例参与到这个任务？然后又有哪三个比例分别对应什么操作？】</div>
+<div class="separator"></div>
+<div class="field_1"><div><span style="color: rgb(38, 38, 38);">在原始训练文本中,<br></span><b><span style="color: rgb(255, 0, 127);">随机</span></b><span style="color: rgb(38, 38, 38);">的抽取</span><span style="color: rgb(255, 0, 127);"><b>15%的token</b></span><span style="color: rgb(38, 38, 38);">作为参与</span><b><span style="color: rgb(255, 0, 127);">MASK</span></b><span style="color: rgb(38, 38, 38);">任务的对象.</span></div><br><div><span style="color: rgb(0, 76, 255);">•</span><b><span style="color: rgb(255, 0, 127);">80%</span></b><span style="color: rgb(38, 38, 38);">的概率下,<br>用[MASK]标记替换该token.</span></div><br><div><span style="color: rgb(0, 76, 255);">•</span><span style="color: rgb(38, 38, 38);">在</span><b><span style="color: rgb(255, 0, 127);">10%</span></b><span style="color: rgb(38, 38, 38);">的概率下,<br>用一个随机的单词替换token.</span></div><br><div><span style="color: rgb(0, 76, 255);">•</span><span style="color: rgb(38, 38, 38);">在</span><b><span style="color: rgb(255, 0, 127);">10%</span></b><span style="color: rgb(38, 38, 38);">的概率下,<br>保持该token不变.</span></div></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">【面试题】BERT的预训练任务里面，具体讲解一下NSP任务的内容。【接受什么作为输入用来预测什么？谁可能被选做句子a以及50%，50%分别是什么？】</div>
+<div class="separator"></div>
+<div class="field_1"><div>模型接收<span style="color: rgb(255, 0, 127);"><b>句子对(A, B)</b></span>作为输入，用于预测句子<span style="color: rgb(255, 0, 127);"><b>B是否为</b></span>句子<span style="color: rgb(255, 0, 127);"><b>A的实际后续</b></span>语句。<br></div><div><br>• <span style="color: rgb(255, 0, 127);"><b>所有</b></span>参与任务训练的语句里面，每个句子理论上<b><span style="color: rgb(255, 0, 127);">都有可能被选作句子A</span></b>，<br>• 其中<span style="color: rgb(255, 0, 127);"><b>50%的句子B</b></span>是原始文本中紧跟句子A的<span style="color: rgb(255, 0, 127);"><b>真实后续语句</b></span>（标记为IsNext，代表<span style="color: rgb(255, 0, 127);"><b>正样本</b></span>）。<br>• 另外<span style="color: rgb(255, 0, 127);"><b>50%的句子B</b></span>是从原始文本中<span style="color: rgb(255, 0, 127);"><b>随机抽取</b></span>的语句（标记为NotNext，代表<span style="color: rgb(255, 0, 127);"><b>负样本</b></span>）。<br></div></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">【面试题】BERT的transformer 层数 是多少？</div>
+<div class="separator"></div>
+<div class="field_1">12.</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">【面试题】BERT的特征维度 是多少？</div>
+<div class="separator"></div>
+<div class="field_1">768。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">【面试题】BERT的transformer head数是多少？</div>
+<div class="separator"></div>
+<div class="field_1">12。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">【面试题】BERT的总参数量 是多少？</div>
+<div class="separator"></div>
+<div class="field_1"><div>1.15亿。</div></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">【面试题】BERT的四个关键参数分别是什么？&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1"><ol><li>transformer层数</li><li>特征维度</li><li>transformer head数</li><li>总参数量</li></ol></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">&nbsp;目前所学内容主要涵盖理论与实践代码两部分。那么，这两部分分别在何时更为重要呢？</div>
+<div class="separator"></div>
+<div class="field_1"><span style="color: rgb(255, 0, 127);"><b>理论</b></span>部分在<span style="color: rgb(255, 0, 127);"><b>面试</b></span>阶段至关重要，<br>而<span style="color: rgb(255, 0, 127);"><b>实践代码</b></span>部分在实际<b><span style="color: rgb(255, 0, 127);">工作</span></b>过程中则发挥着关键作用。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">BERT 更适合NLU任务 还是NLG任务？</div>
+<div class="separator"></div>
+<div class="field_1"><div>更适合NLU任务, 不适合用NLG任务。</div></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">AR 模型它的英文全称以及中文名称是什么？&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1">自回归模型（Auto Regressive Model）。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">AR 模型他的代表作是什么？它的特点是什么？&nbsp;&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1"><div>AR模型，代表作GPT，其特点为：Decoder-Only。</div> <div><br></div></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">AR 模型的基本原理是什么？通常用于什么任务？&nbsp;&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1">AR模型的基本原理：模型是单向的，仅利用已有信息来生成当前单词的信息。生成过程是逐步生成的。<br>该模型按照从<span style="color: rgb(255, 0, 127);"><b>左至右的方向[单向]进行学习</b></span>，仅能利用上文或下文的信息。<br><br>AR模型通常应用于<span style="color: rgb(255, 0, 127);"><b>生成式任务</b></span>，在长文本生成方面具备强大能力。例如在自然语言生成（<span style="color: rgb(255, 0, 127);"><b>NLG</b></span>）领域的任务中，包括文本<span style="color: rgb(255, 0, 127);"><b>摘要</b></span>、<b><span style="color: rgb(255, 0, 127);">翻译</span></b>或抽象问答等方面都有出色表现 。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">AR 模型 和 AE模型 分别主要用于自然语言的什么任务？&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1"><ul><li><span style="color: rgb(255, 0, 127);"><b>AR </b></span>模型，指的是<span style="color: rgb(255, 0, 127);"><b>自回归</b></span>模型，主要用于自然语言<span style="color: rgb(255, 0, 127);"><b>生成</b></span>任务<span style="color: rgb(255, 0, 127);"><b>NLG</b></span>。&nbsp;</li><li><span style="color: rgb(255, 0, 127);"><b>AE </b></span>模型，指的是<span style="color: rgb(255, 0, 127);"><b>自编码</b></span>模型，主要用于自然语言<b><span style="color: rgb(255, 0, 127);">理解</span></b>任务<span style="color: rgb(255, 0, 127);"><b>NLU</b></span>。&nbsp;&nbsp;</li></ul></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">GPT 模型的Embedding嵌入层有哪些组成？&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1">只有Token Embedding以及Position Embedding，没有Segment Embedding。&nbsp;&nbsp;</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">下面是GPT1 模型的架构，上面的绿色部分是什么意思？&nbsp;&nbsp;<br><img src="images/paste-9a50d765067dae3c65707857cbd589b33aeacb35.jpg"></div>
+<div class="separator"></div>
+<div class="field_1">表示的是根据不同的任务进行<b><span style="color: rgb(255, 0, 127);">微调</span></b>。 任务分为主要两类，一个是 文本预测，另一个是文本分类。&nbsp;</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">手绘 GPT1模型的架构图。</div>
+<div class="separator"></div>
+<div class="field_1"><img src="images/paste-9a50d765067dae3c65707857cbd589b33aeacb35.jpg"></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">GPT1模型的架构图，主要分为三部分，分别是什么？&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1"><ol><li><b><span style="color: rgb(255, 0, 127);">Embeddings</span></b>层，包含 Token和position两个embedding。 </li><li><b><span style="color: rgb(255, 0, 127);">解码器</span></b>层，</li><li><b><span style="color: rgb(255, 0, 127);">微调</span></b>层，根据不同任务进行微调的层。&nbsp;</li></ol></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">手绘 Transformer 模型的架构图里面的解码器层部分。</div>
+<div class="separator"></div>
+<div class="field_1"><img src="images/paste-0fe1018d57d35450889472cf92be40331b2f236e.jpg"></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">手绘 两个结构图，一个是Transformer里面的解码器层部分。另一个是GPT1的结构。</div>
+<div class="separator"></div>
+<div class="field_1">Transformer里面的解码器层:<br><img src="images/paste-427160867c8866184e0d8079aa03e77b47b96a4b.jpg"><br>GPT1的结构图:<br><img src="images/paste-7468b2b51546c702b91fa4976b1c65ded676c856.jpg"></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>GPT的训练包括两阶段过程，分别是什么？&nbsp;</div></div>
+<div class="separator"></div>
+<div class="field_1"><ul><li><b><span style="color: rgb(255, 0, 127);">无监督</span></b>的预训练语言模型；</li><li><b><span style="color: rgb(255, 0, 127);">有监督</span></b>的下游任务fine-tunning。</li></ul></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">下面这个结构图里面，这几个单词分别指的是什么意思？&nbsp;以及右侧对应的流程图是什么意思？<br>Classification<br>Entailment<br>Similarity<br>Multiple Choice<br><br><img src="images/paste-8db46603cac37554ccd5740988209ed174604c63.jpg"></div>
+<div class="separator"></div>
+<div class="field_1">分别表示的是GPT对应的四个下游任务，<br>然后右侧的图表是不同下游任务分别所对应各自的微调的过程。&nbsp;</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">下面这个结构图里面，&nbsp;<br>Entailment 这个下游任务里面的三个单词，Start，Delim，Extract 分别表示什么意思？&nbsp;&nbsp;<br>&nbsp;<br><br><img src="images/paste-8db46603cac37554ccd5740988209ed174604c63.jpg"></div>
+<div class="separator"></div>
+<div class="field_1">仅仅是文本的标记，用来标记文本的开头，文本之间的连接以及文本的结尾。&nbsp;</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">如图所示， 表示的是GPT 微调下游任务的一个大致的流程。 其中绿色的方框transformer这个部分表示的是什么？&nbsp;【是谁的结构?包含哪两个部分？】<br><img src="images/paste-572ddb8dca1695651171dc8fefb0513f3493562d.jpg"></div>
+<div class="separator"></div>
+<div class="field_1">表示的是GPT 结构，也就是Embedding层 再加上 连续12个 解码器层。&nbsp;</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">Gpt模型的四个关键参数。 <br><ol><li>transformer层数</li><li>特征维度</li><li>transformer head数</li><li>总参数量</li></ol>分别是什么？&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1"><ol><li>transformer层数：12</li><li>特征维度：768</li><li>transformer head数：12</li><li>总参数量：1.17亿</li></ol></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">GPT模型的核心架构是什么？【来自哪个模型的哪个模块，然后有什么区别？】</div>
+<div class="separator"></div>
+<div class="field_1">transformer的Decoder模块（去除中间的第二个子层）。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">&nbsp;T5（Text-to-Text Transfer Transformer）的核心创新点是什么？【统一什么成什么的形式。】</div>
+<div class="separator"></div>
+<div class="field_1">在于统一所有的 NLP 任务为“文本到文本（Text-to-Text）”的形式。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">在 NLP 中，不同的任务 【分类任务。翻译任务和填空任务】输出是不一样的。 分别是什么？&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1"><li>分类任务的输出是一个<b><span style="color: rgb(255, 0, 127);">类别</span></b>标签。</li><li>翻译任务的输出是一段<b><span style="color: rgb(255, 0, 127);">文本</span></b>。</li><li>填空任务的输出是<b><span style="color: rgb(255, 0, 127);">一个或多个单词</span></b>。</li></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">为什么T5 提出了一个统一框架，即将所有 NLP 任务都转换成“文本到文本”的形式？</div>
+<div class="separator"></div>
+<div class="field_1">在 NLP 中，不同的任务（如分类、生成、翻译等）通常有不同的模型设计和输入/输出形式。不同任务的特定需求，导致需要为每种任务设计定制的模型结构和损失函数。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">T5 提出了一个统一框架，即将所有 NLP 任务都转换成“文本到文本”的形式，因此它的输入和输出分别是什么格式？&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1">输入和输出都是字符串文本格式。&nbsp;</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">为什么T5 可以作为一个通用的 NLP 模型，适用于各种任务，而无需专门设计任务特定的模型架构。【因为它将什么转化成什么？】</div>
+<div class="separator"></div>
+<div class="field_1">因为它将所有任务都被转化为文本到文本。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">在神经网络中，线性层（Linear Layer） 是哪个公式里面的哪个部分？ 它的名称是什么？&nbsp;&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1">W 是权重矩阵。<br><img src="images/paste-f652bc1d94b40a08eeb796dc5c317d1b9e64c11c.jpg"></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">假设输入 x 是一个3维向量：[x1,x2,x3]，<br>偏置 b 是一个2维向量：[b1,b2]，<br>权重矩阵 W 应该是什么样维度的矩阵？&nbsp;&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1">2×3 的矩阵。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">假设 Linear(3, 2)，输入和输出分别是什么维度的向量？&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1">输入是一个3维向量，输出是一个2维向量。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">假设 Linear(3, 2)，这个时候权重矩阵 W 它的形状应该是什么样的？&nbsp;&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1">(2,3)。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>线性层的权重矩阵 W 的大小为：</div>W=(output_size,input_size) 还是 W=(input_size, output_size) ?<br></div>
+<div class="separator"></div>
+<div class="field_1">W=(output_size,input_size) 。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>预训练和微调 分别指的是什么意思？&nbsp;&nbsp;【分别是使用什么样的数据，然后最终目的是什么？】<br></div></div>
+<div class="separator"></div>
+<div class="field_1"><li><strong>预训练：</strong> 是让模型在海量无标签数据上学习通用的语言知识（如语法、语义等），这通常是无监督或自监督的过程。</li><li><strong>微调：</strong> 是将预训练好的模型，应用到具体任务（如情感分析、问答、翻译）中，使用带标签的数据进行有监督学习。</li></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>预训练 指的是什么意思？&nbsp;&nbsp;<br></div>【在什么样的数据中学到了什么？】</div>
+<div class="separator"></div>
+<div class="field_1">预训练： 是让模型在<span style="color: rgb(255, 0, 127);"><b>海量无标签数据</b></span>上学习<b><span style="color: rgb(255, 0, 127);">通用</span></b>的<span style="color: rgb(255, 0, 127);"><b>语言知识</b></span>（如语法、语义等），这通常是无监督或自监督的过程。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>微调 指的是什么意思？&nbsp;&nbsp;<br></div>【使用什么样的数据来进行训练，然后运用到哪里？】</div>
+<div class="separator"></div>
+<div class="field_1">微调： 是将<span style="color: rgb(255, 0, 127);"><b>预训练好的模型</b></span>，应用到<span style="color: rgb(255, 0, 127);"><b>具体任务</b></span>（如情感分析、问答、翻译）中，使用<span style="color: rgb(255, 0, 127);"><b>带标签</b></span>的数据进行有<b><span style="color: rgb(255, 0, 127);">监督学习</span></b>。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>预训练和微调 分别主要针对什么？&nbsp;&nbsp;</div>【分别的目的是什么？】</div>
+<div class="separator"></div>
+<div class="field_1">微调是专注于下游任务的有监督优化，<br>而预训练主要是学习通用的语言表示。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>GPT模型的有监督微调算预训练吗？</div></div>
+<div class="separator"></div>
+<div class="field_1">不算预训练任务，而是模型的第二阶段（fine-tuning）。预训练和微调是两个不同的阶段。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">Linear线性层 它的本质是什么？核心操作是什么？将什么向量转换成什么向量？&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1">Linear线性层的本质是一个<span style="color: rgb(255, 0, 127);"><b>矩阵</b></span>： 它的核心操作是<span style="color: rgb(255, 0, 127);"><b>矩阵乘法</b></span>，通过权重矩阵 W 将<span style="color: rgb(255, 0, 127);"><b>输入</b></span>向量线性变换为<b><span style="color: rgb(255, 0, 127);">输出</span></b>向量。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">GPT 两个阶段训练分别是什么？&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1"><span style="color: rgb(255, 0, 127);"><b>无监督</b></span>的预训练是GPT的<span style="color: rgb(255, 0, 127);"><b>第一</b></span>阶段，学习<span style="color: rgb(255, 0, 127);"><b>通用语言知识</b></span>；<br><span style="color: rgb(255, 0, 127);"><b>有监督</b></span>微调是<span style="color: rgb(255, 0, 127);"><b>第二</b></span>阶段，用于优化<b><span style="color: rgb(255, 0, 127);">具体下游任务</span></b>的性能。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">nn.embedding 里面的嵌入向量最开始是怎么样的？在训练过程中，是通过优化什么来被调整，这样使得他们更好表达什么？</div>
+<div class="separator"></div>
+<div class="field_1">嵌入向量最开始是随机初始化的，在训练的过程中，模型会通过优化任务的损失函数，逐渐调整这些向量，使它们能更好地表达单词之间的关系。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">对于文本分类任务和命名实体识别任务，他们的相似点和区别是什么？</div>
+<div class="separator"></div>
+<div class="field_1">他们本质上来说都属于分类，只不过前者是一个序列对应一个标签，后者的话则是一个序列的每个token都对应一个标签。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">自监督学习和无监督学习它们之间的关系是什么？&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1">自监督学习是一种特殊的无监督学习，它通过从数据中生成“伪标签”来进行训练。模型从输入数据中构造出训练目标。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">GPT的无监督学习任务是什么样的？&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1">GPT的任务是基于文本中的前几个词预测下一个词，这种预测任务是由数据本身定义的，并不需要人工标注。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">GPT的无监督预训练为何是自监督？</div>
+<div class="separator"></div>
+<div class="field_1">GPT的训练目标是预测文本中的下一个token（即“语言模型”目标）。这个目标是通过数据本身自动生成的，无需人工标注。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">GPT中的无监督预训练更准确地描述成什么？</div>
+<div class="separator"></div>
+<div class="field_1">自监督学习。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">GPT的无监督预训练目标 是什么？【是通过什么来预测什么？】</div>
+<div class="separator"></div>
+<div class="field_1">通过前N-1个token预测第N个token。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">GPT的无监督预训练任务：语言模型（Language Modeling）<br>目标是学习什么？【学习输入序列中每个位置上的什么？】</div>
+<div class="separator"></div>
+<div class="field_1">学习输入序列中每个位置上的token的条件概率分布：<br>P(xt∣x1,x2,…,xt−1)&nbsp;</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">假设输入是一段文本：“The cat is on the mat”。<br>GPT的无监督预训练任务是怎么样的？</div>
+<div class="separator"></div>
+<div class="field_1">模型会构造训练样本：<br><ul><li>输入：The，输出：cat</li><li>输入：The cat，输出：is</li><li>输入：The cat is，输出：on</li></ul>（以此类推）模型通过学习每个输入序列生成对应的下一个token。<br></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">单向语言模型 vs 双向语言模型，<br>分别举出一个例子，并且说出原因。&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1"><li><span style="color: rgb(255, 0, 127);"><b>GPT</b></span>采用的是<strong>单向语言模型</strong>，它只能从<span style="color: rgb(255, 0, 127);"><strong>左到右</strong></span>利用上下文进行预测，<b><span style="color: rgb(255, 0, 127);">不能看到右侧的词。</span></b></li><li>像<span style="color: rgb(255, 0, 127);"><b>BERT</b></span>这样的模型则是<strong>双向语言模型</strong>，它可以同时<b><span style="color: rgb(255, 0, 127);">利用左侧和右侧的上下文</span></b>信息。</li></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">将GPT的训练过程类比为一个学生的学习英语的过程，是什么样的？</div>
+<div class="separator"></div>
+<div class="field_1"><ul><li><span style="color: rgb(255, 0, 127);"><b>无监督</b></span>预训练（预习阶段）：学生通过<b><span style="color: rgb(255, 0, 127);">大量阅读和积累</span></b>（阅读小说、杂志等），学会了语言的基本规则和表达方式。</li><li><span style="color: rgb(255, 0, 127);"><b>有监督</b></span>微调（考试冲刺阶段）：学生专注于<span style="color: rgb(255, 0, 127);"><b>特定</b></span>的<span style="color: rgb(255, 0, 127);"><b>考试内容</b></span>，比如语法填空或作文题，进行<b><span style="color: rgb(255, 0, 127);">针对性强化练习</span></b>，以达到优秀的考试表现。</li></ul></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">自回归模型里面三个特点分别是什么？&nbsp;&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1"><li><strong>单向性：</strong> 自回归模型只能利用序列中已经生成的内容，无法直接使用后续信息。这种单向性是模型的特点，但也可能限制其在全局上下文理解上的能力。</li><li><strong>逐步生成：</strong> 每一步的生成都依赖于之前生成的内容，因此生成过程是递归的。</li><li><strong>因果性：</strong> 自回归模型只依赖于历史数据，符合因果关系。</li></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">自回归模型里面<strong>单向性 这个特点具体讲的是什么？&nbsp;&nbsp;</strong></div>
+<div class="separator"></div>
+<div class="field_1"><li><strong>单向性：</strong>&nbsp;自回归模型只能利用序列中已经生成的内容，无法直接使用后续信息。这种单向性是模型的特点，但也可能限制其在全局上下文理解上的能力。</li></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">自回归模型里面<strong>逐步生成</strong><strong>&nbsp;这个特点具体讲的是什么？&nbsp;&nbsp;</strong> 【每一步的生成都依赖于什么？】</div>
+<div class="separator"></div>
+<div class="field_1"><li><strong>逐步生成：</strong>&nbsp;每一步的生成都依赖于之前生成的内容，因此生成过程是递归的。</li></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">自回归模型里面<strong>因果性&nbsp;</strong><strong>这个特点具体讲的是什么？&nbsp;&nbsp;</strong></div>
+<div class="separator"></div>
+<div class="field_1"><strong>因果性：</strong>&nbsp;自回归模型只依赖于历史数据，符合因果关系。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0">面试的时候回答自回归模型的特点，至少包含两个特点，分别是什么？&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1">自回归模型的<span style="color: rgb(255, 0, 127);"><b>单向性</b></span>和<span style="color: rgb(255, 0, 127);"><b>逐步生成</b></span>特点。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>BERT模型有 几层Transformer编码器，每层包括什么？</div></div>
+<div class="separator"></div>
+<div class="field_1">12层，包含自注意力机制和前馈网络。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>BERT模型特征维度为 768，那么这意味着什么？&nbsp;&nbsp;</div></div>
+<div class="separator"></div>
+<div class="field_1">每个token在输入BERT模型后会被表示为一个 768维向量。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>BERT模型里面，每个Head的维度 是如何计算的？&nbsp;</div></div>
+<div class="separator"></div>
+<div class="field_1">&nbsp;特征维度 / Head数。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>BERT模型里面，总参数量是指什么？</div> 【是哪两项的总和？包括哪三个层？】</div>
+<div class="separator"></div>
+<div class="field_1">指的是模型中所有权重和偏置项的总数，包含了嵌入层、Transformer层中的参数和输出层参数。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>BERT模型里面，总参数量是如何进行计算？&nbsp;</div>【哪三个层】</div>
+<div class="separator"></div>
+<div class="field_1">总参数量 = 嵌入层参数 + 每层Transformer参数 × 层数 + 输出层参数。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>BERT模型里面，句子对的构造，句子b包括哪两个部分？&nbsp;&nbsp;</div></div>
+<div class="separator"></div>
+<div class="field_1"><li><strong>正样本（相邻句子）</strong>。</li><li><strong>负样本（随机抽取的非相邻句子）</strong>。</li></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>BERT模型里面，句子对的正负样本的比例是怎么样的？&nbsp;&nbsp;</div></div>
+<div class="separator"></div>
+<div class="field_1">按照1:1的比例构造正负样本（50%是正样本，50%是负样本）。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>BERT模型里面，在NSP任务中，每个训练样本由两部分组成：分别是什么？&nbsp;</div></div>
+<div class="separator"></div>
+<div class="field_1">句子A和句子B。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>BERT模型里面，在NSP任务中，每个训练样本由两部分组成：句子A和句子B。他们两个分别来源是什么？&nbsp;</div></div>
+<div class="separator"></div>
+<div class="field_1"><li><strong>句子A</strong>是从语料库中提取的一段文本开头的句子。</li><li><strong>句子B</strong>则有两种来源：<ul><li><strong>50%是正样本（标记为IsNext）</strong>：句子B是句子A在原始文档中的真实后续句子。</li><li><strong>50%是负样本（标记为NotNext）</strong>：句子B是从语料库中随机抽取的一个句子，通常与句子A无关。</li></ul></li></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>BERT模型里面，在NSP任务中，输出层是一个什么类型的任务？ 最终输出哪两种概率？&nbsp;</div></div>
+<div class="separator"></div>
+<div class="field_1"><li>输出层是一个二分类任务，模型最终会输出两种概率：<ul><li><strong>IsNext</strong>（B是A的真实后续句子）。</li><li><strong>NotNext</strong>（B是从语料库随机抽取的句子）。</li></ul></li></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>RoBERTa 模型里面是否有NSP任务以及为什么？&nbsp;</div></div>
+<div class="separator"></div>
+<div class="field_1">取消了NSP任务，专注于更复杂的MLM任务。<br>因为研究表明，NSP对BERT的提升有限，尤其是对一些单句任务（如分类或生成任务）贡献较小</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>BERT模型里面，在NSP任务中，句子B 50%概率是正样本，50%概率是负样本。请问如何理解这个正样本和负样本？&nbsp;&nbsp;</div></div>
+<div class="separator"></div>
+<div class="field_1">句子B 如果是句子A的真实的后续，那么它就是正样本。<br>如果句子B是随机抽取的，那么句子B就是负样本。&nbsp;&nbsp;</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>BERT模型里面，pooler output 是如何得到的？&nbsp; &nbsp;</div> 【对哪里的哪个token进行什么处理？】</div>
+<div class="separator"></div>
+<div class="field_1">对 <span style="color: rgb(255, 0, 127);"><b>last hidden state</b></span> 中 [<span style="color: rgb(255, 0, 127);"><b>CLS</b></span>] token 的隐藏状态进行额外处理的结果，通常是通过一个<span style="color: rgb(255, 0, 127);"><b>全连接层和 tanh 激活函数</b></span> 来处理&nbsp; ，得到一个<span style="color: rgb(255, 0, 127);"><b>紧凑的特征表示</b></span>，用于后续的<b><span style="color: rgb(255, 0, 127);">分类</span></b>任务。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>BERT模型里面，pooler output 是 使用了 CLS token 的表示 经过池化操作得到的，在这里如何理解这个池化的含义？&nbsp;&nbsp;</div></div>
+<div class="separator"></div>
+<div class="field_1">全连接层 + tanh 激活。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>BERT模型里面，last hidden state 中包含了具体哪些信息？&nbsp;&nbsp;</div></div>
+<div class="separator"></div>
+<div class="field_1">序列中所有token的信息，包括 [CLS] token 和其他token（如句子中的每个词或子词）。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>BERT模型里面，pooler output 是如何得到的，具体过程？&nbsp;&nbsp;</div></div>
+<div class="separator"></div>
+<div class="field_1"><span style="color: rgb(255, 0, 127);"><b>last hidden state</b></span> 中 <span style="color: rgb(255, 0, 127);"><b>CLS </b></span>token的表示 应用<span style="color: rgb(255, 0, 127);"><b>池化</b></span>操作得到的。这个池化操作并<span style="color: rgb(255, 0, 127);"><b>不是</b></span>传统意义上的<span style="color: rgb(255, 0, 127);"><b>最大</b></span>池化或<span style="color: rgb(255, 0, 127);"><b>平均</b></span>池化，而是通过一个<span style="color: rgb(255, 0, 127);"><b>全连接</b></span>层（Linear Layer）后接<b><span style="color: rgb(255, 0, 127);">tanh</span></b>激活函数来处理 [CLS] token 的隐藏状态。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>&nbsp;在BERT中对CLS token的表示进行池化时，使用的是具体哪两个过程？&nbsp;</div></div>
+<div class="separator"></div>
+<div class="field_1">&nbsp;全连接层 + 激活函数。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>&nbsp;在BERT中,last hidden state 和 pooler output，分别包含的是什么信息？&nbsp;&nbsp;</div></div>
+<div class="separator"></div>
+<div class="field_1"><ul><li>last hidden state 包含<b><span style="color: rgb(255, 0, 127);">所有token</span></b>的表示，[CLS] token的表示可以用于分类任务。</li><li>pooler output 是对 <span style="color: rgb(255, 0, 127);"><b>CLS token</b></span>的 <span style="color: rgb(255, 0, 127);"><b>last hidden state</b></span> 经过<b><span style="color: rgb(255, 0, 127);">池化</span></b>处理后的结果，通常用于分类任务。</li></ul></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>&nbsp;在BERT中，pooler output 的维度是 什么样的？</div></div>
+<div class="separator"></div>
+<div class="field_1">(batch_size, embedding_dim)。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>&nbsp;在BERT中，pooler output 是对 CLS token 的 什么做了池化（通过一个全连接层和tanh激活）后得到的结果？</div></div>
+<div class="separator"></div>
+<div class="field_1">最后一层隐藏状态。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>&nbsp;在BERT中，last hidden state 的维度是 什么样的？</div></div>
+<div class="separator"></div>
+<div class="field_1">&nbsp;(batch_size, seq_len, embedding_dim)。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::1-27</div>
+<div class="field_0"><div>&nbsp;在BERT中，pooler output 是基于哪个token的什么状态经过什么操作得到的？&nbsp;</div></div>
+<div class="separator"></div>
+<div class="field_1">基于 <span style="color: rgb(255, 0, 127);"><b>CLS </b></span>token 的<span style="color: rgb(255, 0, 127);"><b>最后隐藏状态</b></span> 经过<span style="color: rgb(255, 0, 127);"><b>池化</b></span>操作（<b><span style="color: rgb(255, 0, 127);">全连接层 + tanh激活</span></b>）后得到的结果。</div>
+</div>
+
+<script>
+document.addEventListener('click', function(e) {
+const container = e.target.closest('.video-container');
+if (!container) return;
+
+const placeholder = container.querySelector('.video-placeholder');
+if (!placeholder) return;
+
+const videoId = container.dataset.videoId;
+const startParam = container.dataset.start || '';
+
+const iframe = document.createElement('iframe');
+iframe.width = '100%';
+iframe.height = '100%';
+iframe.src = `https://www.youtube.com/embed/${videoId}?${startParam.slice(1)}`;
+iframe.title = 'YouTube video player';
+iframe.frameBorder = '0';
+iframe.style.position = 'absolute';
+iframe.style.top = '0';
+iframe.style.left = '0';
+iframe.style.borderRadius = '15px';
+iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+iframe.allowFullscreen = true;
+
+placeholder.innerHTML = '';
+placeholder.appendChild(iframe);
+});
+</script>
+
+</div>
+<div class="footer">Made by <a href="https://xxhk.org">Export Notes - XXHK</a></div>
+</body>
+</html>
+
