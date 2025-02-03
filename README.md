@@ -12,35 +12,15 @@
  
 
 
-Invitation Letter
+Language of Original: Chinese     Certified Translator: Jia Song    Membership Number: 46790
+Date of Translation: 20 August 2024     Member of Chartered Institute of Linguist
+Add: 90 Long Acre, Covent Garden, London WC2E 9RZ, UK	Tel: +44 (0)20 7716 5543
+Signature: 
+This is a correct translation of the essential particulars of the attached document. It does not establish the authenticity of the original or the correctness of the statement therein.
 
-To Whom It May Concern,
+CAUTION: Any person who (1) falsifies any particular on this document; or (2) uses it as true, knowing the original to be false or inaccurate, is liable to prosecution.
 
-I am writing to extend an invitation to my mother, Zhengrong Hu, to visit the United Kingdom from December 28th to January 25th. The purpose of her visit is to spend time with me and to explore the UK.
 
-Details of the Invitee:
-
-Name: Hu Zhengrong
-Relationship: Mother
-Date of Birth: August 23, 1972
-Passport Number: EJ3015328
-Passport Expiry Date: 28 JUN 2032
-
-I am currently a full-time student at Swansea University, pursuing a degree in Data Health Science. My student visa is valid until January 30th, 2024, and my BRP (Biometric Residence Permit) will expire on the same date. My Chinese passport number is EF4129313.
-
-During her stay, my mother will be residing with me at my address in Swansea, located at 11 Fleet Street, Swansea, [SA1 3UT]. I assure you that I will be accompanying her throughout her stay and will ensure her well-being and compliance with all UK regulations.
-
-My mother plans to purchase her flight tickets upon the approval of her visa. All expenses incurred during her stay in the UK, including accommodation, travel, and living expenses, will be covered by her own bank savings.
-
-Should you require any further information regarding my visa status or any details pertaining to her travel plans in the UK, please feel free to contact me at my email address:      
-elvira567www@gmail.com
-
-Thank you for considering this request. We look forward to a positive response.
-
-Sincerely,
-
-Liujie Wu
-Student, Swansea University
 
 
  
