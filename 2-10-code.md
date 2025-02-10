@@ -280,3 +280,129 @@ response = {
 
 这是一个典型的函数调用解析器，用于处理大模型的函数调用请求。它将大模型的抽象请求转换为实际的函数调用。
 
+
+
+
+
+好的，让我详细讲解这个函数的每一部分：
+
+```python:Function_calls/ChatGLM3_FunctionCall/weather/weather_zhipu.py
+def chat_completion_request(messages, tools=None, tool_choice=None, model=ChatGLM):
+    """
+    这是一个发送聊天请求的函数
+    
+    参数说明：
+    messages: 对话历史列表，包含用户输入和系统回复
+    tools: 可用的函数工具列表，默认为 None
+    tool_choice: 工具选择策略，默认为 None
+    model: 使用的模型名称，默认是 ChatGLM
+    """
+    try:
+        # 1. 参数验证
+        if not messages:  # 检查 messages 是否为空
+            raise ValueError("消息列表不能为空")
+            
+        # 2. 发送请求到智谱 AI
+        response = client.chat.completions.create(
+            model=model,          # 使用指定的模型
+            messages=messages,    # 发送对话历史
+            tools=tools,          # 可用的工具函数
+            tool_choice=tool_choice,  # 工具选择策略
+            timeout=30            # 30秒超时设置
+        )
+        
+        # 3. 如果请求成功，返回响应
+        return response
+        
+    # 4. 错误处理部分
+    except ValueError as e:
+        # 处理参数错误（比如空消息列表）
+        error_msg = f"参数错误: {str(e)}"
+        print(error_msg)
+        return {
+            "error": error_msg,  # 错误信息
+            "type": "ValueError"  # 错误类型
+        }
+        
+    except TimeoutError:
+        # 处理请求超时错误
+        error_msg = "请求超时，请稍后重试"
+        print(error_msg)
+        return {
+            "error": error_msg,
+            "type": "TimeoutError"
+        }
+        
+    except Exception as e:
+        # 处理其他所有可能的错误
+        error_msg = f"生成回复时发生错误: {str(e)}"
+        print(error_msg)
+        return {
+            "error": error_msg,
+            "type": str(type(e).__name__)
+        }
+```
+
+让我用一个实际的例子来说明这个函数是如何工作的：
+
+```python
+# 使用示例：
+
+# 1. 正常情况
+messages = [
+    {"role": "system", "content": "你是一个天气助手"},
+    {"role": "user", "content": "北京今天天气怎么样？"}
+]
+
+response = chat_completion_request(
+    messages=messages,
+    tools=tools,  # 定义的工具函数列表
+    tool_choice="auto"
+)
+
+# 如果成功，response 会包含 AI 的回复
+if isinstance(response, dict) and "error" in response:
+    # 如果返回错误信息
+    print(f"发生错误：{response['error']}")
+else:
+    # 成功获取回复
+    print("AI 回复：", response.choices[0].message.content)
+
+# 2. 错误情况示例
+empty_messages = []  # 空消息列表
+response = chat_completion_request(empty_messages)
+# 会返回: {"error": "参数错误: 消息列表不能为空", "type": "ValueError"}
+```
+
+工作流程说明：
+1. 函数接收参数
+   - messages: 必需的对话历史
+   - tools: 可选的工具函数
+   - tool_choice: 可选的工具选择策略
+   - model: 可选的模型名称
+
+2. 参数验证
+   - 检查 messages 是否为空
+   - 如果为空，抛出 ValueError
+
+3. 发送请求
+   - 使用 client.chat.completions.create 发送请求
+   - 设置 30 秒超时，避免无限等待
+
+4. 错误处理
+   - ValueError: 处理参数错误
+   - TimeoutError: 处理超时错误
+   - Exception: 处理其他所有错误
+
+5. 返回结果
+   - 成功：返回 AI 的响应对象
+   - 失败：返回包含错误信息的字典
+
+这样设计的好处：
+1. 可以及时发现参数问题
+2. 不会因为错误而崩溃
+3. 提供清晰的错误信息
+4. 便于调试和问题定位
+5. 可以根据返回值类型判断是否成功
+
+
