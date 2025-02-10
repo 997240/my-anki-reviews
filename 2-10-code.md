@@ -128,3 +128,76 @@ data = {'time': datetime.now()}
 json.dumps(data, default=datetime_handler)
 ```
 
+
+
+这部分代码是用于定义函数调用（Function Calling）的 schema，结构清晰且符合标准。让我为你详细解析每个部分：
+
+```python:Function_calls/ChatGLM3_FunctionCall/weather/tools.py
+tools = [  # 工具列表，可以包含多个函数定义
+    {
+        "type": "function",  # 类型声明，表明这是一个函数
+        "function": {  # 函数具体定义
+            "name": "get_current_weather",  # 函数名称
+            "description": "获取给定位置的当前天气",  # 函数描述
+            "parameters": {  # 参数定义
+                "type": "object",  # 参数类型为对象
+                "properties": {  # 属性列表
+                    "location": {  # 参数名
+                        "type": "string",  # 参数类型
+                        "description": "城市或区，例如北京、海淀",  # 参数描述
+                    },
+                },
+                "required": ["location"],  # 必需参数列表
+            },
+        }
+    }
+]
+```
+
+结构分析：
+1. 最外层是一个列表 `tools`
+   - 可以包含多个工具/函数定义
+   - 便于后续扩展添加更多功能
+
+2. 每个工具定义包含：
+   - `type`: 声明类型（这里是"function"）
+   - `function`: 具体的函数定义
+
+3. 函数定义包含：
+   - `name`: 函数名称
+   - `description`: 函数功能描述
+   - `parameters`: 参数定义
+
+4. 参数定义遵循 JSON Schema 格式：
+   - `type`: 定义参数结构类型
+   - `properties`: 定义具体参数
+   - `required`: 指定必需参数
+
+这种结构设计的优点：
+1. 清晰的层次结构
+2. 符合大模型的函数调用规范
+3. 易于扩展和维护
+4. 提供了完整的类型和描述信息，有助于大模型理解和使用
+
+如果要添加新的函数，可以这样扩展：
+```python
+tools = [
+    {
+        "type": "function",
+        "function": {
+            "name": "get_current_weather",
+            # ... 现有的天气查询函数 ...
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "new_function",
+            "description": "新函数的描述",
+            "parameters": {
+                # ... 新函数的参数定义 ...
+            }
+        }
+    }
+]
+```
