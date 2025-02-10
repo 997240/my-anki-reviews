@@ -282,78 +282,190 @@ response = {
 
 
 
+很好的问题！让我详细解释：
 
-让我解释为什么需要这个字典映射：
-
-1. 安全性考虑
+1. 模型返回函数名的过程：
 ```python
-# 不安全的直接调用方式
-function_name = response_message.tool_calls[0].function.name
-result = eval(f"{function_name}()")  # 非常危险！
+# 1. 首先，我们在调用模型时，传入了可用的工具定义
+tools = [
+    {
+        "type": "function",
+        "function": {
+            "name": "get_current_weather",  # 这里定义了函数名
+            "description": "获取给定位置的当前天气",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "location": {
+                        "type": "string",
+                        "description": "城市或区，例如北京、海淀",
+                    },
+                },
+                "required": ["location"],
+            },
+        }
+    }
+]
 
-# 安全的字典映射方式
-available_functions = {
-    "get_current_weather": get_current_weather
-}
-function_to_call = available_functions[function_name]  # 只能调用预定义的函数
+# 2. 当我们调用模型时，传入这个 tools
+response = chat_completion_request(messages, tools=tools)
+
+# 3. 模型只会返回我们在 tools 中定义的函数名
+function_name = response_message.tool_calls[0].function.name  # 一定是 "get_current_weather"
 ```
 
-2. 函数名映射
+2. 所以 available_functions 的键必须与 tools 中定义的函数名完全一致：
 ```python
-# 字典允许函数名的灵活映射
+# tools 中定义的函数名
+tools = [{
+    "function": {
+        "name": "get_current_weather",  # 这里定义的名字
+        ...
+    }
+}]
+
+# available_functions 中的键必须匹配
 available_functions = {
-    "get_current_weather": get_current_weather,    # 实际函数名可以不同
-    "天气查询": get_current_weather,               # 同一个函数可以有多个名字
-    "查询天气": get_current_weather
+    "get_current_weather": get_current_weather  # 键必须完全一致
 }
 ```
 
-3. 函数访问控制
+3. 一个完整的例子：
 ```python
-# 限制可调用的函数范围
+# 1. 定义工具列表
+tools = [
+    {
+        "type": "function",
+        "function": {
+            "name": "get_current_weather",
+            "description": "获取天气信息",
+            ...
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "get_forecast",
+            "description": "获取天气预报",
+            ...
+        }
+    }
+]
+
+# 2. 定义对应的函数映射
 available_functions = {
-    "get_current_weather": get_current_weather,
-    # 其他允许调用的函数...
+    "get_current_weather": get_current_weather,  # 键必须与 tools 中的 name 一致
+    "get_forecast": get_forecast
 }
-# 如果 function_name 不在字典中，会抛出 KeyError
+
+# 3. 模型只能返回 tools 中定义的函数名
+function_name = response_message.tool_calls[0].function.name  # 只可能是 "get_current_weather" 或 "get_forecast"
 ```
 
-4. 便于扩展
+关键点：
+1. 模型只能返回我们在 tools 中预先定义的函数名
+2. available_functions 的键必须与 tools 中的函数名完全匹配
+3. 这是一个闭环：
+   - tools 定义了可用的函数名和参数
+   - 模型只能选择 tools 中定义的函数
+   - available_functions 提供这些函数的实际实现
+
+所以不用担心模型会返回未知的函数名，因为它只能从我们预先定义的 tools 列表中选择。这就是为什么这个设计是安全的。
+
+
+
+
+很好的问题！让我详细解释：
+
+1. 模型返回函数名的过程：
 ```python
-# 轻松添加新函数
+# 1. 首先，我们在调用模型时，传入了可用的工具定义
+tools = [
+    {
+        "type": "function",
+        "function": {
+            "name": "get_current_weather",  # 这里定义了函数名
+            "description": "获取给定位置的当前天气",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "location": {
+                        "type": "string",
+                        "description": "城市或区，例如北京、海淀",
+                    },
+                },
+                "required": ["location"],
+            },
+        }
+    }
+]
+
+# 2. 当我们调用模型时，传入这个 tools
+response = chat_completion_request(messages, tools=tools)
+
+# 3. 模型只会返回我们在 tools 中定义的函数名
+function_name = response_message.tool_calls[0].function.name  # 一定是 "get_current_weather"
+```
+
+2. 所以 available_functions 的键必须与 tools 中定义的函数名完全一致：
+```python
+# tools 中定义的函数名
+tools = [{
+    "function": {
+        "name": "get_current_weather",  # 这里定义的名字
+        ...
+    }
+}]
+
+# available_functions 中的键必须匹配
 available_functions = {
-    "get_current_weather": get_current_weather,
-    "get_forecast": get_forecast,                # 添加天气预报
-    "get_air_quality": get_air_quality          # 添加空气质量
+    "get_current_weather": get_current_weather  # 键必须完全一致
 }
 ```
 
-举个实际例子：
+3. 一个完整的例子：
 ```python
-# 假设模型返回的函数名是 "天气查询"
+# 1. 定义工具列表
+tools = [
+    {
+        "type": "function",
+        "function": {
+            "name": "get_current_weather",
+            "description": "获取天气信息",
+            ...
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "get_forecast",
+            "description": "获取天气预报",
+            ...
+        }
+    }
+]
+
+# 2. 定义对应的函数映射
 available_functions = {
-    "get_current_weather": get_current_weather,
-    "天气查询": get_current_weather
+    "get_current_weather": get_current_weather,  # 键必须与 tools 中的 name 一致
+    "get_forecast": get_forecast
 }
 
-# 1. 安全调用
-function_name = "天气查询"
-if function_name in available_functions:
-    function_to_call = available_functions[function_name]
-    result = function_to_call(location="北京")
-
-# 2. 如果模型返回未授权的函数名
-function_name = "删除文件"  # 危险操作
-if function_name not in available_functions:
-    print("不允许的操作！")
+# 3. 模型只能返回 tools 中定义的函数名
+function_name = response_message.tool_calls[0].function.name  # 只可能是 "get_current_weather" 或 "get_forecast"
 ```
 
-主要好处：
-1. 安全：防止执行未授权的函数
-2. 灵活：支持函数名映射和别名
-3. 可控：明确定义可调用的函数集合
-4. 可扩展：易于添加新功能
-5. 维护性：集中管理所有可用函数
+关键点：
+1. 模型只能返回我们在 tools 中预先定义的函数名
+2. available_functions 的键必须与 tools 中的函数名完全匹配
+3. 这是一个闭环：
+   - tools 定义了可用的函数名和参数
+   - 模型只能选择 tools 中定义的函数
+   - available_functions 提供这些函数的实际实现
 
-所以这个字典实际上是一个安全层，用来控制和管理可以被调用的函数。
+所以不用担心模型会返回未知的函数名，因为它只能从我们预先定义的 tools 列表中选择。这就是为什么这个设计是安全的。
+
+
+
+ 
 
