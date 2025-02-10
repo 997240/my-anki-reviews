@@ -201,3 +201,82 @@ tools = [
     }
 ]
 ```
+
+
+
+
+
+让我为你详细解释这个函数的每一行代码：
+
+```python:Function_calls/ChatGLM3_FunctionCall/weather/tools.py
+def parse_response(response):
+    # 这个函数接收大模型的响应作为参数
+    
+    # 从响应中获取消息内容
+    # response.choices[0] 获取第一个（通常是唯一的）回复
+    # .message 获取回复中的消息部分
+    response_message = response.choices[0].message
+    
+    # 检查消息中是否包含工具调用请求
+    if response_message.tool_calls:
+        # 如果包含工具调用，创建可用函数的字典
+        # key 是函数名，value 是实际的函数
+        available_functions = {
+            "get_current_weather": get_current_weather
+        }
+        
+        # 从模型回复中获取要调用的函数名
+        function_name = response_message.tool_calls[0].function.name
+        
+        # 根据函数名从字典中获取对应的函数
+        fuction_to_call = available_functions[function_name]
+        
+        # 解析函数参数
+        # response_message.tool_calls[0].function.arguments 包含 JSON 格式的参数字符串
+        # json.loads() 将 JSON 字符串转换为 Python 字典
+        function_args = json.loads(response_message.tool_calls[0].function.arguments)
+        
+        # 调用函数并传入参数
+        # function_args.get("location") 获取参数中的 location 值
+        function_response = fuction_to_call(
+            location=function_args.get("location"),
+        )
+        
+        # 返回函数调用结果
+        return function_response
+```
+
+工作流程：
+1. 大模型返回的响应中可能包含函数调用请求
+2. 这个函数检查响应中是否有函数调用请求
+3. 如果有：
+   - 确定要调用哪个函数
+   - 解析函数参数
+   - 调用相应的函数
+   - 返回函数执行结果
+
+举个例子：
+```python
+# 假设大模型返回这样的响应
+response = {
+    "choices": [{
+        "message": {
+            "tool_calls": [{
+                "function": {
+                    "name": "get_current_weather",
+                    "arguments": '{"location": "北京"}'
+                }
+            }]
+        }
+    }]
+}
+
+# parse_response 函数会：
+# 1. 识别出要调用 get_current_weather 函数
+# 2. 解析参数 {"location": "北京"}
+# 3. 调用 get_current_weather(location="北京")
+# 4. 返回天气信息
+```
+
+这是一个典型的函数调用解析器，用于处理大模型的函数调用请求。它将大模型的抽象请求转换为实际的函数调用。
+
