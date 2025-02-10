@@ -279,3 +279,81 @@ response = {
 ```
  
 
+
+
+
+
+让我解释为什么需要这个字典映射：
+
+1. 安全性考虑
+```python
+# 不安全的直接调用方式
+function_name = response_message.tool_calls[0].function.name
+result = eval(f"{function_name}()")  # 非常危险！
+
+# 安全的字典映射方式
+available_functions = {
+    "get_current_weather": get_current_weather
+}
+function_to_call = available_functions[function_name]  # 只能调用预定义的函数
+```
+
+2. 函数名映射
+```python
+# 字典允许函数名的灵活映射
+available_functions = {
+    "get_current_weather": get_current_weather,    # 实际函数名可以不同
+    "天气查询": get_current_weather,               # 同一个函数可以有多个名字
+    "查询天气": get_current_weather
+}
+```
+
+3. 函数访问控制
+```python
+# 限制可调用的函数范围
+available_functions = {
+    "get_current_weather": get_current_weather,
+    # 其他允许调用的函数...
+}
+# 如果 function_name 不在字典中，会抛出 KeyError
+```
+
+4. 便于扩展
+```python
+# 轻松添加新函数
+available_functions = {
+    "get_current_weather": get_current_weather,
+    "get_forecast": get_forecast,                # 添加天气预报
+    "get_air_quality": get_air_quality          # 添加空气质量
+}
+```
+
+举个实际例子：
+```python
+# 假设模型返回的函数名是 "天气查询"
+available_functions = {
+    "get_current_weather": get_current_weather,
+    "天气查询": get_current_weather
+}
+
+# 1. 安全调用
+function_name = "天气查询"
+if function_name in available_functions:
+    function_to_call = available_functions[function_name]
+    result = function_to_call(location="北京")
+
+# 2. 如果模型返回未授权的函数名
+function_name = "删除文件"  # 危险操作
+if function_name not in available_functions:
+    print("不允许的操作！")
+```
+
+主要好处：
+1. 安全：防止执行未授权的函数
+2. 灵活：支持函数名映射和别名
+3. 可控：明确定义可调用的函数集合
+4. 可扩展：易于添加新功能
+5. 维护性：集中管理所有可用函数
+
+所以这个字典实际上是一个安全层，用来控制和管理可以被调用的函数。
+
