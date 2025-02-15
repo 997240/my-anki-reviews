@@ -1,0 +1,680 @@
+
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Export Notes by xxhk.org</title>
+<style>
+
+body { font-family: Arial, sans-serif; }
+.card { border: 2px solid #000; padding: 10px; border-radius: 10px; margin-bottom: 20px; }
+img {
+max-width: 100%;
+height: auto;
+border: 1px solid lightgray;
+border-radius: 10px;
+display: inline-block;
+margin: 10px 0px;
+}
+.separator { border-top: 1px dashed #000; margin: 10px 0; }
+.tags { background-color: lightgray; padding: 5px 10px; margin-bottom: 10px; border-radius: 5px; display: inline-block; }
+.footer {
+text-align: center;
+color: grey;
+margin-top: 20px;
+padding: 10px;
+}
+
+.video-container {
+margin: 10px 0;
+}
+.video-placeholder {
+position: relative;
+cursor: pointer;
+}
+.play-button {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 68px;
+height: 48px;
+background-color: rgba(0, 0, 0, 0.7);
+border-radius: 14px;
+cursor: pointer;
+}
+.play-button::before {
+content: '';
+position: absolute;
+top: 50%;
+left: 55%;
+transform: translate(-50%, -50%);
+border-style: solid;
+border-width: 12px 0 12px 20px;
+border-color: transparent transparent transparent white;
+}
+.play-button:hover {
+background-color: red;
+}
+
+</style>
+
+</head>
+<body>
+<div id="cards-container">
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">大型语言模型（Large Language Models, LLMs）的主要架构类别里面，其中，Encoder-Decoder 架构的特点是什么？【同时使用什么和什么？是个什么类型的任务？】</div>
+<div class="separator"></div>
+<div class="field_1">同时使用编码器和解码器，能够处理从输入到输出的复杂转换，适用于序列到序列的任务，如机器翻译、文本摘要等。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">GPT 他的模型的英文全称是什么？</div>
+<div class="separator"></div>
+<div class="field_1">generative pretrained transformer。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0"><div><div><div>BERT 在训练时是 双向 学习的，这是什么意思？【哪里的信息参与到了学习？】<br></div></div></div></div>
+<div class="separator"></div>
+<div class="field_1">左右两边的上下文都参与学习。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">GPT (Generative Pretrained Transformer) 是一个 自回归（autoregressive）模型，它使用 哪个预训练方法？</div>
+<div class="separator"></div>
+<div class="field_1">Causal Language Modeling（因果语言建模）。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">为什么说Transformer 彻底改变了 Seq2Seq 模型的设计？【他用什么来替代了什么结构？】</div>
+<div class="separator"></div>
+<div class="field_1">因为它用自注意力机制（Self-Attention）来替代传统的 RNN/LSTM 结构。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">T5 是一个统一的 Transformer 模型，它将所有的 NLP 任务都视为 什么 的问题。</div>
+<div class="separator"></div>
+<div class="field_1">文本到文本。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">BART 是结合了 哪两个思想的一个混合模型。</div>
+<div class="separator"></div>
+<div class="field_1">BERT 和 GPT 。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">Seq2Seq 模型最基本的定义就是什么和什么之间的映射关系？</div>
+<div class="separator"></div>
+<div class="field_1">输入和输出序列。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">通常来说，Seq2Seq 模型 指的就是 什么 架构？</div>
+<div class="separator"></div>
+<div class="field_1">Encoder-Decoder。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">GPT 的预训练任务是 自回归语言建模任务，为什么是无监督学习？</div>
+<div class="separator"></div>
+<div class="field_1">不依赖任何人工标注的标签，通过预测下一个 token 来学习。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">GPT 的微调阶段阶段是有监督任务还是无监督任务。</div>
+<div class="separator"></div>
+<div class="field_1">有监督任务。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">GPT 的微调阶段阶段是有监督任务，关于使用的数据，两个例子。</div>
+<div class="separator"></div>
+<div class="field_1">问题-答案对、分类标签。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">GPT 的训练可以分为两个主要阶段：其中，无监督的预训练阶段，基于哪个任务 实现的。</div>
+<div class="separator"></div>
+<div class="field_1">基于 自回归语言建模任务 实现的。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">GPT 的训练里面的自回归语言建模任务的目标是什么？【根据什么来预测什么？】</div>
+<div class="separator"></div>
+<div class="field_1">根据输入序列的前面部分，预测下一个 token。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">GPT 的预训练任务其实是基于一种叫做 什么的方法。简单来说，它就是让模型通过怎么样的方式，学会理解什么？</div>
+<div class="separator"></div>
+<div class="field_1">自回归语言建模 ，通过预测下一个词，学会理解语言的分布和结构。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">为什么叫“自回归”？【自 和 回归，分别指的是什么意思？】</div>
+<div class="separator"></div>
+<div class="field_1"><li>“自”是指模型依赖于<b><span style="color: rgb(255, 85, 0);">自身的历史值</span></b>。</li><li>“回归”是指模型在<b><span style="color: rgb(255, 85, 0);">预测连续值</span></b>。</li></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">自回归模型与自编码模型的区别 是什么？【分别用于什么？】</div>
+<div class="separator"></div>
+<div class="field_1"><li>自回归模型是<span style="color: rgb(255, 85, 0);"><b>生成式</b></span>模型，用于<b><span style="color: rgb(255, 85, 0);">预测下一个值</span></b>或生成完整序列。</li><li>自编码模型用于<b><span style="color: rgb(255, 85, 0);">特征提取</span></b>和重建数据，并不用于序列预测。</li></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">代码实现上看，BERT 模型在实际使用中最直接接收到的输入数据是什么？【三个数字序列。】</div>
+<div class="separator"></div>
+<div class="field_1">input_ids、attention_mask 和 token_type_ids。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">BERT模型的编码器的最终输入是input_ids、attention_mask 和 token_type_ids 还是&nbsp;Text Embedding（Token Embedding）、Position Embedding 和 Segment Embedding？</div>
+<div class="separator"></div>
+<div class="field_1">Text Embedding（Token Embedding）、Position Embedding 和 Segment Embedding。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">在BERT中，BERT 的输入信息里面的 attention_mask，是否后续通过嵌入的方式加入的？【也就是是否加入到嵌入层。】</div>
+<div class="separator"></div>
+<div class="field_1">没有加入到嵌入层，因为嵌入层的话是token/position/segment embedding。<br><span style="color: rgb(255, 85, 0);"><b>不是</b></span>通过嵌入方式加入，而是<b><span style="color: rgb(255, 85, 0);">直接作为注意力计算时的掩码</span></b>，避免模型关注到无效的 padding 部分。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">在BERT中，BERT 的输入信息里面的 attention_mask，attention_mask 不是通过嵌入的方式加入的，而是直接作为注意力计算时的掩码，避免模型怎么样？</div>
+<div class="separator"></div>
+<div class="field_1">避免关注到无效的 padding 部分。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">BERT 模型里面编码器的输入是什么的相加？</div>
+<div class="separator"></div>
+<div class="field_1">三种嵌入Token Embedding，Position Embedding，Segment Embedding的相加。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">因果掩码（Causal Mask） 的主要作用是什么？【确保模型在什么时候只能基于什么而不能看到什么。】</div>
+<div class="separator"></div>
+<div class="field_1">在自回归生成过程中，确保模型在生成下一个词时只能基于当前及之前的词语，而无法“看到”未来的词。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">在许多文献和实现中，“因果掩码”也被称为“什么掩码”或“什么掩码”？</div>
+<div class="separator"></div>
+<div class="field_1">后续掩码或者未来掩码。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">NLU 是什么类型的任务？</div>
+<div class="separator"></div>
+<div class="field_1">自然语言理解（NLU）任务。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">NLG 是什么类型的任务？</div>
+<div class="separator"></div>
+<div class="field_1">自然语言生成（NLG）任务。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">Encoder-Decoder 模型的两个具体的典型模型是什么？</div>
+<div class="separator"></div>
+<div class="field_1">T5 和&nbsp;BART。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">BART（2019）：结合 谁的 Encoder 和 谁的 Decoder？</div>
+<div class="separator"></div>
+<div class="field_1">结合 BERT 的 Encoder 和 GPT 的 Decoder。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">自回归模型的英文全称和简写？</div>
+<div class="separator"></div>
+<div class="field_1">Autoregressive, AR.</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">自编码模型 和 自回归模型分别的核心功能是什么？</div>
+<div class="separator"></div>
+<div class="field_1"><li><strong>自编码模型</strong>（AutoEncoder, AE）：名字来源于其核心功能——对输入数据<span style="color: rgb(255, 85, 0);"><b>进行编码并尝试还原</b></span>，即<b><span style="color: rgb(255, 85, 0);">利用数据本身来进行编码和重建数据</span></b>。</li><li><b>自回归模型</b>（Autoregressive, AR）：名字来源于其核心特性——基于自身的<span style="color: rgb(255, 85, 0);"><b>过去状态（或序列的前面部分）来预测未来</b></span>。</li></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">自编码模型（AE）的名字解释，A 和 E各自的含义？</div>
+<div class="separator"></div>
+<div class="field_1"><ul><li><b>“Auto”</b>：自动、无监督。自编码器通过<span style="color: rgb(255, 85, 0);"><b>输入数据本身</b></span>进行学习，不依赖人工标签。</li><li><b>“Encoder”</b>：编码器，表示模型对输入数据进行<span style="color: rgb(255, 85, 0);"><b>压缩/编码和还原</b></span>。</li></ul></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">自回归模型（AR）的名字解释，A 和 R各自的含义？</div>
+<div class="separator"></div>
+<div class="field_1"><ul><li><b>“Auto”</b>：自动、无监督。通过<span style="color: rgb(255, 85, 0);"><b>已有数据</b></span>（输入序列的前部分）。</li><li>“Regressive”：回归，表示通过已有数据（输入序列的前部分）<span style="color: rgb(255, 85, 0);"><b>对未来进行预测。</b></span><br></li></ul></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">AE 和 AR 分别的含义区别是什么？【分别是使用自身数据怎么样？】</div>
+<div class="separator"></div>
+<div class="field_1">AE 是一种模型，能够自动对<b><span style="color: rgb(255, 85, 0);">自身数据</span></b>进行<b><span style="color: rgb(255, 85, 0);">编码、提取特征并通过解码还原</span></b>数据。<br>AR 是一种模型，能够根据<b><span style="color: rgb(255, 85, 0);">自身数据{过去的状态}</span></b>（或前面部分的序列）自动<span style="color: rgb(255, 85, 0);"><b>预测未来的状态。</b></span></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">时间序列预测就是一个典型的自回归模型还是自编码模型应用场景？</div>
+<div class="separator"></div>
+<div class="field_1">自回归模型.</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">自回归模型的“自”指的是什么，“回归”是什么？</div>
+<div class="separator"></div>
+<div class="field_1"><ul><li>它完全依赖自身的数据，</li><li>预测未来的连续值。</li></ul></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">简历里面的背景描述部分应该包括哪三个要素？&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1"><ol><li><div>项目的必要性 - <b><span style="color: rgb(255, 0, 127);">为什么</span></b>要做这个项目，</div></li><li><div>采用的解决方案 - 用<b><span style="color: rgb(255, 0, 127);">什么技术</span></b>手段解决问题，</div></li><li><div>项目成效 - 实施后带来了<b><span style="color: rgb(255, 0, 127);">什么具体改善。</span></b></div></li></ol></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">简历里面的背景描述部分，大概应该多少个字？&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1">100个字。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">知识图谱和RAG系统结合是否可行？ 这个方案叫什么名字以及 流程里面，使用哪两个数据库分别存储什么样的知识？两路召回的结果什么样操作以后跟什么进行拼接，最终输入到哪里？</div>
+<div class="separator"></div>
+<div class="field_1">这个方案可行，他的名字叫做"Graph-RAG"。<br><ul><li><div>通过Neo4j存储结构化知识，</div></li><li><div>通过向量数据库存储非结构化知识，</div></li><li><div>双路召回结果融合后再与Prompt拼接，</div></li><li><div>最终交由大模型生成答案。</div></li></ul></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">对于面试前的0基础的准备，先准备简历还是先准备面试的技术知识点。&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1"><div>简历先行，然后再准备其他面试内容</div></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">在准备简历的时候应该重视哪两个部分的清晰的表达。&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1"><div>重视项目背景和架构逻辑的清晰表达。</div></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">在面试环节，要使面试官对自己参与的项目信服，其关键前提是什么？<br></div>
+<div class="separator"></div>
+<div class="field_1">在于表达需具备逻辑性。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">简历里项目背景的常见错误写法，是什么？</div>
+<div class="separator"></div>
+<div class="field_1">将整个项目实施过程直接当作项目背景，即只阐述了“怎么做”，却忽略了“为什么做”以及“做之后的成效”。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">GBDT 和 GBM 这两者之间的关系是什么？&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1">GBDT（梯度提升决策树）确实是GBM（梯度提升机器）的一种特定实现方式。GBDT里面的基学习器用的是决策树。GBM对里面的基学习器没有要求。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">GBDT 和 GBM 他们各自的中文全称是什么？ ·</div>
+<div class="separator"></div>
+<div class="field_1">GBDT（梯度提升决策树）<br>GBM（梯度提升机器）&nbsp;</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">GBM 梯度提升机器 的框架，他的思想是什么？&nbsp;【不断的添加什么来拟合什么。】</div>
+<div class="separator"></div>
+<div class="field_1">不断添加基学习器来拟合前一轮基学习器的残差。<br><br>通过不断地迭代添加新的弱学习器来减少模型的预测误差。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">GBDT 为什么会被认为是对GBM&nbsp;的其中一种特定的实现？&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1">GBDT则固定选择了决策树作为弱学习器，因此也称为决策树版的梯度提升方法。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">GBM本质上是一个加法模型，其思想是什么？<br>【将什么怎么样，最终形成什么？】</div>
+<div class="separator"></div>
+<div class="field_1">把多个基学习器的输出线性叠加起来形成最终模型。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">在GBM上采用决策树成为最常见的策略，就变成了什么机器学习算法？&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1">即GBDT 梯度提升决策树 。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">GBDT可以看作是GBM的一种常见和有效的实现方式，其核心区别在于什么？</div>
+<div class="separator"></div>
+<div class="field_1">采用了决策树作为基学习器。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">XGBoost 与 GBDT 在基本思想上是一脉相承的，都是基于什么的框架，通过的不断添加什么来逐步的减少什么。&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1">都是属于梯度提升框架，通过不断添加决策树等弱学习器来逐步减少预测误差</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">XGBoost 与 GBDT&nbsp; 每一步都在拟合什么？&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1">每一步都在拟合前一阶段的残差或梯度。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">XGBoost 与 GBDT&nbsp; 他们默认情况下弱学习器都是什么，是因为可以捕捉数据中的什么关系？&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1">其默认的弱学习器都是决策树，利用树结构捕捉数据中的复杂非线性关系。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">传统的GBDT 与 XGBoost&nbsp;&nbsp;两者之间的不同点是什么？ 【<span style="color: oklch(0.304 0.04 213.681); background-color: oklch(0.99 0.004 106.471);">正则化</span>】</div>
+<div class="separator"></div>
+<div class="field_1"><ul><li>通常不内置系统性的正则化策略，</li><li>内置 L1 和 L2 正则化，有助于控制模型复杂度、防止过拟合。</li></ul></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">传统的GBDT 与 XGBoost&nbsp;&nbsp;两者之间的不同点是什么？ 【计算效率上面为什么前者慢，后者快？】</div>
+<div class="separator"></div>
+<div class="field_1"><ul><li>一般采用顺序迭代，训练速度较慢，</li><li>通过并行化、缓存优化等技术大幅提升训练速度。</li></ul></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">传统的GBDT 与 XGBoost&nbsp;&nbsp;两者之间的不同点是什么？ 【缺失值处理】</div>
+<div class="separator"></div>
+<div class="field_1"><ul><li>部分实现需要额外预处理，缺失值处理不够自动化，</li><li>内部实现了缺失值处理机制，可自动学习缺失数据的最佳分裂方向。</li></ul></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">传统的GBDT 与 XGBoost&nbsp;&nbsp;两者之间的关系是什么？</div>
+<div class="separator"></div>
+<div class="field_1">XGBoost 可以认为是在传统 GBDT 基础上的一次进化和扩展。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">XGBoost&nbsp; 通过对 传统的GBDT 进行了哪四个方面的改进，显著提升了模型的效率和准确性。&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1">通过二阶优化、正则化、并行计算和缺失值处理等改进，显著提升了模型的效率和准确性。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">XGBoost 它的英文全称和中文全称分别是什么？ 以及 这个名字强调了什么？&nbsp;&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1">为“极致梯度提升”（eXtreme Gradient Boosting），名称更强调其性能和效率上的<b><span style="color: rgb(255, 0, 127);">“极致”优化</span></b>。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">XGBoost 本质上使用什么作为基分类器，可以看作是哪个算法的扩展和优化版。&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1">使用<span style="color: rgb(255, 0, 127);"><b>决策树</b></span>作为基分类器，因此可以看作是<b><span style="color: rgb(255, 0, 127);">梯度提升决策树（GBDT）</span></b>的扩展或优化版.</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">bagging和boosting 分别与决策树结合，形成了什么算法？&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1"><ul><li><div>Bagging + 决策树 = 随机森林</div></li><li><div>Gradient Boosting + 决策树 = GBDT</div></li></ul></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">Bagging和Boosting的核心区别在于它们的"思路理念"，具体来说是什么？&nbsp;<br>【分别是如何投票以及训练集分别什么样？基学习器是否平等？样本权重是否会发生变化？训练过程是并还是串行？】</div>
+<div class="separator"></div>
+<div class="field_1">1 平等的多数投票，民主投票的原则。通过有放回抽样形成多个训练集，每个训练集都是独立的。基学习器地位相等，并行训练<br>2 精英投票的思路。基学习器权重大，话语权就大。每轮训练集都是一样的，但是呢每次训练时候，错分样本的权重都会增加。串行训练的。<br><div><ul><li>Bagging采用的是"<span style="color: rgb(255, 0, 127);"><b>民主</b></span>投票"的思路，它通过<span style="color: rgb(255, 0, 127);"><b>有放回抽样</b></span>生成<span style="color: rgb(255, 0, 127);"><b>多个</b></span>独立的<span style="color: rgb(255, 0, 127);"><b>训练集</b></span>，每个<span style="color: rgb(255, 0, 127);"><b>基模型地位平等</b></span>，最终采用<span style="color: rgb(255, 0, 127);"><b>投票</b></span>或平均的方式得出结果。这种方法更注重降低模型的方差（variance），提高模型稳定性，Bagging可以<b><span style="color: rgb(255, 0, 127);">并行</span></b>训练（因为模型间独立）。</li><li>而Boosting采用的是"<span style="color: rgb(255, 0, 127);"><b>精英</b></span>提升"的思路，<span style="color: rgb(255, 0, 127);"><b>每轮训练集不变</b></span>，它通过不断提升<span style="color: rgb(255, 0, 127);"><b>被错分样本</b></span>的权重，让模型<span style="color: rgb(255, 0, 127);"><b>关注那些难分的</b></span>样本，同时后续的模型要基于前面模型的结果进行优化，最终集成时<span style="color: rgb(255, 0, 127);"><b>优秀的模型具有更大的话语权</b></span>。这种方法更注重降低模型的偏差（bias），提高模型准确性，Boosting只能<b><span style="color: rgb(255, 0, 127);">串行</span></b>训练（因为模型间有依赖）。</li></ul></div><span style="color: oklch(0.304 0.04 213.681); background-color: oklch(0.99 0.004 106.471);"></span></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">BM25 这个算法的英文全称以及 它是经典的什么检索算法？&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1">（Best Match 25）一种经典的<b><span style="color: rgb(255, 0, 127);">文本检索</span></b>算法。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">BM25 这个算法它是基于什么对什么进行排名？ 他计算的是什么和什么的相关性评分？&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1">它是基于概率检索模型，对文档进行排名。主要计算的是查询query和文档document之间的相关性评分。&nbsp;</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">BM25 这个算法它是哪个算法的改进版本？&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1"><span style="color: oklch(0.304 0.04 213.681); background-color: oklch(0.99 0.004 106.471);">它是TF-IDF算法的改进版本。</span></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">TF-IDF算法 这个名称的两个英文单词缩写分别表示什么意思？&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1"><span style="color: oklch(0.304 0.04 213.681); background-color: oklch(0.99 0.004 106.471);">词频（TF）、逆文档频率（IDF）。</span></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">混合检索是一种将多种检索技术结合起来的技术,比如哪两种检索？&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1">关键词检索，<br>语义向量检索。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">BM25对长短文档进行了归一化处理，这样做的好处是可以避免什么问题。&nbsp;【避免了什么样的文档应包含什么而被过高评分？】</div>
+<div class="separator"></div>
+<div class="field_1">避免了长文档因包含更多关键词而被过高评分的问题。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">关键词检索的一种算法例子是什么？&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1">BM25。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">关键词检索的一个算法案例以及关键词检索是什么含义？&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1"><div>关键词检索（如BM25）：&nbsp;基于精确匹配，通过关键词出现频率和权重进行排名。</div></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">语义向量检索是什么含义？&nbsp; 【基于谁生成的什么来捕捉什么？】</div>
+<div class="separator"></div>
+<div class="field_1"><div>语义向量检索：&nbsp;基于深度学习模型生成的向量表示，捕捉文本之间更深层次的语义关系。</div></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">BM25通常作为什么检索中的一个关键模块，用于处理什么？</div>
+<div class="separator"></div>
+<div class="field_1">混合检索，用于处理文本中的关键词匹配。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">混合检索则通过结合BM25与什么搜索等技术，实现了更全面、更精准的信息召回</div>
+<div class="separator"></div>
+<div class="field_1">向量搜索。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">BM25 和 混合检索，这两种方式它们的核心原理有什么区别？&nbsp; 【前者是基于什么进行改进？强调了什么匹配？后者的话则是融合了什么和什么？】</div>
+<div class="separator"></div>
+<div class="field_1"><ul><li>基于<span style="color: rgb(255, 0, 127);"><b>TF-IDF改进</b></span>，强调<b><span style="color: rgb(255, 0, 127);">关键词匹配</span></b>，</li><li>融合 文本检索和语义向量检索。</li></ul></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">BM25 和 混合检索，这两种方式它们的 <b><span style="color: rgb(255, 0, 127);">适用场景 </span></b>有什么区别？&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1"><ul><li>精确<b><span style="color: rgb(255, 0, 127);">关键词查询</span></b>，如传统搜索引擎，</li><li>需要<span style="color: rgb(255, 0, 127);"><b>语义理解</b></span>或多模态数据，如<b><span style="color: rgb(255, 0, 127);">智能问答</span></b>系统。</li></ul></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">RAG里面，增强模块的目的是什么？【通过调整什么来提升什么？】</div>
+<div class="separator"></div>
+<div class="field_1">通过调整或改进生成模型的输入来提升生成效果。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">RAG系统的工作流程里面，知识检索模块流程和步骤是什么？&nbsp; 【对PDF文本怎么处理？然后使用什么来对文本进行嵌入，导入到哪里，混合检索方式是什么？】</div>
+<div class="separator"></div>
+<div class="field_1">首先，我们通过处理大量的PDF文本构建本地知识库。在这个过程中，我们需要对PDF进行结构化处理，将文本切分成合适的块（chunk），确保每个块包含足够的上下文信息。<br>接着，我们使用embedding模型对这些文本块进行嵌入，并将其导入到一个高效的向量数据库，如Milvus。<br>在检索阶段，我们采用BM25和embedding检索的混合方式，利用BM25进行初步的关键词匹配，然后使用embedding模型计算语义相似度，最终返回最相关的上下文信息。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">RAGAs 它通过什么化的指标，来对哪两个模块进行独立的评估？&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1">它通过一套<b><span style="color: rgb(255, 0, 127);">结构化</span></b>的指标，对RAG系统的<span style="color: rgb(255, 0, 127);"><b>检索</b></span>和<span style="color: rgb(255, 0, 127);"><b>生成</b></span>模块进行独立和整体评估，帮助开发者优化系统性能并确保其可靠性。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">在RAG系统中，检索模块和生成模块分别的作用是什么？负责什么？&nbsp;<br>【检索模块是从哪里提取什么，生成模块是利用什么生成什么？】</div>
+<div class="separator"></div>
+<div class="field_1"><span style="background-color: oklch(0.99 0.004 106.471);"><span style="color: oklch(0.304 0.04 213.681);">检索模块负责</span><span style="color: rgb(255, 0, 127);"><b>从外部知识库中提取相关信息</b></span><span style="color: oklch(0.304 0.04 213.681);">，<br>而生成模块</span><b><span style="color: rgb(255, 0, 127);">利用这些信息生成最终的回答。</span></b></span></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">RAGAs框架 提供端到端的评估。 是什么意思？&nbsp; 【评估整个什么？包括从哪里到哪里的流程？】</div>
+<div class="separator"></div>
+<div class="field_1">综合评估整个RAG管道，包括从检索到生成的完整流程。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">RAGAs需要以下四类数据作为输入 分别是什么？&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1"><ul><li><div><strong>Question（用户查询）</strong>：用户提出的问题，作为RAG管道的输入。</div></li><li><div><strong>Contexts（检索上下文）</strong>：从知识库中检索到的相关文本片段，用于支持回答生成。</div></li><li><div><strong>Answer（生成答案）</strong>：基于上下文和查询生成的回答。</div></li><li><div><strong>Ground Truth（参考答案）</strong>：问题的真实答案，仅在某些指标（如上下文召回率）计算时需要。</div></li></ul></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">RAGAs需要以下四类数据作为输入 ，其中question指的是什么？&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1"><div>Question（用户查询）：用户提出的问题，作为RAG管道的输入。</div></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">RAGAs 里面，检索模块指标，其中，上下文召回率（Context Recall） 是什么意思？<br>【衡量什么信息中包含多少与什么相关的信息？】</div>
+<div class="separator"></div>
+<div class="field_1"><div>衡量检索到的信息中包含多少与参考答案相关的信息。</div></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">RAGAs 里面，生成模块指标,包括哪两个？ 中文英文以及相关的含义是什么？&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1"><ul><li><div><strong>忠实性（Faithfulness）</strong>：评估生成答案是否与检索到的信息一致，避免“幻觉”现象，answer 和 context。</div></li><li><div><strong>答案相关性（Answer Relevancy）</strong>：衡量生成答案是否直接回应了用户查询，answer 和 question。</div></li></ul></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">RAGAs 里面，生成模块指标,其中，忠实性（Faithfulness）表示什么意思？&nbsp; 【评估什么跟什么是否一致，避免什么现象？】</div>
+<div class="separator"></div>
+<div class="field_1"><div>评估生成答案是否与检索到的信息一致，避免“幻觉”现象。</div></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">RAGAs 里面，生成模块指标,其中，答案相关性（Answer Relevancy）表示什么意思？&nbsp; 【来衡量什么是否回应什么？】</div>
+<div class="separator"></div>
+<div class="field_1">衡量生成答案是否直接回应了用户查询。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">RAGAs 里面，端到端的指标里面，答案正确性（Answer Correctness）是什么意思？&nbsp; 【衡量什么跟什么是否一致？】</div>
+<div class="separator"></div>
+<div class="field_1">输出答案和标准答案。衡量生成答案是否与参考答案一致。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">RAGAs 里面，忠实性通过什么或者什么来评估什么是否基于什么。&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1"><div>忠实性通过<span style="color: rgb(255, 0, 127);"><b>语义相似度或人工标注</b></span>来评估<span style="color: rgb(255, 0, 127);"><b>生成答案answer</b></span>是否基于<span style="color: rgb(255, 0, 127);"><b>检索内容context。</b></span></div></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">检索增强生成（Retrieval-Augmented Generation, RAG）是一种 结合什么和什么的框架？&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1">结合<span style="color: rgb(255, 0, 127);"><b>信息检索</b></span>和<span style="color: rgb(255, 0, 127);"><b>生成技术</b></span>的框架。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">语义切割是什么意思？&nbsp; 【基于什么来进行分割？】</div>
+<div class="separator"></div>
+<div class="field_1">基于句子、段落或主题等语义单元进行分割。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">递归切割是什么意思以及它适合什么样的 文本。&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1">通过递归方式逐步缩小块大小，直到满足预定条件。这种方法适用于处理<b><span style="color: rgb(255, 0, 127);">复杂结构化</span></b>文档，例如<span style="color: rgb(255, 0, 127);"><b>Markdown或LaTeX</b></span>格式。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0"><span style="color: oklch(0.304 0.04 213.681); background-color: oklch(0.99 0.004 106.471);">嵌入模型可根据任务需求选择。</span><span style="color: oklch(0.304 0.04 213.681); background-color: oklch(0.99 0.004 106.471);">BERT 以及&nbsp;</span><span style="color: oklch(0.304 0.04 213.681); background-color: oklch(0.99 0.004 106.471);">E5或bge-large，这两者分别适合什么？&nbsp;</span><br>【前者适合什么语义表示？后者适合什么任务？】</div>
+<div class="separator"></div>
+<div class="field_1"><span style="color: oklch(0.304 0.04 213.681); background-color: oklch(0.99 0.004 106.471);">BERT适合短文本语义表示，而E5或bge-large等优化模型适合搜索任务。</span></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0"><font color="oklch(0.304 0.04 213.681)"><span style="background-color: oklch(0.99 0.004 106.471);">对于向量数据库来说，用户的查询会变成什么，并与谁进行什么样的比较？用到了什么数学算法？&nbsp;</span></font></div>
+<div class="separator"></div>
+<div class="field_1"><div>用户查询也被<span style="color: rgb(255, 0, 127);"><b>嵌入为向量</b></span>，并与<span style="color: rgb(255, 0, 127);"><b>数据库</b></span>中的<span style="color: rgb(255, 0, 127);"><b>向量</b></span>进行<span style="color: rgb(255, 0, 127);"><b>相似度匹配</b></span>（如<b><span style="color: rgb(255, 0, 127);">余弦相似度</span></b>）。</div></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">BM25 为什么可以用于传统的搜索引擎，<br>混合检索为什么可以用于问答系统？</div>
+<div class="separator"></div>
+<div class="field_1">BM25 使用的是关键词精确匹配，<br>混合检索 使用了语义理解。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">BM25 这个算法通过什么方式来进行排名？</div>
+<div class="separator"></div>
+<div class="field_1">是通过匹配的关键词，他们的频率和权重来进行排名。</div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">用一张图来描述RAGAs里面的6个评价指标。&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1"><img src="images/paste-1923263f150de69ec0c1d2ed14a510e67bd1b1d6.jpg"></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">RAGAs里面评估  检索模块用到哪两个指标，以及每个指标跟哪两个部分相关？&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1"><ul><li>上下文召回率，Context 和 Ground Truth ,</li><li>上下文精确度，Context 和 Question。&nbsp;</li></ul></div>
+</div>
+<div class="card">
+<div class="tags" aria-hidden="true">Tags: 导入Edge::2-15</div>
+<div class="field_0">RAGAs里面评估 生成模块用到哪两个指标，以及每个指标跟哪两个部分相关？&nbsp;</div>
+<div class="separator"></div>
+<div class="field_1">答案相关性，Answer 和 Question，<br>忠实度，Answer 和 Context。&nbsp;</div>
+</div>
+
+<script>
+document.addEventListener('click', function(e) {
+const container = e.target.closest('.video-container');
+if (!container) return;
+
+const placeholder = container.querySelector('.video-placeholder');
+if (!placeholder) return;
+
+const videoId = container.dataset.videoId;
+const startParam = container.dataset.start || '';
+
+const iframe = document.createElement('iframe');
+iframe.width = '100%';
+iframe.height = '100%';
+iframe.src = `https://www.youtube.com/embed/${videoId}?${startParam.slice(1)}`;
+iframe.title = 'YouTube video player';
+iframe.frameBorder = '0';
+iframe.style.position = 'absolute';
+iframe.style.top = '0';
+iframe.style.left = '0';
+iframe.style.borderRadius = '15px';
+iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+iframe.allowFullscreen = true;
+
+placeholder.innerHTML = '';
+placeholder.appendChild(iframe);
+});
+</script>
+
+</div>
+<div class="footer">Made by <a href="https://xxhk.org">Export Notes - XXHK</a></div>
+</body>
+</html>
+
